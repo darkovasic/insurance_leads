@@ -14,8 +14,8 @@
                         </div>
                     @endif
 
-                    <!-- <example-component></example-component> -->
-                    <form>
+                    <agent-dashboard></agent-dashboard>
+                    {{-- <form>
                         @csrf
                         <div class="row" style="background:cadetblue">
                             <div class="col-md-6">
@@ -85,7 +85,7 @@
                                 </div>                   
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
