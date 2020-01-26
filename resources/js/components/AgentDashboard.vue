@@ -2,11 +2,6 @@
     <form>
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
-                <!-- <div class="form-group">
-                    <label for="dot_number">DOT Number</label>
-                    <input type="text" class="form-control" id="dot_number">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div> -->
 
                 <div class="input-group lead-search">
                     <label for="dot_number">DOT Number</label>
@@ -17,9 +12,7 @@
                 </div>
 
             </div>
-            <!-- <div class="col-md-6" >
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div> -->
+
         </div>
         <div class="row" style="background:burlywood">
             <div class="col-md-6">
