@@ -1998,20 +1998,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Lead",
+  data: function data() {
+    return {
+      dot_number: '1000261' // legal_name: '',
+      // telephone: '',
+      // email_address: '',
+      // dba_name: '',
+      // phy_street: '',
+      // phy_city: '',
+      // phy_zip: '',
+      // phy_state: '',
+      // nbr_power_unit: '',
+      // driver_total: '',
+      // last_insurance_carrier: '',
+      // description: '',
+
+    };
+  },
   mounted: function mounted() {// this.$store.dispatch('fetchLead', dot_number)
   },
   methods: {
-    deleteLead: function deleteLead(id) {
-      this.$store.dispatch('deleteLead', id);
-    },
     fetchLead: function fetchLead(id) {
       this.$store.dispatch('fetchLead', id);
+    },
+    deleteLead: function deleteLead(id) {
+      this.$store.dispatch('deleteLead', id);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead']))
@@ -38046,8 +38060,25 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dot_number,
+                  expression: "dot_number"
+                }
+              ],
               staticClass: "form-control",
-              attrs: { type: "text", id: "dot_number" }
+              attrs: { type: "text", id: "dot_number" },
+              domProps: { value: _vm.dot_number },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.dot_number = $event.target.value
+                }
+              }
             }),
             _vm._v(" "),
             _c("span", { staticClass: "input-group-btn" }, [
@@ -38059,7 +38090,7 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.fetchLead()
+                      return _vm.fetchLead(_vm.dot_number)
                     }
                   }
                 },
@@ -38077,7 +38108,7 @@ var render = function() {
       [
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "person_name" } }, [
+            _c("label", { attrs: { for: "legal_name" } }, [
               _vm._v("Contact Name")
             ]),
             _vm._v(" "),
@@ -38086,174 +38117,333 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.lead.person_name,
-                  expression: "lead.person_name"
+                  value: _vm.lead.legal_name,
+                  expression: "lead.legal_name"
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", id: "person_name" },
-              domProps: { value: _vm.lead.person_name },
+              attrs: { type: "text", id: "legal_name" },
+              domProps: { value: _vm.lead.legal_name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.lead, "person_name", $event.target.value)
+                  _vm.$set(_vm.lead, "legal_name", $event.target.value)
                 }
               }
             })
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "email_address" } }, [_vm._v("Email")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.email_address,
+                  expression: "lead.email_address"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "email", id: "email_address" },
+              domProps: { value: _vm.lead.email_address },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "email_address", $event.target.value)
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "phy_street" } }, [_vm._v("Street")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.phy_street,
+                  expression: "lead.phy_street"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "phy_street" },
+              domProps: { value: _vm.lead.phy_street },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "phy_street", $event.target.value)
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
-          _vm._m(2),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "phy_zip" } }, [_vm._v("ZIP Code")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.phy_zip,
+                  expression: "lead.phy_zip"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "phy_zip" },
+              domProps: { value: _vm.lead.phy_zip },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "phy_zip", $event.target.value)
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
-          _vm._m(3),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "nbr_power_unit" } }, [
+              _vm._v("Number of Trucks")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.nbr_power_unit,
+                  expression: "lead.nbr_power_unit"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "nbr_power_unit" },
+              domProps: { value: _vm.lead.nbr_power_unit },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "nbr_power_unit", $event.target.value)
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
-          _vm._m(4)
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "last_insurance_carrier" } }, [
+              _vm._v("Last Insurance Carrier")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.last_insurance_carrier,
+                  expression: "lead.last_insurance_carrier"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "last_insurance_carrier" },
+              domProps: { value: _vm.lead.last_insurance_carrier },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.lead,
+                    "last_insurance_carrier",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
         ]),
         _vm._v(" "),
-        _vm._m(5)
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "telephone" } }, [
+              _vm._v("Phone Number")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.telephone,
+                  expression: "lead.telephone"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "telephone" },
+              domProps: { value: _vm.lead.telephone },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "telephone", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "dba_name" } }, [_vm._v("Company")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.dba_name,
+                  expression: "lead.dba_name"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "dba_name" },
+              domProps: { value: _vm.lead.dba_name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "dba_name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "phy_city" } }, [_vm._v("City")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.phy_city,
+                  expression: "lead.phy_city"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "phy_city" },
+              domProps: { value: _vm.lead.phy_city },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "phy_city", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.phy_state,
+                  expression: "lead.phy_state"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "phy_state" },
+              domProps: { value: _vm.lead.phy_state },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "phy_state", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "driver_total" } }, [
+              _vm._v("Number of Drivers")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.driver_total,
+                  expression: "lead.driver_total"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "driver_total" },
+              domProps: { value: _vm.lead.driver_total },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "driver_total", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "description" } }, [
+              _vm._v("Description")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.lead.description,
+                  expression: "lead.description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "description" },
+              domProps: { value: _vm.lead.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.lead, "description", $event.target.value)
+                }
+              }
+            })
+          ])
+        ])
       ]
     ),
     _vm._v(" "),
-    _vm._m(6)
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "email_address" } }, [_vm._v("Email")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "email", id: "email_address" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "phy_street" } }, [_vm._v("Street")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", id: "phy_street" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "phy_zip" } }, [_vm._v("ZIP Code")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", id: "phy_zip" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "nbr_power_unit" } }, [
-        _vm._v("Number of Trucks")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", id: "nbr_power_unit" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "last_insurance_carrier" } }, [
-        _vm._v("Last Insurance Carrier")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", id: "last_insurance_carrier" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "telephone" } }, [_vm._v("Phone Number")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "telephone" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "dba_name" } }, [_vm._v("Company")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "dba_name" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "phy_city" } }, [_vm._v("City")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "phy_city" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "phy_state" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "driver_total" } }, [
-          _vm._v("Number of Drivers")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "driver_total" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "description" } }, [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "description" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -51714,15 +51904,16 @@ __webpack_require__.r(__webpack_exports__);
 var actions = {
   updateLead: function updateLead(_ref, lead) {
     var commit = _ref.commit;
-    axios.lead('/api/lead', lead).then(function (res) {
+    axios.post('/api/lead', lead).then(function (res) {
       commit('UPDATE_LEAD', res.data);
     })["catch"](function (err) {
       console.log(err);
     });
   },
-  fetchLead: function fetchLead(_ref2) {
+  fetchLead: function fetchLead(_ref2, lead) {
     var commit = _ref2.commit;
-    axios.get('/api/lead').then(function (res) {
+    console.log("DOT", lead);
+    axios.get("/api/lead/".concat(lead)).then(function (res) {
       commit('FETCH_LEAD', res.data);
     })["catch"](function (err) {
       console.log(err);
@@ -51730,7 +51921,7 @@ var actions = {
   },
   deleteLead: function deleteLead(_ref3, lead) {
     var commit = _ref3.commit;
-    axios["delete"]("/api/lead/".concat(lead.id)).then(function (res) {
+    axios["delete"]("/api/lead/".concat(lead)).then(function (res) {
       if (res.data === 'ok') commit('DELETE_LEAD', lead);
     })["catch"](function (err) {
       console.log(err);

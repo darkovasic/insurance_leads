@@ -24,12 +24,12 @@ class LeadController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('leads');
     }
 
-    public function get(Request $request)
+    public function get($id)
     {
-        $lead = Lead::where('dot_number', '1000061')->first();
+        $lead = Lead::where('dot_number', $id)->first();
         return response()->json($lead);
     }
 
