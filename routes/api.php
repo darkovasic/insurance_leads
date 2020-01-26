@@ -17,8 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('lead', 'LeadController@store');
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('lead', 'LeadController@store');
+    Route::get('lead', 'LeadController@get');
+    Route::delete('lead/{id}', 'LeadController@delete');
+});
 
-Route::get('lead', 'LeadController@get');
 
-Route::delete('lead/{id}', 'LeadController@delete');

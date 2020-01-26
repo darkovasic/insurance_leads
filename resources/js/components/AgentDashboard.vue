@@ -7,7 +7,7 @@
                     <label for="dot_number">DOT Number</label>
                     <input type="text" class="form-control" id="dot_number">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" style="background:burlywood">Search</button>
+                        <button class="btn btn-default" type="button" @click="fetchLead()" style="background:burlywood">Search</button>
                     </span>
                 </div>
 
@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="person_name">Contact Name</label>
-                    <input type="text" class="form-control" id="person_name">
+                    <input type="text" class="form-control" id="person_name" v-model="lead.person_name">
                 </div>
                 <div class="form-group">
                     <label for="email_address">Email</label>
@@ -85,9 +85,38 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
+
     export default {
+        name: "Lead",
         mounted() {
-            console.log('Agent Dashboard mounted.')
+            // this.$store.dispatch('fetchLead', dot_number)
+        },
+        methods: {
+            deleteLead(id) {
+                this.$store.dispatch('deleteLead', id)
+            },
+            fetchLead(id) {
+                this.$store.dispatch('fetchLead', id)
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'lead'
+            ])
         }
     }
 </script>
+
+<style scoped>
+    .lead-search {
+        padding: 1rem 0;
+        /* width: 50%; */
+    }
+
+    #dot_number {
+        margin: 0 1rem;
+    }
+</style>
+
+

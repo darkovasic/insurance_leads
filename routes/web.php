@@ -19,7 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/leads', 'LeadController@index')->name('leads');
+// Route::get('/leads', 'LeadController@index')->name('leads');
+
+
 
 Route::get('send_test_email', function(){
 	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
