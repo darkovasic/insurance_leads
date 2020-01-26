@@ -68,6 +68,18 @@
                 </div>                   
             </div>
         </div>
+        <div class="row" style="background:cadetblue">
+            <div class="col-md-12">
+                <div class="form-group lead-search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" style="background:burlywood">Save Changes</button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" style="background:burlywood">Dispatch</button>
+                    </span>
+                </div>
+            </div>
+        </div>        
     </form>
 
 </template>

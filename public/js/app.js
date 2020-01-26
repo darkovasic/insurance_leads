@@ -1982,6 +1982,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Agent Dashboard mounted.');
@@ -37559,6 +37571,40 @@ var staticRenderFns = [
                 staticClass: "form-control",
                 attrs: { type: "text", id: "description" }
               })
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "cadetblue" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-group lead-search" }, [
+              _c("span", { staticClass: "input-group-btn" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    staticStyle: { background: "burlywood" },
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Save Changes")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "input-group-btn" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    staticStyle: { background: "burlywood" },
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Dispatch")]
+                )
+              ])
             ])
           ])
         ]

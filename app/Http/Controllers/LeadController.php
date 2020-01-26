@@ -28,8 +28,8 @@ class LeadController extends Controller
 
     public function get(Request $request)
     {
-        $leads = Lead::orderBy('legal_name', 'desc')->get();
-        return response()->json($leads);
+        $lead = Lead::where('dot_number', '1000061')->first();
+        return response()->json($lead);
     }
 
     public function store(Request $request)
