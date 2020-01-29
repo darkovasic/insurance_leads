@@ -61,19 +61,23 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" v-model="lead.description">
+                    <input type="text" class="form-control" id="description" v-model="description">
                 </div>                   
+            </div>
+        </div>
+        <div class="row" style="background:burlywood">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea class="form-control" id="comment" v-model="comment"></textarea>
+                </div>
             </div>
         </div>
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
-                <div class="form-group lead-search">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" style="background:burlywood">Save Changes</button>
-                    </span>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" style="background:burlywood">Dispatch</button>
-                    </span>
+                <div class="input-group-btn lead-search float-right">
+                    <button class="btn btn-default" type="button" style="background:burlywood">Save Changes</button>
+                    <button class="btn btn-default" type="button" style="background:burlywood">Send to Broker</button>
                 </div>
             </div>
         </div>        
@@ -86,7 +90,7 @@
 
     export default {
 
-        name: "Lead",
+        name: "Agent Dashboard",
         data() {
             return {
                 dot_number: '1000261',
@@ -101,7 +105,7 @@
                 // nbr_power_unit: '',
                 // driver_total: '',
                 // last_insurance_carrier: '',
-                // description: '',
+                description: 'Trucker',
             }
         },
         mounted() {
@@ -129,10 +133,15 @@
         padding: 1rem 0;
         /* width: 50%; */
     }
-
     #dot_number {
         margin: 0 1rem;
     }
+    /* .right {
+        float: right;
+        width: 300px;
+        border: 3px solid #73AD21;
+        padding: 10px;
+    } */
 </style>
 
 

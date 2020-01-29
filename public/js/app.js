@@ -1998,12 +1998,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Lead",
+  name: "Agent Dashboard",
   data: function data() {
     return {
-      dot_number: '1000261' // legal_name: '',
+      dot_number: '1000261',
+      // legal_name: '',
       // telephone: '',
       // email_address: '',
       // dba_name: '',
@@ -2014,8 +2019,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // nbr_power_unit: '',
       // driver_total: '',
       // last_insurance_carrier: '',
-      // description: '',
-
+      description: 'Trucker'
     };
   },
   mounted: function mounted() {// this.$store.dispatch('fetchLead', dot_number)
@@ -6576,7 +6580,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\n", ""]);
+exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\n/* .right {\n    float: right;\n    width: 300px;\n    border: 3px solid #73AD21;\n    padding: 10px;\n} */\n", ""]);
 
 // exports
 
@@ -38419,19 +38423,53 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.lead.description,
-                  expression: "lead.description"
+                  value: _vm.description,
+                  expression: "description"
                 }
               ],
               staticClass: "form-control",
               attrs: { type: "text", id: "description" },
-              domProps: { value: _vm.lead.description },
+              domProps: { value: _vm.description },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.lead, "description", $event.target.value)
+                  _vm.description = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row", staticStyle: { background: "burlywood" } },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "comment" } }, [_vm._v("Comment")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.comment,
+                  expression: "comment"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "comment" },
+              domProps: { value: _vm.comment },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.comment = $event.target.value
                 }
               }
             })
@@ -38453,8 +38491,10 @@ var staticRenderFns = [
       { staticClass: "row", staticStyle: { background: "cadetblue" } },
       [
         _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-group lead-search" }, [
-            _c("span", { staticClass: "input-group-btn" }, [
+          _c(
+            "div",
+            { staticClass: "input-group-btn lead-search float-right" },
+            [
               _c(
                 "button",
                 {
@@ -38463,10 +38503,8 @@ var staticRenderFns = [
                   attrs: { type: "button" }
                 },
                 [_vm._v("Save Changes")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "input-group-btn" }, [
+              ),
+              _vm._v(" "),
               _c(
                 "button",
                 {
@@ -38474,10 +38512,10 @@ var staticRenderFns = [
                   staticStyle: { background: "burlywood" },
                   attrs: { type: "button" }
                 },
-                [_vm._v("Dispatch")]
+                [_vm._v("Send to Broker")]
               )
-            ])
-          ])
+            ]
+          )
         ])
       ]
     )
