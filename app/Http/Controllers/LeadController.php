@@ -33,9 +33,10 @@ class LeadController extends Controller
         return response()->json($lead);
     }
 
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
-        $lead = Lead::create($request->all());
+dd($request);        
+        $lead = Lead::where('dot_number', $id)->update($request->all());
 
         return response()->json($lead);
     }

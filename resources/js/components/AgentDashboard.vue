@@ -1,10 +1,10 @@
 <template>
-    <form>
+    <form @submit.prevent="submit">
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
-                <div class="input-group lead-search">
+                <div class="input-group lead-search align-items-center">
                     <label for="dot_number">DOT Number</label>
-                    <input type="text" class="form-control" id="dot_number" v-model="dot_number">
+                    <input type="text" class="form-control" id="dot_number" @keyup.enter="fetchLead(dot_number)" :value="dot_number" @input="updateDotNumber">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" @click="fetchLead(dot_number)" style="background:burlywood">Search</button>
                     </span>
@@ -15,53 +15,53 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="legal_name">Contact Name</label>
-                    <input type="text" class="form-control" id="legal_name" v-model="lead.legal_name">
+                    <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
                 </div>
                 <div class="form-group">
                     <label for="email_address">Email</label>
-                    <input type="email" class="form-control" id="email_address" v-model="lead.email_address">
+                    <input type="email" class="form-control" id="email_address" :value="email_address" @input="updateEmail">
                 </div>
                 <div class="form-group">
                     <label for="phy_street">Street</label>
-                    <input type="text" class="form-control" id="phy_street" v-model="lead.phy_street">
+                    <input type="text" class="form-control" id="phy_street" :value="phy_street" @input="updateStreet">
                 </div>
                 <div class="form-group">
                     <label for="phy_zip">ZIP Code</label>
-                    <input type="text" class="form-control" id="phy_zip" v-model="lead.phy_zip">
+                    <input type="text" class="form-control" id="phy_zip" :value="phy_zip" @input="updateZipCode">
                 </div>
                 <div class="form-group">
                     <label for="nbr_power_unit">Number of Trucks</label>
-                    <input type="text" class="form-control" id="nbr_power_unit" v-model="lead.nbr_power_unit">
+                    <input type="text" class="form-control" id="nbr_power_unit" :value="nbr_power_unit" @input="updateNbrPowerUnit">
                 </div>
                 <div class="form-group">
                     <label for="last_insurance_carrier">Last Insurance Carrier</label>
-                    <input type="text" class="form-control" id="last_insurance_carrier" v-model="lead.last_insurance_carrier">
+                    <input type="text" class="form-control" id="last_insurance_carrier" :value="last_insurance_carrier" @input="updateLastInsuranceCarrier">
                 </div>                             
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="telephone">Phone Number</label>
-                    <input type="text" class="form-control" id="telephone" v-model="lead.telephone">
+                    <input type="text" class="form-control" id="telephone" :value="telephone" @input="updateTelephone">
                 </div>
                 <div class="form-group">
                     <label for="dba_name">Company</label>
-                    <input type="text" class="form-control" id="dba_name" v-model="lead.dba_name">
+                    <input type="text" class="form-control" id="dba_name" :value="dba_name" @input="updateCompany">
                 </div>
                 <div class="form-group">
                     <label for="phy_city">City</label>
-                    <input type="text" class="form-control" id="phy_city" v-model="lead.phy_city">
+                    <input type="text" class="form-control" id="phy_city" :value="phy_city" @input="updateCity">
                 </div>
                 <div class="form-group">
                     <label for="phy_state">State</label>
-                    <input type="text" class="form-control" id="phy_state" v-model="lead.phy_state">
+                    <input type="text" class="form-control" id="phy_state" :value="phy_state" @input="updateState">
                 </div>
                 <div class="form-group">
                     <label for="driver_total">Number of Drivers</label>
-                    <input type="text" class="form-control" id="driver_total" v-model="lead.driver_total">
+                    <input type="text" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" v-model="description">
+                    <input type="text" class="form-control" id="description" :value="description" @input="updateDescription">
                 </div>                   
             </div>
         </div>
@@ -69,14 +69,14 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="comment">Comment</label>
-                    <textarea class="form-control" id="comment" v-model="comment"></textarea>
+                    <textarea class="form-control" id="comment" :value="comment" @input="updateComment"></textarea>
                 </div>
             </div>
         </div>
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group-btn lead-search float-right">
-                    <button class="btn btn-default" type="button" style="background:burlywood">Save Changes</button>
+                    <button class="btn btn-default" type="submit" @click="updateLead(dot_number)" style="background:burlywood">Save Changes</button>
                     <button class="btn btn-default" type="button" style="background:burlywood">Send to Broker</button>
                 </div>
             </div>
@@ -86,43 +86,109 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapState} from 'vuex';
 
     export default {
 
-        name: "Agent Dashboard",
+        name: "AgentDashboard",
         data() {
             return {
-                dot_number: '1000261',
-                // legal_name: '',
-                // telephone: '',
-                // email_address: '',
-                // dba_name: '',
-                // phy_street: '',
-                // phy_city: '',
-                // phy_zip: '',
-                // phy_state: '',
-                // nbr_power_unit: '',
-                // driver_total: '',
-                // last_insurance_carrier: '',
-                description: 'Trucker',
+                // lead: {
+                //     legal_name: '',
+                //     telephone: '',
+                //     email_address: '',
+                //     dba_name: '',
+                //     phy_street: '',
+                //     phy_city: '',
+                //     phy_zip: '',
+                //     phy_state: '',
+                //     nbr_power_unit: '',
+                //     driver_total: '',
+                //     last_insurance_carrier: '',
+                //     comment: '',
+                // },
+                // dot_number: '555',
+                // description: 'Trucker',
             }
         },
         mounted() {
-            // this.$store.dispatch('fetchLead', dot_number)
+
         },
         methods: {
             fetchLead(id) {
-                this.$store.dispatch('fetchLead', id)
+                this.$store.dispatch('fetchLead', id);
+            },
+            updateLead(id) {
+                this.$store.dispatch('updateLead', id);
             },
             deleteLead(id) {
-                this.$store.dispatch('deleteLead', id)
+                this.$store.dispatch('deleteLead', id);
+            },
+
+            updateDotNumber(e) {
+                this.$store.commit('updateDotNumber', e.target.value);
+            },
+            updateTelephone(e) {
+                this.$store.commit('updateTelephone', e.target.value);
+            },
+            updateLegalName(e) {
+                this.$store.commit('updateLegalName', e.target.value);
+            },
+            updateEmail(e) {
+                this.$store.commit('updateEmail', e.target.value);
+            },
+            updateStreet(e) {
+                this.$store.commit('updateStreet', e.target.value);
+            },
+            updateZipCode(e) {
+                this.$store.commit('updateZipCode', e.target.value);
+            },
+            updateNbrPowerUnit(e) {
+                this.$store.commit('updateNbrPowerUnit', e.target.value);
+            },
+            updateLastInsuranceCarrier(e) {
+                this.$store.commit('updateLastInsuranceCarrier', e.target.value);
+            },
+            updateCompany(e) {
+                this.$store.commit('updateCompany', e.target.value);
+            },
+            updateCity(e) {
+                this.$store.commit('updateCity', e.target.value);
+            },
+            updateState(e) {
+                this.$store.commit('updateState', e.target.value);
+            },
+            updateDriverTotal(e) {
+                this.$store.commit('updateDriverTotal', e.target.value);
+            },
+            updateDescription(e) {
+                this.$store.commit('updateDescription', e.target.value);
+            },
+            updateComment(e) {
+                this.$store.commit('updateComment', e.target.value);
             },
         },
         computed: {
             ...mapGetters([
                 'lead'
-            ])
+            ]),
+            ...mapState({
+                telephone: state => state.lead.telephone,
+                legal_name: state => state.lead.legal_name,
+
+                dot_number: state => state.lead.dot_number,
+                email_address: state => state.lead.email_address,
+                dba_name: state => state.lead.dba_name,
+                phy_street: state => state.lead.phy_street,
+                phy_city: state => state.lead.phy_city,
+                phy_zip: state => state.lead.phy_zip,
+                phy_state: state => state.lead.phy_state,
+                nbr_power_unit: state => state.lead.nbr_power_unit,
+                driver_total: state => state.lead.driver_total,
+                last_insurance_carrier: state => state.lead.last_insurance_carrier,
+                comment: state => state.lead.comment,
+                description: state => state.lead.description,
+            })            
         }
 
     }
@@ -136,12 +202,6 @@
     #dot_number {
         margin: 0 1rem;
     }
-    /* .right {
-        float: right;
-        width: 300px;
-        border: 3px solid #73AD21;
-        padding: 10px;
-    } */
 </style>
 
 

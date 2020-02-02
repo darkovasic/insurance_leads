@@ -1,6 +1,7 @@
 let actions = {
     updateLead({commit}, lead) {
-        axios.post('/api/lead', lead)
+console.log("DOT", lead)          
+        axios.post(`/api/lead/${lead}`)
             .then(res => {
                 commit('UPDATE_LEAD', res.data)
             }).catch(err => {
@@ -8,8 +9,7 @@ let actions = {
         })
 
     },
-    fetchLead({commit}, lead) {
-console.log("DOT", lead)        
+    fetchLead({commit}, lead) {      
         axios.get(`/api/lead/${lead}`)
             .then(res => {
                 commit('FETCH_LEAD', res.data)

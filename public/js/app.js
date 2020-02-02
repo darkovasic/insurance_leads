@@ -2004,35 +2004,124 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Agent Dashboard",
+  name: "AgentDashboard",
   data: function data() {
-    return {
-      dot_number: '1000261',
-      // legal_name: '',
-      // telephone: '',
-      // email_address: '',
-      // dba_name: '',
-      // phy_street: '',
-      // phy_city: '',
-      // phy_zip: '',
-      // phy_state: '',
-      // nbr_power_unit: '',
-      // driver_total: '',
-      // last_insurance_carrier: '',
-      description: 'Trucker'
+    return {// lead: {
+      //     legal_name: '',
+      //     telephone: '',
+      //     email_address: '',
+      //     dba_name: '',
+      //     phy_street: '',
+      //     phy_city: '',
+      //     phy_zip: '',
+      //     phy_state: '',
+      //     nbr_power_unit: '',
+      //     driver_total: '',
+      //     last_insurance_carrier: '',
+      //     comment: '',
+      // },
+      // dot_number: '555',
+      // description: 'Trucker',
     };
   },
-  mounted: function mounted() {// this.$store.dispatch('fetchLead', dot_number)
-  },
+  mounted: function mounted() {},
   methods: {
     fetchLead: function fetchLead(id) {
       this.$store.dispatch('fetchLead', id);
     },
+    updateLead: function updateLead(id) {
+      this.$store.dispatch('updateLead', id);
+    },
     deleteLead: function deleteLead(id) {
       this.$store.dispatch('deleteLead', id);
+    },
+    updateDotNumber: function updateDotNumber(e) {
+      this.$store.commit('updateDotNumber', e.target.value);
+    },
+    updateTelephone: function updateTelephone(e) {
+      this.$store.commit('updateTelephone', e.target.value);
+    },
+    updateLegalName: function updateLegalName(e) {
+      this.$store.commit('updateLegalName', e.target.value);
+    },
+    updateEmail: function updateEmail(e) {
+      this.$store.commit('updateEmail', e.target.value);
+    },
+    updateStreet: function updateStreet(e) {
+      this.$store.commit('updateStreet', e.target.value);
+    },
+    updateZipCode: function updateZipCode(e) {
+      this.$store.commit('updateZipCode', e.target.value);
+    },
+    updateNbrPowerUnit: function updateNbrPowerUnit(e) {
+      this.$store.commit('updateNbrPowerUnit', e.target.value);
+    },
+    updateLastInsuranceCarrier: function updateLastInsuranceCarrier(e) {
+      this.$store.commit('updateLastInsuranceCarrier', e.target.value);
+    },
+    updateCompany: function updateCompany(e) {
+      this.$store.commit('updateCompany', e.target.value);
+    },
+    updateCity: function updateCity(e) {
+      this.$store.commit('updateCity', e.target.value);
+    },
+    updateState: function updateState(e) {
+      this.$store.commit('updateState', e.target.value);
+    },
+    updateDriverTotal: function updateDriverTotal(e) {
+      this.$store.commit('updateDriverTotal', e.target.value);
+    },
+    updateDescription: function updateDescription(e) {
+      this.$store.commit('updateDescription', e.target.value);
+    },
+    updateComment: function updateComment(e) {
+      this.$store.commit('updateComment', e.target.value);
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    telephone: function telephone(state) {
+      return state.lead.telephone;
+    },
+    legal_name: function legal_name(state) {
+      return state.lead.legal_name;
+    },
+    dot_number: function dot_number(state) {
+      return state.lead.dot_number;
+    },
+    email_address: function email_address(state) {
+      return state.lead.email_address;
+    },
+    dba_name: function dba_name(state) {
+      return state.lead.dba_name;
+    },
+    phy_street: function phy_street(state) {
+      return state.lead.phy_street;
+    },
+    phy_city: function phy_city(state) {
+      return state.lead.phy_city;
+    },
+    phy_zip: function phy_zip(state) {
+      return state.lead.phy_zip;
+    },
+    phy_state: function phy_state(state) {
+      return state.lead.phy_state;
+    },
+    nbr_power_unit: function nbr_power_unit(state) {
+      return state.lead.nbr_power_unit;
+    },
+    driver_total: function driver_total(state) {
+      return state.lead.driver_total;
+    },
+    last_insurance_carrier: function last_insurance_carrier(state) {
+      return state.lead.last_insurance_carrier;
+    },
+    comment: function comment(state) {
+      return state.lead.comment;
+    },
+    description: function description(state) {
+      return state.lead.description;
+    }
+  }))
 });
 
 /***/ }),
@@ -6580,7 +6669,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\n/* .right {\n    float: right;\n    width: 300px;\n    border: 3px solid #73AD21;\n    padding: 10px;\n} */\n", ""]);
+exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\n", ""]);
 
 // exports
 
@@ -38052,475 +38141,287 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", [
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "cadetblue" } },
-      [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "input-group lead-search" }, [
-            _c("label", { attrs: { for: "dot_number" } }, [
-              _vm._v("DOT Number")
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.submit($event)
+        }
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "cadetblue" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "div",
+              { staticClass: "input-group lead-search align-items-center" },
+              [
+                _c("label", { attrs: { for: "dot_number" } }, [
+                  _vm._v("DOT Number")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "dot_number" },
+                  domProps: { value: _vm.dot_number },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.fetchLead(_vm.dot_number)
+                    },
+                    input: _vm.updateDotNumber
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      staticStyle: { background: "burlywood" },
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.fetchLead(_vm.dot_number)
+                        }
+                      }
+                    },
+                    [_vm._v("Search")]
+                  )
+                ])
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "burlywood" } },
+        [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "legal_name" } }, [
+                _vm._v("Contact Name")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "legal_name" },
+                domProps: { value: _vm.legal_name },
+                on: { input: _vm.updateLegalName }
+              })
             ]),
             _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dot_number,
-                  expression: "dot_number"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "dot_number" },
-              domProps: { value: _vm.dot_number },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.dot_number = $event.target.value
-                }
-              }
-            }),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "email_address" } }, [
+                _vm._v("Email")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "email", id: "email_address" },
+                domProps: { value: _vm.email_address },
+                on: { input: _vm.updateEmail }
+              })
+            ]),
             _vm._v(" "),
-            _c("span", { staticClass: "input-group-btn" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  staticStyle: { background: "burlywood" },
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.fetchLead(_vm.dot_number)
-                    }
-                  }
-                },
-                [_vm._v("Search")]
-              )
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_street" } }, [_vm._v("Street")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_street" },
+                domProps: { value: _vm.phy_street },
+                on: { input: _vm.updateStreet }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_zip" } }, [_vm._v("ZIP Code")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_zip" },
+                domProps: { value: _vm.phy_zip },
+                on: { input: _vm.updateZipCode }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "nbr_power_unit" } }, [
+                _vm._v("Number of Trucks")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "nbr_power_unit" },
+                domProps: { value: _vm.nbr_power_unit },
+                on: { input: _vm.updateNbrPowerUnit }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "last_insurance_carrier" } }, [
+                _vm._v("Last Insurance Carrier")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "last_insurance_carrier" },
+                domProps: { value: _vm.last_insurance_carrier },
+                on: { input: _vm.updateLastInsuranceCarrier }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "telephone" } }, [
+                _vm._v("Phone Number")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "telephone" },
+                domProps: { value: _vm.telephone },
+                on: { input: _vm.updateTelephone }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "dba_name" } }, [_vm._v("Company")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "dba_name" },
+                domProps: { value: _vm.dba_name },
+                on: { input: _vm.updateCompany }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_city" } }, [_vm._v("City")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_city" },
+                domProps: { value: _vm.phy_city },
+                on: { input: _vm.updateCity }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_state" },
+                domProps: { value: _vm.phy_state },
+                on: { input: _vm.updateState }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "driver_total" } }, [
+                _vm._v("Number of Drivers")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "driver_total" },
+                domProps: { value: _vm.driver_total },
+                on: { input: _vm.updateDriverTotal }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "description" } }, [
+                _vm._v("Description")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "description" },
+                domProps: { value: _vm.description },
+                on: { input: _vm.updateDescription }
+              })
             ])
           ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "burlywood" } },
-      [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "legal_name" } }, [
-              _vm._v("Contact Name")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.legal_name,
-                  expression: "lead.legal_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "legal_name" },
-              domProps: { value: _vm.lead.legal_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "legal_name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "email_address" } }, [_vm._v("Email")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.email_address,
-                  expression: "lead.email_address"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "email", id: "email_address" },
-              domProps: { value: _vm.lead.email_address },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "email_address", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_street" } }, [_vm._v("Street")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.phy_street,
-                  expression: "lead.phy_street"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_street" },
-              domProps: { value: _vm.lead.phy_street },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "phy_street", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_zip" } }, [_vm._v("ZIP Code")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.phy_zip,
-                  expression: "lead.phy_zip"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_zip" },
-              domProps: { value: _vm.lead.phy_zip },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "phy_zip", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "nbr_power_unit" } }, [
-              _vm._v("Number of Trucks")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.nbr_power_unit,
-                  expression: "lead.nbr_power_unit"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "nbr_power_unit" },
-              domProps: { value: _vm.lead.nbr_power_unit },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "nbr_power_unit", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "last_insurance_carrier" } }, [
-              _vm._v("Last Insurance Carrier")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.last_insurance_carrier,
-                  expression: "lead.last_insurance_carrier"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "last_insurance_carrier" },
-              domProps: { value: _vm.lead.last_insurance_carrier },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.lead,
-                    "last_insurance_carrier",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "telephone" } }, [
-              _vm._v("Phone Number")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.telephone,
-                  expression: "lead.telephone"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "telephone" },
-              domProps: { value: _vm.lead.telephone },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "telephone", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "dba_name" } }, [_vm._v("Company")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.dba_name,
-                  expression: "lead.dba_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "dba_name" },
-              domProps: { value: _vm.lead.dba_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "dba_name", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_city" } }, [_vm._v("City")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.phy_city,
-                  expression: "lead.phy_city"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_city" },
-              domProps: { value: _vm.lead.phy_city },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "phy_city", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.phy_state,
-                  expression: "lead.phy_state"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_state" },
-              domProps: { value: _vm.lead.phy_state },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "phy_state", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "driver_total" } }, [
-              _vm._v("Number of Drivers")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.lead.driver_total,
-                  expression: "lead.driver_total"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "driver_total" },
-              domProps: { value: _vm.lead.driver_total },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.lead, "driver_total", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "description" } }, [
-              _vm._v("Description")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.description,
-                  expression: "description"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", id: "description" },
-              domProps: { value: _vm.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.description = $event.target.value
-                }
-              }
-            })
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "burlywood" } },
-      [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "comment" } }, [_vm._v("Comment")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.comment,
-                  expression: "comment"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { id: "comment" },
-              domProps: { value: _vm.comment },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.comment = $event.target.value
-                }
-              }
-            })
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "cadetblue" } },
-      [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "input-group-btn lead-search float-right" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  staticStyle: { background: "burlywood" },
-                  attrs: { type: "button" }
-                },
-                [_vm._v("Save Changes")]
-              ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "burlywood" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "comment" } }, [_vm._v("Comment")]),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  staticStyle: { background: "burlywood" },
-                  attrs: { type: "button" }
-                },
-                [_vm._v("Send to Broker")]
-              )
-            ]
-          )
-        ])
-      ]
-    )
-  }
-]
+              _c("textarea", {
+                staticClass: "form-control",
+                attrs: { id: "comment" },
+                domProps: { value: _vm.comment },
+                on: { input: _vm.updateComment }
+              })
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "cadetblue" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "div",
+              { staticClass: "input-group-btn lead-search float-right" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    staticStyle: { background: "burlywood" },
+                    attrs: { type: "submit" },
+                    on: {
+                      click: function($event) {
+                        return _vm.updateLead(_vm.dot_number)
+                      }
+                    }
+                  },
+                  [_vm._v("Save Changes")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    staticStyle: { background: "burlywood" },
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Send to Broker")]
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -51942,7 +51843,8 @@ __webpack_require__.r(__webpack_exports__);
 var actions = {
   updateLead: function updateLead(_ref, lead) {
     var commit = _ref.commit;
-    axios.post('/api/lead', lead).then(function (res) {
+    console.log("DOT", lead);
+    axios.post("/api/lead/".concat(lead)).then(function (res) {
       commit('UPDATE_LEAD', res.data);
     })["catch"](function (err) {
       console.log(err);
@@ -51950,7 +51852,6 @@ var actions = {
   },
   fetchLead: function fetchLead(_ref2, lead) {
     var commit = _ref2.commit;
-    console.log("DOT", lead);
     axios.get("/api/lead/".concat(lead)).then(function (res) {
       commit('FETCH_LEAD', res.data);
     })["catch"](function (err) {
@@ -51999,7 +51900,7 @@ var getters = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./resources/js/store/actions.js");
 /* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/mutations.js");
 /* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getters */ "./resources/js/store/getters.js");
@@ -52010,12 +51911,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_6__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_6__["default"].Store({
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: _state__WEBPACK_IMPORTED_MODULE_5__["default"],
   mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__["default"],
   getters: _getters__WEBPACK_IMPORTED_MODULE_4__["default"],
-  actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"]
+  actions: _actions__WEBPACK_IMPORTED_MODULE_2__["default"],
+  strict: true
 }));
 
 /***/ }),
@@ -52031,7 +51933,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_6__
 __webpack_require__.r(__webpack_exports__);
 var mutations = {
   UPDATE_LEAD: function UPDATE_LEAD(state, lead) {
-    state.lead.unshift(lead);
+    console.log("UPDATE_LEAD", state.lead); // state.lead.unshift(lead)
   },
   FETCH_LEAD: function FETCH_LEAD(state, lead) {
     return state.lead = lead;
@@ -52041,6 +51943,48 @@ var mutations = {
       return item.id === lead.id;
     });
     state.lead.splice(index, 1);
+  },
+  updateDotNumber: function updateDotNumber(state, dot_number) {
+    state.lead.dot_number = dot_number;
+  },
+  updateTelephone: function updateTelephone(state, telephone) {
+    state.lead.telephone = telephone;
+  },
+  updateLegalName: function updateLegalName(state, legal_name) {
+    state.lead.legal_name = legal_name;
+  },
+  updateEmail: function updateEmail(state, email_address) {
+    state.lead.email_address = email_address;
+  },
+  updateStreet: function updateStreet(state, phy_street) {
+    state.lead.phy_street = phy_street;
+  },
+  updateZipCode: function updateZipCode(state, phy_zip) {
+    state.lead.phy_zip = phy_zip;
+  },
+  updateNbrPowerUnit: function updateNbrPowerUnit(state, nbr_power_unit) {
+    state.lead.nbr_power_unit = nbr_power_unit;
+  },
+  updateLastInsuranceCarrier: function updateLastInsuranceCarrier(state, last_insurance_carrier) {
+    state.lead.last_insurance_carrier = last_insurance_carrier;
+  },
+  updateCompany: function updateCompany(state, dba_name) {
+    state.lead.dba_name = dba_name;
+  },
+  updateCity: function updateCity(state, phy_city) {
+    state.lead.phy_city = phy_city;
+  },
+  updateState: function updateState(state, phy_state) {
+    state.lead.phy_state = phy_state;
+  },
+  updateDriverTotal: function updateDriverTotal(state, driver_total) {
+    state.lead.driver_total = driver_total;
+  },
+  updateDescription: function updateDescription(state, description) {
+    state.lead.description = description;
+  },
+  updateComment: function updateComment(state, comment) {
+    state.lead.comment = comment;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
