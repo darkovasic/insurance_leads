@@ -48,7 +48,7 @@ class LeadController extends Controller
             'nbr_power_unit' => $request->nbr_power_unit,
             'driver_total' => $request->driver_total,
             'last_insurance_carrier' => $request->last_insurance_carrier,
-            'last_insururance_date' => $request->last_insururance_date,
+            'last_insurance_date' => $request->last_insurance_date,
             'comment' => $request->comment,
             'dot_number' => $request->dot_number,
             'description' => $request->description,            

@@ -35,8 +35,8 @@ console.log("UPDATE_LEAD", state.lead)
     updateLastInsuranceCarrier (state, last_insurance_carrier) {
         state.lead.last_insurance_carrier = last_insurance_carrier;
     },
-    updateLastInsuranceDate (state, last_insururance_date) {
-        state.lead.last_insururance_date = last_insururance_date;
+    updateLastInsuranceDate (state, last_insurance_date) {
+        state.lead.last_insurance_date = last_insurance_date;
     },
     updateCompany (state, dba_name) {
         state.lead.dba_name = dba_name;

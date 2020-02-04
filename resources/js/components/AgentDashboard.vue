@@ -60,8 +60,8 @@
                     <input type="text" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
                 </div>
                 <div class="form-group">
-                    <label for="last_insururance_date">Last Insurance Date</label>
-                    <input type="text" class="form-control" id="last_insururance_date" :value="last_insururance_date" @input="updateLastInsuranceDate">
+                    <label for="last_insurance_date">Last Insurance Date</label>
+                    <input type="text" class="form-control" id="last_insurance_date" :value="last_insurance_date" @input="updateLastInsuranceDate">
                 </div>                                 
             </div>
         </div>
@@ -113,7 +113,7 @@
                 // nbr_power_unit: '',
                 // driver_total: '',
                 // last_insurance_carrier: '',
-                // last_insururance_date: '',
+                // last_insurance_date: '',
                 // comment: '',
                 // dot_number: '555',
                 // description: 'Trucker',
@@ -197,7 +197,7 @@
                 nbr_power_unit: state => state.lead.nbr_power_unit,
                 driver_total: state => state.lead.driver_total,
                 last_insurance_carrier: state => state.lead.last_insurance_carrier,
-                last_insururance_date: state => state.lead.last_insururance_date,
+                last_insurance_date: state => state.lead.last_insurance_date,
                 comment: state => state.lead.comment,
                 description: state => state.lead.description,
             })            
