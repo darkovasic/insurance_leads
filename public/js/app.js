@@ -2006,20 +2006,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AgentDashboard",
   data: function data() {
-    return {// lead: {
-      //     legal_name: '',
-      //     telephone: '',
-      //     email_address: '',
-      //     dba_name: '',
-      //     phy_street: '',
-      //     phy_city: '',
-      //     phy_zip: '',
-      //     phy_state: '',
-      //     nbr_power_unit: '',
-      //     driver_total: '',
-      //     last_insurance_carrier: '',
-      //     comment: '',
-      // },
+    return {// lead: {},
+      // legal_name: '',
+      // telephone: '',
+      // email_address: '',
+      // dba_name: '',
+      // phy_street: '',
+      // phy_city: '',
+      // phy_zip: '',
+      // phy_state: '',
+      // nbr_power_unit: '',
+      // driver_total: '',
+      // last_insurance_carrier: '',
+      // comment: '',
       // dot_number: '555',
       // description: 'Trucker',
     };
@@ -38147,7 +38146,7 @@ var render = function() {
       on: {
         submit: function($event) {
           $event.preventDefault()
-          return _vm.submit($event)
+          return _vm.updateLead(_vm.dot_number)
         }
       }
     },
@@ -38380,48 +38379,50 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row", staticStyle: { background: "cadetblue" } },
-        [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c(
-              "div",
-              { staticClass: "input-group-btn lead-search float-right" },
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    staticStyle: { background: "burlywood" },
-                    attrs: { type: "submit" },
-                    on: {
-                      click: function($event) {
-                        return _vm.updateLead(_vm.dot_number)
-                      }
-                    }
-                  },
-                  [_vm._v("Save Changes")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    staticStyle: { background: "burlywood" },
-                    attrs: { type: "button" }
-                  },
-                  [_vm._v("Send to Broker")]
-                )
-              ]
-            )
-          ])
-        ]
-      )
+      _vm._m(0)
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "row", staticStyle: { background: "cadetblue" } },
+      [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "div",
+            { staticClass: "input-group-btn lead-search float-right" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  staticStyle: { background: "burlywood" },
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Save Changes")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  staticStyle: { background: "burlywood" },
+                  attrs: { type: "button" }
+                },
+                [_vm._v("Send to Broker")]
+              )
+            ]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -51841,27 +51842,28 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var actions = {
-  updateLead: function updateLead(_ref, lead) {
-    var commit = _ref.commit;
-    console.log("DOT", lead);
-    axios.post("/api/lead/".concat(lead)).then(function (res) {
+  updateLead: function updateLead(_ref, id) {
+    var commit = _ref.commit,
+        state = _ref.state;
+    console.log(state);
+    axios.post("/api/lead/".concat(id), state.lead).then(function (res) {
       commit('UPDATE_LEAD', res.data);
     })["catch"](function (err) {
       console.log(err);
     });
   },
-  fetchLead: function fetchLead(_ref2, lead) {
+  fetchLead: function fetchLead(_ref2, id) {
     var commit = _ref2.commit;
-    axios.get("/api/lead/".concat(lead)).then(function (res) {
+    axios.get("/api/lead/".concat(id)).then(function (res) {
       commit('FETCH_LEAD', res.data);
     })["catch"](function (err) {
       console.log(err);
     });
   },
-  deleteLead: function deleteLead(_ref3, lead) {
+  deleteLead: function deleteLead(_ref3, id) {
     var commit = _ref3.commit;
-    axios["delete"]("/api/lead/".concat(lead)).then(function (res) {
-      if (res.data === 'ok') commit('DELETE_LEAD', lead);
+    axios["delete"]("/api/lead/".concat(id)).then(function (res) {
+      if (res.data === 'ok') commit('DELETE_LEAD', id);
     })["catch"](function (err) {
       console.log(err);
     });

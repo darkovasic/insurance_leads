@@ -1,7 +1,7 @@
 let actions = {
-    updateLead({commit}, lead) {
-console.log("DOT", lead)          
-        axios.post(`/api/lead/${lead}`)
+    updateLead({commit, state}, id) {
+        console.log(state)
+        axios.post(`/api/lead/${id}`, state.lead)
             .then(res => {
                 commit('UPDATE_LEAD', res.data)
             }).catch(err => {
@@ -9,19 +9,19 @@ console.log("DOT", lead)
         })
 
     },
-    fetchLead({commit}, lead) {      
-        axios.get(`/api/lead/${lead}`)
+    fetchLead({commit}, id) {      
+        axios.get(`/api/lead/${id}`)
             .then(res => {
                 commit('FETCH_LEAD', res.data)
             }).catch(err => {
             console.log(err)
         })
     },
-    deleteLead({commit}, lead) {
-        axios.delete(`/api/lead/${lead}`)
+    deleteLead({commit}, id) {
+        axios.delete(`/api/lead/${id}`)
             .then(res => {
                 if (res.data === 'ok')
-                    commit('DELETE_LEAD', lead)
+                    commit('DELETE_LEAD', id)
             }).catch(err => {
             console.log(err)
         })

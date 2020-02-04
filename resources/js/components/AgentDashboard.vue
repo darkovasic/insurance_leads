@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="updateLead(dot_number)">
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group lead-search align-items-center">
@@ -76,7 +76,7 @@
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group-btn lead-search float-right">
-                    <button class="btn btn-default" type="submit" @click="updateLead(dot_number)" style="background:burlywood">Save Changes</button>
+                    <button class="btn btn-default" type="submit" style="background:burlywood">Save Changes</button>
                     <button class="btn btn-default" type="button" style="background:burlywood">Send to Broker</button>
                 </div>
             </div>
@@ -93,20 +93,19 @@
         name: "AgentDashboard",
         data() {
             return {
-                // lead: {
-                //     legal_name: '',
-                //     telephone: '',
-                //     email_address: '',
-                //     dba_name: '',
-                //     phy_street: '',
-                //     phy_city: '',
-                //     phy_zip: '',
-                //     phy_state: '',
-                //     nbr_power_unit: '',
-                //     driver_total: '',
-                //     last_insurance_carrier: '',
-                //     comment: '',
-                // },
+                // lead: {},
+                // legal_name: '',
+                // telephone: '',
+                // email_address: '',
+                // dba_name: '',
+                // phy_street: '',
+                // phy_city: '',
+                // phy_zip: '',
+                // phy_state: '',
+                // nbr_power_unit: '',
+                // driver_total: '',
+                // last_insurance_carrier: '',
+                // comment: '',
                 // dot_number: '555',
                 // description: 'Trucker',
             }
