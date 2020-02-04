@@ -19,6 +19,7 @@ class Lead extends Model
         'nbr_power_unit',
         'driver_total',
         'last_insurance_carrier',
+        'last_insururance_date',
         'description',
         'comment'
     ];

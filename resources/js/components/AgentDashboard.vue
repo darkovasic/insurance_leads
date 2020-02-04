@@ -60,9 +60,17 @@
                     <input type="text" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
                 </div>
                 <div class="form-group">
+                    <label for="last_insururance_date">Last Insurance Date</label>
+                    <input type="text" class="form-control" id="last_insururance_date" :value="last_insururance_date" @input="updateLastInsuranceDate">
+                </div>                                 
+            </div>
+        </div>
+        <div class="row" style="background:burlywood">
+            <div class="col-md-12">
+                <div class="form-group">
                     <label for="description">Description</label>
                     <input type="text" class="form-control" id="description" :value="description" @input="updateDescription">
-                </div>                   
+                </div>   
             </div>
         </div>
         <div class="row" style="background:burlywood">
@@ -105,6 +113,7 @@
                 // nbr_power_unit: '',
                 // driver_total: '',
                 // last_insurance_carrier: '',
+                // last_insururance_date: '',
                 // comment: '',
                 // dot_number: '555',
                 // description: 'Trucker',
@@ -166,6 +175,9 @@
             updateComment(e) {
                 this.$store.commit('updateComment', e.target.value);
             },
+            updateLastInsuranceDate(e) {
+                this.$store.commit('updateLastInsuranceDate', e.target.value);
+            },
         },
         computed: {
             ...mapGetters([
@@ -185,6 +197,7 @@
                 nbr_power_unit: state => state.lead.nbr_power_unit,
                 driver_total: state => state.lead.driver_total,
                 last_insurance_carrier: state => state.lead.last_insurance_carrier,
+                last_insururance_date: state => state.lead.last_insururance_date,
                 comment: state => state.lead.comment,
                 description: state => state.lead.description,
             })            

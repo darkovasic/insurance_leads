@@ -2002,6 +2002,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AgentDashboard",
@@ -2018,6 +2026,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // nbr_power_unit: '',
       // driver_total: '',
       // last_insurance_carrier: '',
+      // last_insururance_date: '',
       // comment: '',
       // dot_number: '555',
       // description: 'Trucker',
@@ -2075,6 +2084,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateComment: function updateComment(e) {
       this.$store.commit('updateComment', e.target.value);
+    },
+    updateLastInsuranceDate: function updateLastInsuranceDate(e) {
+      this.$store.commit('updateLastInsuranceDate', e.target.value);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
@@ -2113,6 +2125,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     last_insurance_carrier: function last_insurance_carrier(state) {
       return state.lead.last_insurance_carrier;
+    },
+    last_insururance_date: function last_insururance_date(state) {
+      return state.lead.last_insururance_date;
     },
     comment: function comment(state) {
       return state.lead.comment;
@@ -38345,6 +38360,27 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "last_insururance_date" } }, [
+                _vm._v("Last Insurance Date")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "last_insururance_date" },
+                domProps: { value: _vm.last_insururance_date },
+                on: { input: _vm.updateLastInsuranceDate }
+              })
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "burlywood" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "description" } }, [
                 _vm._v("Description")
               ]),
@@ -51969,6 +52005,9 @@ var mutations = {
   },
   updateLastInsuranceCarrier: function updateLastInsuranceCarrier(state, last_insurance_carrier) {
     state.lead.last_insurance_carrier = last_insurance_carrier;
+  },
+  updateLastInsuranceDate: function updateLastInsuranceDate(state, last_insururance_date) {
+    state.lead.last_insururance_date = last_insururance_date;
   },
   updateCompany: function updateCompany(state, dba_name) {
     state.lead.dba_name = dba_name;
