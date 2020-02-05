@@ -2014,22 +2014,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AgentDashboard",
   data: function data() {
-    return {// lead: {},
-      // legal_name: '',
-      // telephone: '',
-      // email_address: '',
-      // dba_name: '',
-      // phy_street: '',
-      // phy_city: '',
-      // phy_zip: '',
-      // phy_state: '',
-      // nbr_power_unit: '',
-      // driver_total: '',
-      // last_insurance_carrier: '',
-      // last_insurance_date: '',
-      // comment: '',
-      // dot_number: '555',
-      // description: 'Trucker',
+    return {// add_date: null,
+      // carrier_operation: null,
+      // comment: null,
+      // created_at: null,
+      // dba_name: null,
+      // description: null,
+      // dot_number: 'null',
+      // driver_total: null,
+      // email_address: null,
+      // fax: null,
+      // hm_flag: null,
+      // id: null,
+      // last_insurance_carrier: null,
+      // last_insurance_date: null,
+      // legal_name: null,
+      // mailing_city: null,
+      // mailing_country: null,
+      // mailing_state: null,
+      // mailing_street: null,
+      // mailing_zip: null,
+      // mcs150_date: null,
+      // mcs150_mileage: null,
+      // mcs150_mileage_year: null,
+      // nbr_power_unit: null,
+      // oic_state: null,
+      // pc_flag: null,
+      // person_name: null,
+      // phy_city: null,
+      // phy_country: null,
+      // phy_state: null,
+      // phy_street: null,
+      // phy_zip: null,
+      // telephone: null,
+      // updated_at: null,
+      // lead: {},
     };
   },
   mounted: function mounted() {},
@@ -6683,7 +6702,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\n", ""]);
+exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 16px;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 
@@ -38175,9 +38194,11 @@ var render = function() {
               "div",
               { staticClass: "input-group lead-search align-items-center" },
               [
-                _c("label", { attrs: { for: "dot_number" } }, [
-                  _vm._v("DOT Number")
-                ]),
+                _c(
+                  "label",
+                  { staticClass: "search-term", attrs: { for: "dot_number" } },
+                  [_vm._v("DOT Number")]
+                ),
                 _vm._v(" "),
                 _c("input", {
                   staticClass: "form-control",
@@ -52042,7 +52063,41 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  lead: []
+  lead: {// {add_date: null},
+    // {carrier_operation: null},
+    // {comment: null},
+    // {created_at: null},
+    // {dba_name: null},
+    // {description: null},
+    // {dot_number: null},
+    // {driver_total: null},
+    // {email_address: null},
+    // {fax: null},
+    // {hm_flag: null},
+    // {id: null},
+    // {last_insurance_carrier: null},
+    // {last_insurance_date: null},
+    // {legal_name: null},
+    // {mailing_city: null},
+    // {mailing_country: null},
+    // {mailing_state: null},
+    // {mailing_street: null},
+    // {mailing_zip: null},
+    // {mcs150_date: null},
+    // {mcs150_mileage: null},
+    // {mcs150_mileage_year: null},
+    // {nbr_power_unit: null},
+    // {oic_state: null},
+    // {pc_flag: null},
+    // {person_name: null},
+    // {phy_city: null},
+    // {phy_country: null},
+    // {phy_state: null},
+    // {phy_street: null},
+    // {phy_zip: null},
+    // {telephone: null},
+    // {updated_at: null},        
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 

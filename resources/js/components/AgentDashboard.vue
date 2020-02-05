@@ -3,7 +3,7 @@
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group lead-search align-items-center">
-                    <label for="dot_number">DOT Number</label>
+                    <label for="dot_number" class="search-term">DOT Number</label>
                     <input type="text" class="form-control" id="dot_number" @keyup.enter="fetchLead(dot_number)" :value="dot_number" @input="updateDotNumber">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" @click="fetchLead(dot_number)" style="background:burlywood">Search</button>
@@ -101,22 +101,41 @@
         name: "AgentDashboard",
         data() {
             return {
+        // add_date: null,
+        // carrier_operation: null,
+        // comment: null,
+        // created_at: null,
+        // dba_name: null,
+        // description: null,
+        // dot_number: 'null',
+        // driver_total: null,
+        // email_address: null,
+        // fax: null,
+        // hm_flag: null,
+        // id: null,
+        // last_insurance_carrier: null,
+        // last_insurance_date: null,
+        // legal_name: null,
+        // mailing_city: null,
+        // mailing_country: null,
+        // mailing_state: null,
+        // mailing_street: null,
+        // mailing_zip: null,
+        // mcs150_date: null,
+        // mcs150_mileage: null,
+        // mcs150_mileage_year: null,
+        // nbr_power_unit: null,
+        // oic_state: null,
+        // pc_flag: null,
+        // person_name: null,
+        // phy_city: null,
+        // phy_country: null,
+        // phy_state: null,
+        // phy_street: null,
+        // phy_zip: null,
+        // telephone: null,
+        // updated_at: null,
                 // lead: {},
-                // legal_name: '',
-                // telephone: '',
-                // email_address: '',
-                // dba_name: '',
-                // phy_street: '',
-                // phy_city: '',
-                // phy_zip: '',
-                // phy_state: '',
-                // nbr_power_unit: '',
-                // driver_total: '',
-                // last_insurance_carrier: '',
-                // last_insurance_date: '',
-                // comment: '',
-                // dot_number: '555',
-                // description: 'Trucker',
             }
         },
         mounted() {
@@ -213,6 +232,14 @@
     }
     #dot_number {
         margin: 0 1rem;
+    }
+    label {
+        margin-bottom: 0px;
+    }
+    .search-term {
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
     }
 </style>
 
