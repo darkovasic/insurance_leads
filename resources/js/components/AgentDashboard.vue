@@ -1,12 +1,12 @@
 <template>
-    <form @submit.prevent="updateLead(dot_number)">
+    <form>
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group lead-search align-items-center">
                     <label for="dot_number" class="search-term">DOT Number</label>
                     <input type="text" class="form-control" id="dot_number" @keyup.enter="fetchLead(dot_number)" :value="dot_number" @input="updateDotNumber">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" @click="fetchLead(dot_number)" style="background:burlywood">Search</button>
+                        <button class="btn btn-default" type="button" @click="fetchLead(dot_number)">Search</button>
                     </span>
                 </div>
             </div>
@@ -42,6 +42,7 @@
                 <div class="form-group">
                     <label for="telephone">Phone Number</label>
                     <input type="text" class="form-control" id="telephone" :value="telephone" @input="updateTelephone">
+                    <small v:if="errors && errors.telephone" class="text-danger">{{ errors.telephone }}</small>
                 </div>
                 <div class="form-group">
                     <label for="dba_name">Company</label>
@@ -70,7 +71,7 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <input type="text" class="form-control" id="description" :value="description" @input="updateDescription">
-                </div>   
+                </div>
             </div>
         </div>
         <div class="row" style="background:burlywood">
@@ -84,8 +85,8 @@
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group-btn lead-search float-right">
-                    <button class="btn btn-default" type="submit" style="background:burlywood">Save Changes</button>
-                    <button class="btn btn-default" type="button" style="background:burlywood">Send to Broker</button>
+                    <button class="btn btn-default" type="button" @click="updateLead(dot_number)">Save Changes</button>
+                    <button class="btn btn-default" type="button">Send to Broker</button>
                 </div>
             </div>
         </div>        
@@ -101,45 +102,11 @@
         name: "AgentDashboard",
         data() {
             return {
-        // add_date: null,
-        // carrier_operation: null,
-        // comment: null,
-        // created_at: null,
-        // dba_name: null,
-        // description: null,
-        // dot_number: 'null',
-        // driver_total: null,
-        // email_address: null,
-        // fax: null,
-        // hm_flag: null,
-        // id: null,
-        // last_insurance_carrier: null,
-        // last_insurance_date: null,
-        // legal_name: null,
-        // mailing_city: null,
-        // mailing_country: null,
-        // mailing_state: null,
-        // mailing_street: null,
-        // mailing_zip: null,
-        // mcs150_date: null,
-        // mcs150_mileage: null,
-        // mcs150_mileage_year: null,
-        // nbr_power_unit: null,
-        // oic_state: null,
-        // pc_flag: null,
-        // person_name: null,
-        // phy_city: null,
-        // phy_country: null,
-        // phy_state: null,
-        // phy_street: null,
-        // phy_zip: null,
-        // telephone: null,
-        // updated_at: null,
-                // lead: {},
+                
             }
         },
         mounted() {
-
+            // console.log("errors", errors);
         },
         methods: {
             fetchLead(id) {
@@ -200,12 +167,12 @@
         },
         computed: {
             ...mapGetters([
-                'lead'
+                'lead',
+                'errors'
             ]),
             ...mapState({
                 telephone: state => state.lead.telephone,
                 legal_name: state => state.lead.legal_name,
-
                 dot_number: state => state.lead.dot_number,
                 email_address: state => state.lead.email_address,
                 dba_name: state => state.lead.dba_name,
@@ -221,7 +188,6 @@
                 description: state => state.lead.description,
             })            
         }
-
     }
 </script>
 
@@ -238,8 +204,11 @@
     }
     .search-term {
         color: white;
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 600;
+    }
+    .btn {
+        background:burlywood;
     }
 </style>
 

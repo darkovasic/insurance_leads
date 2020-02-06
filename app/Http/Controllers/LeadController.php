@@ -34,8 +34,25 @@ class LeadController extends Controller
     }
 
     public function store($id, Request $request)
-    {
-// dd($request);        
+    {     
+        $this->validate($request, [
+            'legal_name' => 'required',
+            'telephone' => 'required',
+            'email_address' => 'required|email',
+            'dba_name' => 'required',
+            'phy_street' => 'required',
+            'phy_city' => 'required',
+            'phy_zip' => 'required',
+            'phy_state' => 'required|max:2',
+            'nbr_power_unit' => 'required|numeric',
+            'driver_total' => 'required|numeric',
+            'last_insurance_carrier' => 'required',
+            'last_insurance_date' => 'required|date',
+            'comment' => '',
+            'dot_number' => 'required',
+            'description' => 'required',          
+        ]);
+
         $lead = Lead::where('dot_number', $id)->update([
             'legal_name' => $request->legal_name,
             'telephone' => $request->telephone,
@@ -52,7 +69,7 @@ class LeadController extends Controller
             'comment' => $request->comment,
             'dot_number' => $request->dot_number,
             'description' => $request->description,            
-        ]);
+        ]);        
 
         return response()->json($lead);
     }

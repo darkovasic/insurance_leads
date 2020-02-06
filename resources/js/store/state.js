@@ -34,7 +34,8 @@ let state = {
         phy_zip: null,
         telephone: null,
         updated_at: null,        
-    }
+    },
+    errors: {}
 }
 
 export default state

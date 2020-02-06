@@ -1,14 +1,18 @@
 let mutations = {
     UPDATE_LEAD(state, lead) {
-console.log("UPDATE_LEAD", state.lead)        
+console.log("UPDATE_LEAD", state.lead);      
         // state.lead.unshift(lead)
     },
+    UPDATE_LEAD_ERROR(state, errors) {
+console.log("UPDATE_LEAD_ERROR", errors.errors);       
+        return state.errors = errors.errors;
+    },
     FETCH_LEAD(state, lead) {
-        return state.lead = lead
+        return state.lead = lead;
     },
     DELETE_LEAD(state, lead) {
-        let index = state.lead.findIndex(item => item.id === lead.id)
-        state.lead.splice(index, 1)
+        let index = state.lead.findIndex(item => item.id === lead.id);
+        state.lead.splice(index, 1);
     },
 
     updateDotNumber (state, dot_number) {
