@@ -20,20 +20,20 @@ console.log("updateLead", this.errors);
     fetchLead({commit}, id) {      
         axios.get(`/api/lead/${id}`)
             .then(res => {
-                commit('FETCH_LEAD', res.data)
+                commit('FETCH_LEAD', res.data);
             }).catch(error => {
-            console.log("fetchLead", error)
+            console.log("fetchLead", error);
         });
     },
     deleteLead({commit}, id) {
         axios.delete(`/api/lead/${id}`)
             .then(res => {
                 if (res.data === 'ok')
-                    commit('DELETE_LEAD', id)
+                    commit('DELETE_LEAD', id);
             }).catch(error => {
-            console.log("deleteLead", error)
+            console.log("deleteLead", error);
         });
     }
 }
 
-export default actions
+export default actions;

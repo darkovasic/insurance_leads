@@ -10,6 +10,7 @@ console.log("UPDATE_LEAD_ERROR", errors.errors);
         state.errors = errors.errors;
     },
     FETCH_LEAD(state, lead) {
+        state.errors = {};
         state.lead = lead;
     },
     DELETE_LEAD(state, lead) {

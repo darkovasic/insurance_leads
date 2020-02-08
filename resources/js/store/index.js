@@ -1,11 +1,14 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import actions from './actions'
-import mutations from './mutations'
-import getters from './getters'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import Notifications from 'vue-notification';
+
+import actions from './actions';
+import mutations from './mutations';
+import getters from './getters';
 import state from "./state";
 
 Vue.use(Vuex);
+Vue.use(Notifications);
 
 export default new Vuex.Store({
     state,
@@ -13,4 +16,4 @@ export default new Vuex.Store({
     getters,
     actions,
     strict: true
-})
+});
