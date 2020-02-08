@@ -1,9 +1,10 @@
 let actions = {
     updateLead({commit, state}, id) {
+        commit('UPDATE_LEAD');
         console.log(state);
         axios.post(`/api/lead/${id}`, state.lead)
             .then(res => {
-                commit('UPDATE_LEAD', res.data);
+                commit('UPDATE_LEAD_SUCCESS', res.data);
             }).catch(error => {
 
                 if (error.response.status === 422) {

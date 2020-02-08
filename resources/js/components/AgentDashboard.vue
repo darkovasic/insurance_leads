@@ -39,7 +39,7 @@
                 </div>                             
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group has-error">
                     <label for="telephone">Phone Number</label>
                     <input type="text" class="form-control" id="telephone" :value="telephone" @input="updateTelephone">
                     <small v:if="errors && errors.telephone" class="text-danger">{{ errors.telephone }}</small>

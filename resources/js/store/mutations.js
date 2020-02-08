@@ -1,10 +1,11 @@
 let mutations = {
     UPDATE_LEAD(state, lead) {
-console.log("UPDATE_LEAD", state.lead);      
-        // state.lead.unshift(lead)
+console.log("UPDATE_LEAD", state.lead);
     },
-    UPDATE_LEAD_ERROR(state, errors) {
-console.log("UPDATE_LEAD_ERROR", errors.errors);       
+    UPDATE_LEAD_SUCCESS(state) {
+        return state.errors = {};
+    },
+    UPDATE_LEAD_ERROR(state, errors) {      
         return state.errors = errors.errors;
     },
     FETCH_LEAD(state, lead) {

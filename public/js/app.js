@@ -38275,7 +38275,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
+          _c("div", { staticClass: "form-group has-error" }, [
             _c("label", { attrs: { for: "telephone" } }, [
               _vm._v("Phone Number")
             ]),
@@ -51859,9 +51859,10 @@ var actions = {
 
     var commit = _ref.commit,
         state = _ref.state;
+    commit('UPDATE_LEAD');
     console.log(state);
     axios.post("/api/lead/".concat(id), state.lead).then(function (res) {
-      commit('UPDATE_LEAD', res.data);
+      commit('UPDATE_LEAD_SUCCESS', res.data);
     })["catch"](function (error) {
       if (error.response.status === 422) {
         // this.errors = error.response.data;
@@ -51957,10 +51958,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 __webpack_require__.r(__webpack_exports__);
 var mutations = {
   UPDATE_LEAD: function UPDATE_LEAD(state, lead) {
-    console.log("UPDATE_LEAD", state.lead); // state.lead.unshift(lead)
+    console.log("UPDATE_LEAD", state.lead);
+  },
+  UPDATE_LEAD_SUCCESS: function UPDATE_LEAD_SUCCESS(state) {
+    return state.errors = {};
   },
   UPDATE_LEAD_ERROR: function UPDATE_LEAD_ERROR(state, errors) {
-    console.log("UPDATE_LEAD_ERROR", errors.errors);
     return state.errors = errors.errors;
   },
   FETCH_LEAD: function FETCH_LEAD(state, lead) {
@@ -52039,7 +52042,7 @@ var state = {
     created_at: null,
     dba_name: null,
     description: null,
-    dot_number: null,
+    dot_number: '555',
     driver_total: null,
     email_address: null,
     fax: null,

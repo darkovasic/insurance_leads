@@ -6,7 +6,7 @@ let state = {
         created_at: null,
         dba_name: null,
         description: null,
-        dot_number: null,
+        dot_number: '555',
         driver_total: null,
         email_address: null,
         fax: null,
