@@ -3,13 +3,14 @@ let mutations = {
 console.log("UPDATE_LEAD", state.lead);
     },
     UPDATE_LEAD_SUCCESS(state) {
-        return state.errors = {};
+        state.errors = {};
     },
-    UPDATE_LEAD_ERROR(state, errors) {      
-        return state.errors = errors.errors;
+    UPDATE_LEAD_ERROR(state, errors) {  
+console.log("UPDATE_LEAD_ERROR", errors.errors);            
+        state.errors = errors.errors;
     },
     FETCH_LEAD(state, lead) {
-        return state.lead = lead;
+        state.lead = lead;
     },
     DELETE_LEAD(state, lead) {
         let index = state.lead.findIndex(item => item.id === lead.id);

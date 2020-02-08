@@ -2011,6 +2011,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AgentDashboard",
@@ -2028,6 +2041,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     deleteLead: function deleteLead(id) {
       this.$store.dispatch('deleteLead', id);
+    },
+    getError: function getError(error) {
+      if (error) return error[0];
     },
     updateDotNumber: function updateDotNumber(e) {
       this.$store.commit('updateDotNumber', e.target.value);
@@ -38211,7 +38227,16 @@ var render = function() {
               attrs: { type: "text", id: "legal_name" },
               domProps: { value: _vm.legal_name },
               on: { input: _vm.updateLegalName }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.legal_name" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.legal_name)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38222,7 +38247,16 @@ var render = function() {
               attrs: { type: "email", id: "email_address" },
               domProps: { value: _vm.email_address },
               on: { input: _vm.updateEmail }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.email_address" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.email_address)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38233,7 +38267,16 @@ var render = function() {
               attrs: { type: "text", id: "phy_street" },
               domProps: { value: _vm.phy_street },
               on: { input: _vm.updateStreet }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.phy_street" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_street)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38244,7 +38287,16 @@ var render = function() {
               attrs: { type: "text", id: "phy_zip" },
               domProps: { value: _vm.phy_zip },
               on: { input: _vm.updateZipCode }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.phy_zip" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_zip)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38257,7 +38309,16 @@ var render = function() {
               attrs: { type: "text", id: "nbr_power_unit" },
               domProps: { value: _vm.nbr_power_unit },
               on: { input: _vm.updateNbrPowerUnit }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.nbr_power_unit" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.nbr_power_unit)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38270,7 +38331,16 @@ var render = function() {
               attrs: { type: "text", id: "last_insurance_carrier" },
               domProps: { value: _vm.last_insurance_carrier },
               on: { input: _vm.updateLastInsuranceCarrier }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.last_insurance_carrier" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.last_insurance_carrier)))]
+            )
           ])
         ]),
         _vm._v(" "),
@@ -38293,7 +38363,7 @@ var render = function() {
                 staticClass: "text-danger",
                 attrs: { "v:if": "errors && errors.telephone" }
               },
-              [_vm._v(_vm._s(_vm.errors.telephone))]
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.telephone)))]
             )
           ]),
           _vm._v(" "),
@@ -38305,7 +38375,16 @@ var render = function() {
               attrs: { type: "text", id: "dba_name" },
               domProps: { value: _vm.dba_name },
               on: { input: _vm.updateCompany }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.dba_name" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.dba_name)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38316,7 +38395,16 @@ var render = function() {
               attrs: { type: "text", id: "phy_city" },
               domProps: { value: _vm.phy_city },
               on: { input: _vm.updateCity }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.phy_city" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_city)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38327,7 +38415,16 @@ var render = function() {
               attrs: { type: "text", id: "phy_state" },
               domProps: { value: _vm.phy_state },
               on: { input: _vm.updateState }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.phy_state" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_state)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38340,7 +38437,16 @@ var render = function() {
               attrs: { type: "text", id: "driver_total" },
               domProps: { value: _vm.driver_total },
               on: { input: _vm.updateDriverTotal }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.driver_total" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.driver_total)))]
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38353,7 +38459,16 @@ var render = function() {
               attrs: { type: "text", id: "last_insurance_date" },
               domProps: { value: _vm.last_insurance_date },
               on: { input: _vm.updateLastInsuranceDate }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.last_insurance_date" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.last_insurance_date)))]
+            )
           ])
         ])
       ]
@@ -38374,7 +38489,16 @@ var render = function() {
               attrs: { type: "text", id: "description" },
               domProps: { value: _vm.description },
               on: { input: _vm.updateDescription }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.description" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.description)))]
+            )
           ])
         ])
       ]
@@ -38393,7 +38517,16 @@ var render = function() {
               attrs: { id: "comment" },
               domProps: { value: _vm.comment },
               on: { input: _vm.updateComment }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "small",
+              {
+                staticClass: "text-danger",
+                attrs: { "v:if": "errors && errors.comment" }
+              },
+              [_vm._v(_vm._s(_vm.getError(_vm.errors.comment)))]
+            )
           ])
         ])
       ]
@@ -51961,13 +52094,14 @@ var mutations = {
     console.log("UPDATE_LEAD", state.lead);
   },
   UPDATE_LEAD_SUCCESS: function UPDATE_LEAD_SUCCESS(state) {
-    return state.errors = {};
+    state.errors = {};
   },
   UPDATE_LEAD_ERROR: function UPDATE_LEAD_ERROR(state, errors) {
-    return state.errors = errors.errors;
+    console.log("UPDATE_LEAD_ERROR", errors.errors);
+    state.errors = errors.errors;
   },
   FETCH_LEAD: function FETCH_LEAD(state, lead) {
-    return state.lead = lead;
+    state.lead = lead;
   },
   DELETE_LEAD: function DELETE_LEAD(state, lead) {
     var index = state.lead.findIndex(function (item) {

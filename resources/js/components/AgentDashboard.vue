@@ -16,53 +16,64 @@
                 <div class="form-group">
                     <label for="legal_name">Contact Name</label>
                     <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
+                    <small v:if="errors && errors.legal_name" class="text-danger">{{ getError(errors.legal_name) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="email_address">Email</label>
                     <input type="email" class="form-control" id="email_address" :value="email_address" @input="updateEmail">
+                    <small v:if="errors && errors.email_address" class="text-danger">{{ getError(errors.email_address) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="phy_street">Street</label>
                     <input type="text" class="form-control" id="phy_street" :value="phy_street" @input="updateStreet">
+                    <small v:if="errors && errors.phy_street" class="text-danger">{{ getError(errors.phy_street) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="phy_zip">ZIP Code</label>
                     <input type="text" class="form-control" id="phy_zip" :value="phy_zip" @input="updateZipCode">
+                    <small v:if="errors && errors.phy_zip" class="text-danger">{{ getError(errors.phy_zip) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="nbr_power_unit">Number of Trucks</label>
                     <input type="text" class="form-control" id="nbr_power_unit" :value="nbr_power_unit" @input="updateNbrPowerUnit">
+                    <small v:if="errors && errors.nbr_power_unit" class="text-danger">{{ getError(errors.nbr_power_unit) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="last_insurance_carrier">Last Insurance Carrier</label>
                     <input type="text" class="form-control" id="last_insurance_carrier" :value="last_insurance_carrier" @input="updateLastInsuranceCarrier">
+                    <small v:if="errors && errors.last_insurance_carrier" class="text-danger">{{ getError(errors.last_insurance_carrier) }}</small>
                 </div>                             
             </div>
             <div class="col-md-6">
                 <div class="form-group has-error">
                     <label for="telephone">Phone Number</label>
                     <input type="text" class="form-control" id="telephone" :value="telephone" @input="updateTelephone">
-                    <small v:if="errors && errors.telephone" class="text-danger">{{ errors.telephone }}</small>
+                    <small v:if="errors && errors.telephone" class="text-danger">{{ getError(errors.telephone) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="dba_name">Company</label>
                     <input type="text" class="form-control" id="dba_name" :value="dba_name" @input="updateCompany">
+                    <small v:if="errors && errors.dba_name" class="text-danger">{{ getError(errors.dba_name) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="phy_city">City</label>
                     <input type="text" class="form-control" id="phy_city" :value="phy_city" @input="updateCity">
+                    <small v:if="errors && errors.phy_city" class="text-danger">{{ getError(errors.phy_city) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="phy_state">State</label>
                     <input type="text" class="form-control" id="phy_state" :value="phy_state" @input="updateState">
+                    <small v:if="errors && errors.phy_state" class="text-danger">{{ getError(errors.phy_state) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="driver_total">Number of Drivers</label>
                     <input type="text" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
+                    <small v:if="errors && errors.driver_total" class="text-danger">{{ getError(errors.driver_total) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="last_insurance_date">Last Insurance Date</label>
                     <input type="text" class="form-control" id="last_insurance_date" :value="last_insurance_date" @input="updateLastInsuranceDate">
+                    <small v:if="errors && errors.last_insurance_date" class="text-danger">{{ getError(errors.last_insurance_date) }}</small>
                 </div>                                 
             </div>
         </div>
@@ -71,6 +82,7 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <input type="text" class="form-control" id="description" :value="description" @input="updateDescription">
+                    <small v:if="errors && errors.description" class="text-danger">{{ getError(errors.description) }}</small>
                 </div>
             </div>
         </div>
@@ -79,6 +91,7 @@
                 <div class="form-group">
                     <label for="comment">Comment</label>
                     <textarea class="form-control" id="comment" :value="comment" @input="updateComment"></textarea>
+                    <small v:if="errors && errors.comment" class="text-danger">{{ getError(errors.comment) }}</small>
                 </div>
             </div>
         </div>
@@ -117,6 +130,10 @@
             },
             deleteLead(id) {
                 this.$store.dispatch('deleteLead', id);
+            },
+
+            getError(error) {
+                if (error) return error[0];
             },
 
             updateDotNumber(e) {
