@@ -6686,7 +6686,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn[data-v-0f85a8ba] {\n    background:burlywood;\n}\n", ""]);
+exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    /* width: 50%; */\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn[data-v-0f85a8ba] {\n    background:burlywood;\n}\n.form-column[data-v-0f85a8ba] {\n    padding-top: 1rem;\n}\n", ""]);
 
 // exports
 
@@ -38221,7 +38221,7 @@ var render = function() {
         "div",
         { staticClass: "row", staticStyle: { background: "burlywood" } },
         [
-          _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "col-md-6 form-column" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "legal_name" } }, [
                 _vm._v("Contact Name")
@@ -38355,7 +38355,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "col-md-6 form-column" }, [
             _c("div", { staticClass: "form-group has-error" }, [
               _c("label", { attrs: { for: "telephone" } }, [
                 _vm._v("Phone Number")

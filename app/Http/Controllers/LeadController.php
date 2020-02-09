@@ -24,7 +24,7 @@ class LeadController extends Controller
      */
     public function index()
     {
-        return view('leads');
+        return view('lead');
     }
 
     public function get($id)

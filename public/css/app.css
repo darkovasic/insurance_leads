@@ -11356,3 +11356,7 @@ a.text-dark:focus {
   }
 }
 
+.form-container {
+  padding: 0 0.9rem;
+}
+

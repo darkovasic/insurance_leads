@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Agent Dashboard</div>
 
-                <div class="card-body">
+                <div class="form-container">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

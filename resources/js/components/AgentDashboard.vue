@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row" style="background:burlywood">
-            <div class="col-md-6">
+            <div class="col-md-6 form-column">
                 <div class="form-group">
                     <label for="legal_name">Contact Name</label>
                     <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
@@ -45,7 +45,7 @@
                     <small v:if="errors && errors.last_insurance_carrier" class="text-danger">{{ getError(errors.last_insurance_carrier) }}</small>
                 </div>                             
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 form-column">
                 <div class="form-group has-error">
                     <label for="telephone">Phone Number</label>
                     <input type="text" class="form-control" id="telephone" :value="telephone" @input="updateTelephone">
@@ -227,6 +227,9 @@
     }
     .btn {
         background:burlywood;
+    }
+    .form-column {
+        padding-top: 1rem;
     }
 </style>
 
