@@ -1,5 +1,6 @@
 <template>
     <form>
+        <notifications group="lead" />
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group lead-search align-items-center">

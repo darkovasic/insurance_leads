@@ -1,21 +1,26 @@
 let actions = {
     updateLead({commit, state}, id) {
         commit('UPDATE_LEAD');
-        console.log(state);
         axios.post(`/api/lead/${id}`, state.lead)
             .then(res => {
                 commit('UPDATE_LEAD_SUCCESS', res.data);
+                Vue.notify({
+                    group: 'lead',
+                    type: 'success',
+                    title: 'SUCCESS!',
+                    text: 'Lead successfuly saved in the database.'
+                });
             }).catch(error => {
-
                 if (error.response.status === 422) {
-                    // this.errors = error.response.data;
                     commit('UPDATE_LEAD_ERROR', error.response.data);
-                    // this.loader = false;
+                    Vue.notify({
+                        group: 'lead',
+                        type: 'error',
+                        title: 'ERROR!',
+                        text: error.response.data.message
+                    });
                 }
-                
-console.log("updateLead", this.errors);
             });
-
     },
     fetchLead({commit}, id) {      
         axios.get(`/api/lead/${id}`)

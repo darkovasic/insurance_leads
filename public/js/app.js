@@ -2024,6 +2024,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AgentDashboard",
@@ -38157,41 +38158,400 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", [
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "cadetblue" } },
-      [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "input-group lead-search align-items-center" },
-            [
-              _c(
-                "label",
-                { staticClass: "search-term", attrs: { for: "dot_number" } },
-                [_vm._v("DOT Number")]
-              ),
+  return _c(
+    "form",
+    [
+      _c("notifications", { attrs: { group: "lead" } }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "cadetblue" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "div",
+              { staticClass: "input-group lead-search align-items-center" },
+              [
+                _c(
+                  "label",
+                  { staticClass: "search-term", attrs: { for: "dot_number" } },
+                  [_vm._v("DOT Number")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "dot_number" },
+                  domProps: { value: _vm.dot_number },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.fetchLead(_vm.dot_number)
+                    },
+                    input: _vm.updateDotNumber
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-btn" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.fetchLead(_vm.dot_number)
+                        }
+                      }
+                    },
+                    [_vm._v("Search")]
+                  )
+                ])
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "burlywood" } },
+        [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "legal_name" } }, [
+                _vm._v("Contact Name")
+              ]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", id: "dot_number" },
-                domProps: { value: _vm.dot_number },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    return _vm.fetchLead(_vm.dot_number)
-                  },
-                  input: _vm.updateDotNumber
-                }
+                attrs: { type: "text", id: "legal_name" },
+                domProps: { value: _vm.legal_name },
+                on: { input: _vm.updateLegalName }
               }),
               _vm._v(" "),
-              _c("span", { staticClass: "input-group-btn" }, [
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.legal_name" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.legal_name)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "email_address" } }, [
+                _vm._v("Email")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "email", id: "email_address" },
+                domProps: { value: _vm.email_address },
+                on: { input: _vm.updateEmail }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.email_address" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.email_address)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_street" } }, [_vm._v("Street")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_street" },
+                domProps: { value: _vm.phy_street },
+                on: { input: _vm.updateStreet }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.phy_street" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_street)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_zip" } }, [_vm._v("ZIP Code")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_zip" },
+                domProps: { value: _vm.phy_zip },
+                on: { input: _vm.updateZipCode }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.phy_zip" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_zip)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "nbr_power_unit" } }, [
+                _vm._v("Number of Trucks")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "nbr_power_unit" },
+                domProps: { value: _vm.nbr_power_unit },
+                on: { input: _vm.updateNbrPowerUnit }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.nbr_power_unit" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.nbr_power_unit)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "last_insurance_carrier" } }, [
+                _vm._v("Last Insurance Carrier")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "last_insurance_carrier" },
+                domProps: { value: _vm.last_insurance_carrier },
+                on: { input: _vm.updateLastInsuranceCarrier }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.last_insurance_carrier" }
+                },
+                [
+                  _vm._v(
+                    _vm._s(_vm.getError(_vm.errors.last_insurance_carrier))
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group has-error" }, [
+              _c("label", { attrs: { for: "telephone" } }, [
+                _vm._v("Phone Number")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "telephone" },
+                domProps: { value: _vm.telephone },
+                on: { input: _vm.updateTelephone }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.telephone" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.telephone)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "dba_name" } }, [_vm._v("Company")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "dba_name" },
+                domProps: { value: _vm.dba_name },
+                on: { input: _vm.updateCompany }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.dba_name" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.dba_name)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_city" } }, [_vm._v("City")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_city" },
+                domProps: { value: _vm.phy_city },
+                on: { input: _vm.updateCity }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.phy_city" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_city)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "phy_state" },
+                domProps: { value: _vm.phy_state },
+                on: { input: _vm.updateState }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.phy_state" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_state)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "driver_total" } }, [
+                _vm._v("Number of Drivers")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "driver_total" },
+                domProps: { value: _vm.driver_total },
+                on: { input: _vm.updateDriverTotal }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.driver_total" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.driver_total)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "last_insurance_date" } }, [
+                _vm._v("Last Insurance Date")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "last_insurance_date" },
+                domProps: { value: _vm.last_insurance_date },
+                on: { input: _vm.updateLastInsuranceDate }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.last_insurance_date" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.last_insurance_date)))]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "burlywood" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "description" } }, [
+                _vm._v("Description")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "description" },
+                domProps: { value: _vm.description },
+                on: { input: _vm.updateDescription }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.description" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.description)))]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "burlywood" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "comment" } }, [_vm._v("Comment")]),
+              _vm._v(" "),
+              _c("textarea", {
+                staticClass: "form-control",
+                attrs: { id: "comment" },
+                domProps: { value: _vm.comment },
+                on: { input: _vm.updateComment }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.comment" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.comment)))]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row", staticStyle: { background: "cadetblue" } },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "div",
+              { staticClass: "input-group-btn lead-search float-right" },
+              [
                 _c(
                   "button",
                   {
@@ -38199,373 +38559,26 @@ var render = function() {
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
-                        return _vm.fetchLead(_vm.dot_number)
+                        return _vm.updateLead(_vm.dot_number)
                       }
                     }
                   },
-                  [_vm._v("Search")]
+                  [_vm._v("Save Changes")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-default", attrs: { type: "button" } },
+                  [_vm._v("Send to Broker")]
                 )
-              ])
-            ]
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "burlywood" } },
-      [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "legal_name" } }, [
-              _vm._v("Contact Name")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "legal_name" },
-              domProps: { value: _vm.legal_name },
-              on: { input: _vm.updateLegalName }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.legal_name" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.legal_name)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "email_address" } }, [_vm._v("Email")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "email", id: "email_address" },
-              domProps: { value: _vm.email_address },
-              on: { input: _vm.updateEmail }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.email_address" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.email_address)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_street" } }, [_vm._v("Street")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_street" },
-              domProps: { value: _vm.phy_street },
-              on: { input: _vm.updateStreet }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.phy_street" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_street)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_zip" } }, [_vm._v("ZIP Code")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_zip" },
-              domProps: { value: _vm.phy_zip },
-              on: { input: _vm.updateZipCode }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.phy_zip" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_zip)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "nbr_power_unit" } }, [
-              _vm._v("Number of Trucks")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "nbr_power_unit" },
-              domProps: { value: _vm.nbr_power_unit },
-              on: { input: _vm.updateNbrPowerUnit }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.nbr_power_unit" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.nbr_power_unit)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "last_insurance_carrier" } }, [
-              _vm._v("Last Insurance Carrier")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "last_insurance_carrier" },
-              domProps: { value: _vm.last_insurance_carrier },
-              on: { input: _vm.updateLastInsuranceCarrier }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.last_insurance_carrier" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.last_insurance_carrier)))]
+              ]
             )
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form-group has-error" }, [
-            _c("label", { attrs: { for: "telephone" } }, [
-              _vm._v("Phone Number")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "telephone" },
-              domProps: { value: _vm.telephone },
-              on: { input: _vm.updateTelephone }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.telephone" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.telephone)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "dba_name" } }, [_vm._v("Company")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "dba_name" },
-              domProps: { value: _vm.dba_name },
-              on: { input: _vm.updateCompany }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.dba_name" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.dba_name)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_city" } }, [_vm._v("City")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_city" },
-              domProps: { value: _vm.phy_city },
-              on: { input: _vm.updateCity }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.phy_city" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_city)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "phy_state" },
-              domProps: { value: _vm.phy_state },
-              on: { input: _vm.updateState }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.phy_state" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_state)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "driver_total" } }, [
-              _vm._v("Number of Drivers")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "driver_total" },
-              domProps: { value: _vm.driver_total },
-              on: { input: _vm.updateDriverTotal }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.driver_total" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.driver_total)))]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "last_insurance_date" } }, [
-              _vm._v("Last Insurance Date")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "last_insurance_date" },
-              domProps: { value: _vm.last_insurance_date },
-              on: { input: _vm.updateLastInsuranceDate }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.last_insurance_date" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.last_insurance_date)))]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "burlywood" } },
-      [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "description" } }, [
-              _vm._v("Description")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "text", id: "description" },
-              domProps: { value: _vm.description },
-              on: { input: _vm.updateDescription }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.description" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.description)))]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "burlywood" } },
-      [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "comment" } }, [_vm._v("Comment")]),
-            _vm._v(" "),
-            _c("textarea", {
-              staticClass: "form-control",
-              attrs: { id: "comment" },
-              domProps: { value: _vm.comment },
-              on: { input: _vm.updateComment }
-            }),
-            _vm._v(" "),
-            _c(
-              "small",
-              {
-                staticClass: "text-danger",
-                attrs: { "v:if": "errors && errors.comment" }
-              },
-              [_vm._v(_vm._s(_vm.getError(_vm.errors.comment)))]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row", staticStyle: { background: "cadetblue" } },
-      [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c(
-            "div",
-            { staticClass: "input-group-btn lead-search float-right" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-default",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.updateLead(_vm.dot_number)
-                    }
-                  }
-                },
-                [_vm._v("Save Changes")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-default", attrs: { type: "button" } },
-                [_vm._v("Send to Broker")]
-              )
-            ]
-          )
-        ])
-      ]
-    )
-  ])
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53156,21 +53169,27 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 var actions = {
   updateLead: function updateLead(_ref, id) {
-    var _this = this;
-
     var commit = _ref.commit,
         state = _ref.state;
     commit('UPDATE_LEAD');
-    console.log(state);
     axios.post("/api/lead/".concat(id), state.lead).then(function (res) {
       commit('UPDATE_LEAD_SUCCESS', res.data);
+      Vue.notify({
+        group: 'lead',
+        type: 'success',
+        title: 'SUCCESS!',
+        text: 'Lead successfuly saved in the database.'
+      });
     })["catch"](function (error) {
       if (error.response.status === 422) {
-        // this.errors = error.response.data;
-        commit('UPDATE_LEAD_ERROR', error.response.data); // this.loader = false;
+        commit('UPDATE_LEAD_ERROR', error.response.data);
+        Vue.notify({
+          group: 'lead',
+          type: 'error',
+          title: 'ERROR!',
+          text: error.response.data.message
+        });
       }
-
-      console.log("updateLead", _this.errors);
     });
   },
   fetchLead: function fetchLead(_ref2, id) {
