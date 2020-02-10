@@ -13,7 +13,7 @@ let state = {
         hm_flag: null,
         id: null,
         last_insurance_carrier: null,
-        last_insurance_date: null,
+        last_insurance_date: new Date(2016, 9,  16),
         legal_name: null,
         mailing_city: null,
         mailing_country: null,

@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-group">
                     <label for="last_insurance_date">Last Insurance Date</label>
-                    <input type="text" class="form-control" id="last_insurance_date" :value="last_insurance_date" @input="updateLastInsuranceDate">
+                    <datepicker :typeable="false" type="text" input-class="form-control" id="last_insurance_date" :value="last_insurance_date" @selected="updateLastInsuranceDate"></datepicker>
                     <small v:if="errors && errors.last_insurance_date" class="text-danger">{{ getError(errors.last_insurance_date) }}</small>
                 </div>                                 
             </div>
@@ -110,6 +110,7 @@
 
 <script>
     import {mapGetters, mapState} from 'vuex';
+    import Datepicker from 'vuejs-datepicker';
 
     export default {
 
@@ -177,10 +178,12 @@
                 this.$store.commit('updateDescription', e.target.value);
             },
             updateComment(e) {
+                console.log("updateComment", e);
                 this.$store.commit('updateComment', e.target.value);
             },
-            updateLastInsuranceDate(e) {
-                this.$store.commit('updateLastInsuranceDate', e.target.value);
+            updateLastInsuranceDate(date) {
+                console.log("updateLastInsuranceDate", date);
+                this.$store.commit('updateLastInsuranceDate', date);
             },
         },
         computed: {
@@ -205,6 +208,9 @@
                 comment: state => state.lead.comment,
                 description: state => state.lead.description,
             })            
+        },
+        components: {
+            Datepicker
         }
     }
 </script>

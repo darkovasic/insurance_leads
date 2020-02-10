@@ -16,7 +16,7 @@ let actions = {
                     Vue.notify({
                         group: 'lead',
                         type: 'error',
-                        title: 'ERROR!',
+                        title: 'DAMN!',
                         text: error.response.data.message
                     });
                 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lead;
+use Carbon\Carbon;
 
 class LeadController extends Controller
 {
@@ -34,7 +35,7 @@ class LeadController extends Controller
     }
 
     public function store($id, Request $request)
-    {     
+    {
         $this->validate($request, [
             'legal_name' => 'required',
             'telephone' => 'required',
@@ -65,7 +66,7 @@ class LeadController extends Controller
             'nbr_power_unit' => $request->nbr_power_unit,
             'driver_total' => $request->driver_total,
             'last_insurance_carrier' => $request->last_insurance_carrier,
-            'last_insurance_date' => $request->last_insurance_date,
+            'last_insurance_date' => Carbon::parse($request->last_insurance_date)->toDateTimeString(),
             'comment' => $request->comment,
             'dot_number' => $request->dot_number,
             'description' => $request->description,            
