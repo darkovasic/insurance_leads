@@ -1,6 +1,12 @@
 <template>
     <form>
         <notifications group="lead" />
+        <loading 
+            :active.sync="isLoading" 
+            :can-cancel="true" 
+            :on-cancel="onCancel"
+            :is-full-page="false">
+        </loading>
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group lead-search align-items-center">
@@ -111,23 +117,28 @@
 <script>
     import {mapGetters, mapState} from 'vuex';
     import Datepicker from 'vuejs-datepicker';
+    import Loading from 'vue-loading-overlay';
+
+    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default {
 
         name: "AgentDashboard",
         data() {
             return {
-                
+                isLoading: false,
+                fullPage: true
             }
         },
         mounted() {
-            // console.log("errors", errors);
+
         },
         methods: {
             fetchLead(id) {
                 this.$store.dispatch('fetchLead', id);
             },
             updateLead(id) {
+                this.isLoading = true;
                 this.$store.dispatch('updateLead', id);
             },
             deleteLead(id) {
@@ -178,11 +189,9 @@
                 this.$store.commit('updateDescription', e.target.value);
             },
             updateComment(e) {
-                console.log("updateComment", e);
                 this.$store.commit('updateComment', e.target.value);
             },
             updateLastInsuranceDate(date) {
-                console.log("updateLastInsuranceDate", date);
                 this.$store.commit('updateLastInsuranceDate', date);
             },
         },
@@ -210,7 +219,8 @@
             })            
         },
         components: {
-            Datepicker
+            Datepicker,
+            Loading
         }
     }
 </script>
@@ -218,7 +228,6 @@
 <style scoped>
     .lead-search {
         padding: 1rem 0;
-        /* width: 50%; */
     }
     #dot_number {
         margin: 0 1rem;

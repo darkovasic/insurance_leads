@@ -35,6 +35,7 @@ let state = {
         telephone: null,
         updated_at: null,        
     },
+    loading: false,
     errors: {}
 }
 
