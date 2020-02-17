@@ -2035,7 +2035,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -2043,10 +2042,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AgentDashboard",
   data: function data() {
-    return {
-      isLoading: false,
-      fullPage: true
-    };
+    return {};
   },
   mounted: function mounted() {},
   methods: {
@@ -2054,7 +2050,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('fetchLead', id);
     },
     updateLead: function updateLead(id) {
-      this.isLoading = true;
       this.$store.dispatch('updateLead', id);
     },
     deleteLead: function deleteLead(id) {
@@ -2109,7 +2104,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit('updateLastInsuranceDate', date);
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     telephone: function telephone(state) {
       return state.lead.telephone;
     },
@@ -38207,7 +38202,6 @@ var render = function() {
         attrs: {
           active: _vm.isLoading,
           "can-cancel": true,
-          "on-cancel": _vm.onCancel,
           "is-full-page": false
         },
         on: {
@@ -55726,8 +55720,8 @@ var actions = {
     var commit = _ref.commit,
         state = _ref.state;
     commit('UPDATE_LEAD');
-    axios.post("/api/lead/".concat(id), state.lead).then(function (res) {
-      commit('UPDATE_LEAD_SUCCESS', res.data);
+    axios.post("/api/lead/".concat(id), state.lead).then(function (response) {
+      commit('UPDATE_LEAD_SUCCESS', response.data);
       Vue.notify({
         group: 'lead',
         type: 'success',
@@ -55748,16 +55742,16 @@ var actions = {
   },
   fetchLead: function fetchLead(_ref2, id) {
     var commit = _ref2.commit;
-    axios.get("/api/lead/".concat(id)).then(function (res) {
-      commit('FETCH_LEAD', res.data);
+    axios.get("/api/lead/".concat(id)).then(function (response) {
+      commit('FETCH_LEAD', response.data);
     })["catch"](function (error) {
       console.log("fetchLead", error);
     });
   },
   deleteLead: function deleteLead(_ref3, id) {
     var commit = _ref3.commit;
-    axios["delete"]("/api/lead/".concat(id)).then(function (res) {
-      if (res.data === 'ok') commit('DELETE_LEAD', id);
+    axios["delete"]("/api/lead/".concat(id)).then(function (response) {
+      if (response.data === 'ok') commit('DELETE_LEAD', id);
     })["catch"](function (error) {
       console.log("deleteLead", error);
     });
@@ -55782,6 +55776,9 @@ var getters = {
   },
   errors: function errors(state) {
     return state.errors;
+  },
+  isLoading: function isLoading(state) {
+    return state.isLoading;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
@@ -55836,14 +55833,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_notification__WEBPACK_IMPORTE
 __webpack_require__.r(__webpack_exports__);
 var mutations = {
   UPDATE_LEAD: function UPDATE_LEAD(state, lead) {
-    console.log("UPDATE_LEAD", state.lead);
+    state.isLoading = true;
   },
   UPDATE_LEAD_SUCCESS: function UPDATE_LEAD_SUCCESS(state) {
     state.errors = {};
+    state.isLoading = false;
   },
   UPDATE_LEAD_ERROR: function UPDATE_LEAD_ERROR(state, errors) {
-    console.log("UPDATE_LEAD_ERROR", errors.errors);
     state.errors = errors.errors;
+    state.isLoading = false;
   },
   FETCH_LEAD: function FETCH_LEAD(state, lead) {
     state.errors = {};
@@ -55951,7 +55949,7 @@ var state = {
     telephone: null,
     updated_at: null
   },
-  loading: false,
+  isLoading: false,
   errors: {}
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);

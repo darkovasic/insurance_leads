@@ -2,8 +2,8 @@ let actions = {
     updateLead({commit, state}, id) {
         commit('UPDATE_LEAD');
         axios.post(`/api/lead/${id}`, state.lead)
-            .then(res => {
-                commit('UPDATE_LEAD_SUCCESS', res.data);
+            .then(response => {
+                commit('UPDATE_LEAD_SUCCESS', response.data);
                 Vue.notify({
                     group: 'lead',
                     type: 'success',
@@ -24,16 +24,16 @@ let actions = {
     },
     fetchLead({commit}, id) {      
         axios.get(`/api/lead/${id}`)
-            .then(res => {
-                commit('FETCH_LEAD', res.data);
+            .then(response => {
+                commit('FETCH_LEAD', response.data);
             }).catch(error => {
             console.log("fetchLead", error);
         });
     },
     deleteLead({commit}, id) {
         axios.delete(`/api/lead/${id}`)
-            .then(res => {
-                if (res.data === 'ok')
+            .then(response => {
+                if (response.data === 'ok')
                     commit('DELETE_LEAD', id);
             }).catch(error => {
             console.log("deleteLead", error);

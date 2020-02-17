@@ -4,7 +4,6 @@
         <loading 
             :active.sync="isLoading" 
             :can-cancel="true" 
-            :on-cancel="onCancel"
             :is-full-page="false">
         </loading>
         <div class="row" style="background:cadetblue">
@@ -126,8 +125,7 @@
         name: "AgentDashboard",
         data() {
             return {
-                isLoading: false,
-                fullPage: true
+
             }
         },
         mounted() {
@@ -137,8 +135,7 @@
             fetchLead(id) {
                 this.$store.dispatch('fetchLead', id);
             },
-            updateLead(id) {
-                this.isLoading = true;
+            updateLead(id) {            
                 this.$store.dispatch('updateLead', id);
             },
             deleteLead(id) {
@@ -198,7 +195,8 @@
         computed: {
             ...mapGetters([
                 'lead',
-                'errors'
+                'errors',
+                'isLoading'
             ]),
             ...mapState({
                 telephone: state => state.lead.telephone,

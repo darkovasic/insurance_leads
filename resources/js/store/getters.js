@@ -4,6 +4,9 @@ let getters = {
     },
     errors: state => {
         return state.errors;
+    },
+    isLoading: state => {
+        return state.isLoading;
     }    
 }
 
