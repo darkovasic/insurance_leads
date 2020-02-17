@@ -2035,6 +2035,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2102,6 +2112,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateLastInsuranceDate: function updateLastInsuranceDate(date) {
       this.$store.commit('updateLastInsuranceDate', date);
+    },
+    updateInsuranceCancellationDate: function updateInsuranceCancellationDate(date) {
+      this.$store.commit('updateInsuranceCancellationDate', date);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
@@ -2143,6 +2156,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     last_insurance_date: function last_insurance_date(state) {
       return state.lead.last_insurance_date;
+    },
+    insurance_cancellation_date: function insurance_cancellation_date(state) {
+      return state.lead.insurance_cancellation_date;
     },
     comment: function comment(state) {
       return state.lead.comment;
@@ -38201,7 +38217,7 @@ var render = function() {
       _c("loading", {
         attrs: {
           active: _vm.isLoading,
-          "can-cancel": true,
+          "can-cancel": false,
           "is-full-page": false
         },
         on: {
@@ -38400,6 +38416,28 @@ var render = function() {
                   )
                 ]
               )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "description" } }, [
+                _vm._v("Description")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "description" },
+                domProps: { value: _vm.description },
+                on: { input: _vm.updateDescription }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.description" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.description)))]
+              )
             ])
           ]),
           _vm._v(" "),
@@ -38537,37 +38575,46 @@ var render = function() {
                 )
               ],
               1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "insurance_cancellation_date" } }, [
+                  _vm._v("Insurance Cancellation Date")
+                ]),
+                _vm._v(" "),
+                _c("datepicker", {
+                  attrs: {
+                    typeable: false,
+                    type: "text",
+                    "input-class": "form-control",
+                    id: "insurance_cancellation_date",
+                    value: _vm.insurance_cancellation_date
+                  },
+                  on: { selected: _vm.updateInsuranceCancellationDate }
+                }),
+                _vm._v(" "),
+                _c(
+                  "small",
+                  {
+                    staticClass: "text-danger",
+                    attrs: {
+                      "v:if": "errors && errors.insurance_cancellation_date"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm.getError(_vm.errors.insurance_cancellation_date)
+                      )
+                    )
+                  ]
+                )
+              ],
+              1
             )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "row", staticStyle: { background: "burlywood" } },
-        [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "description" } }, [
-                _vm._v("Description")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", id: "description" },
-                domProps: { value: _vm.description },
-                on: { input: _vm.updateDescription }
-              }),
-              _vm._v(" "),
-              _c(
-                "small",
-                {
-                  staticClass: "text-danger",
-                  attrs: { "v:if": "errors && errors.description" }
-                },
-                [_vm._v(_vm._s(_vm.getError(_vm.errors.description)))]
-              )
-            ])
           ])
         ]
       ),
@@ -55742,10 +55789,19 @@ var actions = {
   },
   fetchLead: function fetchLead(_ref2, id) {
     var commit = _ref2.commit;
+    commit('FETCH_LEAD');
     axios.get("/api/lead/".concat(id)).then(function (response) {
-      commit('FETCH_LEAD', response.data);
+      // if (!response.data.id) {
+      // commit('FETCH_LEAD_ERROR', { message: 'The lead has not been found' });
+      // } else {
+      //     console.log("fetchLead", response);
+      //     commit('FETCH_LEAD_SUCCESS', response.data);
+      // }
+      console.log("fetchLead", response);
+      commit('FETCH_LEAD_SUCCESS', response.data);
     })["catch"](function (error) {
       console.log("fetchLead", error);
+      commit('FETCH_LEAD_ERROR', error.response.data);
     });
   },
   deleteLead: function deleteLead(_ref3, id) {
@@ -55844,8 +55900,16 @@ var mutations = {
     state.isLoading = false;
   },
   FETCH_LEAD: function FETCH_LEAD(state, lead) {
-    state.errors = {};
+    state.isLoading = true;
+    state.errors = {}; // state.lead = lead;
+  },
+  FETCH_LEAD_SUCCESS: function FETCH_LEAD_SUCCESS(state, lead) {
     state.lead = lead;
+    state.isLoading = false;
+  },
+  FETCH_LEAD_ERROR: function FETCH_LEAD_ERROR(state, errors) {
+    state.errors = errors.errors;
+    state.isLoading = false;
   },
   DELETE_LEAD: function DELETE_LEAD(state, lead) {
     var index = state.lead.findIndex(function (item) {
@@ -55879,6 +55943,9 @@ var mutations = {
   },
   updateLastInsuranceDate: function updateLastInsuranceDate(state, last_insurance_date) {
     state.lead.last_insurance_date = last_insurance_date;
+  },
+  updateInsuranceCancellationDate: function updateInsuranceCancellationDate(state, insurance_cancellation_date) {
+    state.lead.insurance_cancellation_date = insurance_cancellation_date;
   },
   updateCompany: function updateCompany(state, dba_name) {
     state.lead.dba_name = dba_name;
@@ -55927,7 +55994,8 @@ var state = {
     hm_flag: null,
     id: null,
     last_insurance_carrier: null,
-    last_insurance_date: new Date(2016, 9, 16),
+    last_insurance_date: null,
+    insurance_cancellation_date: null,
     legal_name: null,
     mailing_city: null,
     mailing_country: null,

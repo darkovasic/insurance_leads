@@ -20,6 +20,7 @@ class Lead extends Model
         'driver_total',
         'last_insurance_carrier',
         'last_insurance_date',
+        'insurance_cancellation_date',
         'description',
         'comment'
     ];

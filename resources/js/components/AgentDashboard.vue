@@ -3,7 +3,7 @@
         <notifications group="lead" />
         <loading 
             :active.sync="isLoading" 
-            :can-cancel="true" 
+            :can-cancel="false" 
             :is-full-page="false">
         </loading>
         <div class="row" style="background:cadetblue">
@@ -48,7 +48,12 @@
                     <label for="last_insurance_carrier">Last Insurance Carrier</label>
                     <input type="text" class="form-control" id="last_insurance_carrier" :value="last_insurance_carrier" @input="updateLastInsuranceCarrier">
                     <small v:if="errors && errors.last_insurance_carrier" class="text-danger">{{ getError(errors.last_insurance_carrier) }}</small>
-                </div>                             
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" :value="description" @input="updateDescription">
+                    <small v:if="errors && errors.description" class="text-danger">{{ getError(errors.description) }}</small>
+                </div>                           
             </div>
             <div class="col-md-6 form-column">
                 <div class="form-group has-error">
@@ -80,10 +85,15 @@
                     <label for="last_insurance_date">Last Insurance Date</label>
                     <datepicker :typeable="false" type="text" input-class="form-control" id="last_insurance_date" :value="last_insurance_date" @selected="updateLastInsuranceDate"></datepicker>
                     <small v:if="errors && errors.last_insurance_date" class="text-danger">{{ getError(errors.last_insurance_date) }}</small>
-                </div>                                 
+                </div> 
+                <div class="form-group">
+                    <label for="insurance_cancellation_date">Insurance Cancellation Date</label>
+                    <datepicker :typeable="false" type="text" input-class="form-control" id="insurance_cancellation_date" :value="insurance_cancellation_date" @selected="updateInsuranceCancellationDate"></datepicker>
+                    <small v:if="errors && errors.insurance_cancellation_date" class="text-danger">{{ getError(errors.insurance_cancellation_date) }}</small>
+                </div>                           
             </div>
         </div>
-        <div class="row" style="background:burlywood">
+        <!-- <div class="row" style="background:burlywood">
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -91,7 +101,7 @@
                     <small v:if="errors && errors.description" class="text-danger">{{ getError(errors.description) }}</small>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row" style="background:burlywood">
             <div class="col-md-12">
                 <div class="form-group">
@@ -191,6 +201,9 @@
             updateLastInsuranceDate(date) {
                 this.$store.commit('updateLastInsuranceDate', date);
             },
+            updateInsuranceCancellationDate(date) {
+                this.$store.commit('updateInsuranceCancellationDate', date);
+            },
         },
         computed: {
             ...mapGetters([
@@ -212,6 +225,7 @@
                 driver_total: state => state.lead.driver_total,
                 last_insurance_carrier: state => state.lead.last_insurance_carrier,
                 last_insurance_date: state => state.lead.last_insurance_date,
+                insurance_cancellation_date: state => state.lead.insurance_cancellation_date,
                 comment: state => state.lead.comment,
                 description: state => state.lead.description,
             })            

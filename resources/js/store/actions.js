@@ -22,12 +22,21 @@ let actions = {
                 }
             });
     },
-    fetchLead({commit}, id) {      
+    fetchLead({commit}, id) {  
+        commit('FETCH_LEAD');
         axios.get(`/api/lead/${id}`)
             .then(response => {
-                commit('FETCH_LEAD', response.data);
+                // if (!response.data.id) {
+                // commit('FETCH_LEAD_ERROR', { message: 'The lead has not been found' });
+                // } else {
+                //     console.log("fetchLead", response);
+                //     commit('FETCH_LEAD_SUCCESS', response.data);
+                // }
+                console.log("fetchLead", response);
+                commit('FETCH_LEAD_SUCCESS', response.data);
             }).catch(error => {
-            console.log("fetchLead", error);
+                console.log("fetchLead", error);
+                commit('FETCH_LEAD_ERROR', error.response.data);
         });
     },
     deleteLead({commit}, id) {

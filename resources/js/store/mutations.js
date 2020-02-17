@@ -11,8 +11,17 @@ let mutations = {
         state.isLoading = false;
     },
     FETCH_LEAD(state, lead) {
+        state.isLoading = true;
         state.errors = {};
+        // state.lead = lead;
+    },
+    FETCH_LEAD_SUCCESS(state, lead) {
         state.lead = lead;
+        state.isLoading = false;
+    },
+    FETCH_LEAD_ERROR(state, errors) {
+        state.errors = errors.errors;
+        state.isLoading = false;
     },
     DELETE_LEAD(state, lead) {
         let index = state.lead.findIndex(item => item.id === lead.id);
@@ -45,6 +54,9 @@ let mutations = {
     },
     updateLastInsuranceDate (state, last_insurance_date) {
         state.lead.last_insurance_date = last_insurance_date;
+    },
+    updateInsuranceCancellationDate (state, insurance_cancellation_date) {
+        state.lead.insurance_cancellation_date = insurance_cancellation_date;
     },
     updateCompany (state, dba_name) {
         state.lead.dba_name = dba_name;
