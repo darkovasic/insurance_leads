@@ -1,11 +1,12 @@
 <template>
     <form>
-        <notifications group="lead" />
         <loading 
             :active.sync="isLoading" 
             :can-cancel="false" 
             :is-full-page="false">
         </loading>
+        <notifications group="lead" />
+        <v-dialog />
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group lead-search align-items-center">
@@ -41,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nbr_power_unit">Number of Trucks</label>
-                    <input type="text" class="form-control" id="nbr_power_unit" :value="nbr_power_unit" @input="updateNbrPowerUnit">
+                    <input type="number" class="form-control" id="nbr_power_unit" :value="nbr_power_unit" @input="updateNbrPowerUnit">
                     <small v:if="errors && errors.nbr_power_unit" class="text-danger">{{ getError(errors.nbr_power_unit) }}</small>
                 </div>
                 <div class="form-group">
@@ -78,7 +79,7 @@
                 </div>
                 <div class="form-group">
                     <label for="driver_total">Number of Drivers</label>
-                    <input type="text" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
+                    <input type="number" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
                     <small v:if="errors && errors.driver_total" class="text-danger">{{ getError(errors.driver_total) }}</small>
                 </div>
                 <div class="form-group">
@@ -93,15 +94,6 @@
                 </div>                           
             </div>
         </div>
-        <!-- <div class="row" style="background:burlywood">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" :value="description" @input="updateDescription">
-                    <small v:if="errors && errors.description" class="text-danger">{{ getError(errors.description) }}</small>
-                </div>
-            </div>
-        </div> -->
         <div class="row" style="background:burlywood">
             <div class="col-md-12">
                 <div class="form-group">
@@ -114,7 +106,7 @@
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group-btn lead-search float-right">
-                    <button class="btn btn-default" type="button" @click="updateLead(dot_number)">Save Changes</button>
+                    <button class="btn btn-default" type="button" @click="showConfirmationModal">Save Changes</button>
                     <button class="btn btn-default" type="button">Send to Broker</button>
                 </div>
             </div>
@@ -142,6 +134,31 @@
 
         },
         methods: {
+            showConfirmationModal () {
+                this.$modal.show('dialog', {
+                title: 'Are you sure?',
+                text: 'Do you want to send this lead to the broker?',
+                buttons: [
+                    {
+                        title: 'Send',
+                        handler: () => { this.updateLead(this.dot_number) }
+                    },
+                    // {
+                    // title: '',       // Button title
+                    // default: true,    // Will be triggered by default if 'Enter' pressed.
+                    // handler: () => {} // Button click handler
+                    // },
+                    {
+                        title: 'Cancel'
+                    }
+                ],
+                draggable: true
+                })
+            },
+            hideModal () {
+                this.$modal.hide('dialog');
+            },
+
             fetchLead(id) {
                 this.$store.dispatch('fetchLead', id);
             },
