@@ -136,26 +136,25 @@
         methods: {
             showConfirmationModal () {
                 this.$modal.show('dialog', {
-                title: 'Are you sure?',
-                text: 'Do you want to send this lead to the broker?',
-                buttons: [
-                    {
-                        title: 'Send',
-                        handler: () => { this.updateLead(this.dot_number) }
-                    },
-                    // {
-                    // title: '',       // Button title
-                    // default: true,    // Will be triggered by default if 'Enter' pressed.
-                    // handler: () => {} // Button click handler
-                    // },
-                    {
-                        title: 'Cancel'
-                    }
-                ],
-                draggable: true
+                    title: 'Are you sure?',
+                    text: 'Do you want to send this lead to the broker?',
+                    buttons: [
+                        {
+                            title: 'Send',
+                            handler: () => { this.updateLead(this.dot_number), this.hideConfirmationModal() },
+                        },
+                        // {
+                        // title: '',       // Button title
+                        // default: true,    // Will be triggered by default if 'Enter' pressed.
+                        // handler: () => {} // Button click handler
+                        // },
+                        {
+                            title: 'Cancel'
+                        }
+                    ],
                 })
             },
-            hideModal () {
+            hideConfirmationModal () {
                 this.$modal.hide('dialog');
             },
 

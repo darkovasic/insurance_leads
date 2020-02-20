@@ -2057,7 +2057,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         buttons: [{
           title: 'Send',
           handler: function handler() {
-            _this.updateLead(_this.dot_number);
+            _this.updateLead(_this.dot_number), _this.hideConfirmationModal();
           }
         }, // {
         // title: '',       // Button title
@@ -2066,11 +2066,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // },
         {
           title: 'Cancel'
-        }],
-        draggable: true
+        }]
       });
     },
-    hideModal: function hideModal() {
+    hideConfirmationModal: function hideConfirmationModal() {
       this.$modal.hide('dialog');
     },
     fetchLead: function fetchLead(id) {
