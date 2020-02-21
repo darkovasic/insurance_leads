@@ -2065,7 +2065,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // handler: () => {} // Button click handler
         // },
         {
-          title: 'Cancel'
+          title: 'Cancel',
+          "default": true
         }]
       });
     },

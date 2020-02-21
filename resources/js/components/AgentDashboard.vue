@@ -149,7 +149,8 @@
                         // handler: () => {} // Button click handler
                         // },
                         {
-                            title: 'Cancel'
+                            title: 'Cancel',
+                            default: true,
                         }
                     ],
                 })
