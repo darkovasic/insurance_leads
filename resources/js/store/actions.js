@@ -26,12 +26,14 @@ let actions = {
         commit('FETCH_LEAD');
         axios.get(`/api/lead/${id}`)
             .then(response => {
-                // if (!response.data.id) {
-                // commit('FETCH_LEAD_ERROR', { message: 'The lead has not been found' });
-                // } else {
-                //     console.log("fetchLead", response);
-                //     commit('FETCH_LEAD_SUCCESS', response.data);
-                // }
+                if (!response.data.id) {
+                    Vue.notify({
+                        group: 'lead',
+                        type: 'warn',
+                        title: 'Hmmm',
+                        text: 'Lead not found!'
+                    });
+                }
                 console.log("fetchLead", response);
                 commit('FETCH_LEAD_SUCCESS', response.data);
             }).catch(error => {
