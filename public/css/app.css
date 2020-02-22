@@ -11360,3 +11360,7 @@ a.text-dark:focus {
   padding: 0 0.9rem;
 }
 
+html {
+  overflow-y: scroll;
+}
+
