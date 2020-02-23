@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use GuzzleHttp\Client;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $baseUrl = env('DESERT_EBS_BASE_URL');
+
+        $this->app->singleton('GuzzleHttp\Client', function($api) use ($baseUrl) {
+            return new Client([
+                'base_uri' => $baseUrl,
+            ]);
+        });
     }
 
     /**

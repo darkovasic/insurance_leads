@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+// use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,17 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('lead/{id}', 'LeadController@store');
     Route::get('lead/{id}', 'LeadController@get');
     Route::delete('lead/{id}', 'LeadController@delete');
+
+    Route::get('json-api', 'ApiController@index');
+    // Route::get('/json-api', function() {
+    //     $client = new Client();
+    
+    //     $response = $client->request('GET', 'https://desertebs.com/api/dummy/posts');
+    //     $statusCode = $response->getStatusCode();
+    //     $body = $response->getBody()->getContents();
+    
+    //     return $body;
+    // });
 });
 
 

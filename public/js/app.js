@@ -2037,6 +2037,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2081,6 +2084,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     deleteLead: function deleteLead(id) {
       this.$store.dispatch('deleteLead', id);
+    },
+    getPosts: function getPosts() {
+      this.$store.dispatch('getPosts');
     },
     getError: function getError(error) {
       if (error) return error[0];
@@ -38684,6 +38690,22 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c(
               "div",
+              { staticClass: "input-group-btn lead-search float-left" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { type: "button" },
+                    on: { click: _vm.getPosts }
+                  },
+                  [_vm._v("Test API")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
               { staticClass: "input-group-btn lead-search float-right" },
               [
                 _c(
@@ -55839,6 +55861,13 @@ var actions = {
       if (response.data === 'ok') commit('DELETE_LEAD', id);
     })["catch"](function (error) {
       console.log("deleteLead", error);
+    });
+  },
+  getPosts: function getPosts() {
+    axios.get("/api/json-api").then(function (response) {
+      console.log("getPosts", response);
+    })["catch"](function (error) {
+      console.log("getPosts", error);
     });
   }
 };

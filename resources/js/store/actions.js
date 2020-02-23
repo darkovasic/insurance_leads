@@ -49,7 +49,15 @@ let actions = {
             }).catch(error => {
             console.log("deleteLead", error);
         });
-    }
+    },
+    getPosts() {  
+        axios.get(`/api/json-api`)
+            .then(response => {
+                console.log("getPosts", response);
+            }).catch(error => {
+                console.log("getPosts", error);
+        });
+    },    
 }
 
 export default actions;

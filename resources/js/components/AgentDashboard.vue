@@ -105,6 +105,9 @@
         </div>
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
+                <div class="input-group-btn lead-search float-left">
+                    <button class="btn btn-default" type="button" @click="getPosts">Test API</button>
+                </div>
                 <div class="input-group-btn lead-search float-right">
                     <button class="btn btn-default" type="button" @click="showConfirmationModal">Save Changes</button>
                     <button class="btn btn-default" type="button">Send to Broker</button>
@@ -168,6 +171,9 @@
             deleteLead(id) {
                 this.$store.dispatch('deleteLead', id);
             },
+            getPosts() {
+                this.$store.dispatch('getPosts');
+            },            
 
             getError(error) {
                 if (error) return error[0];
