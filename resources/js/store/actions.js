@@ -30,8 +30,8 @@ let actions = {
                     Vue.notify({
                         group: 'lead',
                         type: 'warn',
-                        title: 'Hmmm',
-                        text: 'Lead not found!'
+                        title: 'Bummer',
+                        text: 'Lead not found'
                     });
                 }
                 console.log("fetchLead", response);
