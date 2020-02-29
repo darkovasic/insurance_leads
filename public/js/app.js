@@ -2062,12 +2062,7 @@ Vue.component('b-button', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BButton"])
           handler: function handler() {
             _this.updateLead(_this.dot_number), _this.hideConfirmationModal();
           }
-        }, // {
-        // title: '',       // Button title
-        // default: true,    // Will be triggered by default if 'Enter' pressed.
-        // handler: () => {} // Button click handler
-        // },
-        {
+        }, {
           title: 'Cancel',
           "default": true
         }]
@@ -75428,7 +75423,9 @@ var render = function() {
                   _vm._v("Save Changes")
                 ]),
                 _vm._v(" "),
-                _c("b-button", [_vm._v("Send to Broker")])
+                _c("b-button", { attrs: { disabled: "" } }, [
+                  _vm._v("Send to Broker")
+                ])
               ],
               1
             )

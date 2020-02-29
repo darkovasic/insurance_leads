@@ -107,7 +107,7 @@
             <div class="col-md-12">
                 <div class="input-group-btn lead-search float-right">
                     <b-button @click="showConfirmationModal">Save Changes</b-button>
-                    <b-button>Send to Broker</b-button>
+                    <b-button disabled>Send to Broker</b-button>
                 </div>
             </div>
         </div>        
@@ -146,11 +146,6 @@
                             title: 'Send',
                             handler: () => { this.updateLead(this.dot_number), this.hideConfirmationModal() },
                         },
-                        // {
-                        // title: '',       // Button title
-                        // default: true,    // Will be triggered by default if 'Enter' pressed.
-                        // handler: () => {} // Button click handler
-                        // },
                         {
                             title: 'Cancel',
                             default: true,
