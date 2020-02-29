@@ -13,7 +13,7 @@
                     <label for="dot_number" class="search-term">DOT Number</label>
                     <input type="text" class="form-control" id="dot_number" @keyup.enter="fetchLead(dot_number)" :value="dot_number" @input="updateDotNumber">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" @click="fetchLead(dot_number)">Search</button>
+                        <b-button @click="fetchLead(dot_number)">Search</b-button>
                     </span>
                 </div>
             </div>
@@ -106,8 +106,8 @@
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
                 <div class="input-group-btn lead-search float-right">
-                    <button class="btn btn-default" type="button" @click="showConfirmationModal">Save Changes</button>
-                    <button class="btn btn-default" type="button">Send to Broker</button>
+                    <b-button @click="showConfirmationModal">Save Changes</b-button>
+                    <b-button>Send to Broker</b-button>
                 </div>
             </div>
         </div>        
@@ -119,8 +119,11 @@
     import {mapGetters, mapState} from 'vuex';
     import Datepicker from 'vuejs-datepicker';
     import Loading from 'vue-loading-overlay';
+    import { BButton } from 'bootstrap-vue';
 
     import 'vue-loading-overlay/dist/vue-loading.css';
+
+    Vue.component('b-button', BButton);
 
     export default {
 
@@ -269,8 +272,10 @@
         font-size: 1rem;
         font-weight: 600;
     }
-    .btn {
+    .btn-secondary {
         background:burlywood;
+        color: #212529;
+        border-color: burlywood;
     }
     .form-column {
         padding-top: 1rem;
