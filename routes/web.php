@@ -19,7 +19,9 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/lead', 'LeadController@index')->name('lead');
+Route::get('/lead', 'LeadController@index')->name('lead')->middleware('can:edit_lead');
+
+Route::view('/demo', 'demo');
 
 
 

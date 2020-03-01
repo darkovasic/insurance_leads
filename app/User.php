@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -36,4 +36,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles() 
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::whereName($role)->firstOrFail();
+        }
+        
+        $this->roles()->sync($role, false);
+    }
+
+    public function abilities()
+    {
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
+    }
+
+    
 }

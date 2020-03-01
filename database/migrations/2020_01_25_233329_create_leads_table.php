@@ -13,6 +13,8 @@ class CreateLeadsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('leads')) { return; }
+
         Schema::create('leads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
@@ -26,6 +28,6 @@ class CreateLeadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leads');
+        //
     }
 }
