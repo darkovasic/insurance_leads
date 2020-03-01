@@ -33,7 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @can ('edit_lead')
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/lead">Find Lead <span class="sr-only">(current)</span></a>
+                            </li>
+                        @endcan
+                        @can ('register_user')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Register User</a>
+                            </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -43,11 +52,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                            @can ('register_user')
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @endcan
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -75,6 +86,19 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <!-- Footer -->
+        <footer class="page-footer font-small blue">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="#"> {{ config('app.name') }}</a>
+            </div>
+            <!-- Copyright -->
+        
+        </footer>
+        <!-- Footer -->
+
     </div>
 </body>
 </html>
