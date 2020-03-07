@@ -11,6 +11,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+        crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -34,7 +38,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @can ('edit_lead')
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="/lead">Find Lead <span class="sr-only">(current)</span></a>
                             </li>
                         @endcan
@@ -87,18 +91,18 @@
             @yield('content')
         </main>
 
-        <!-- Footer -->
-        <footer class="page-footer font-small blue">
+        <footer class="footer bg-white border-top">
 
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="#"> {{ config('app.name') }}</a>
+            <div class="container">© <?php echo date('Y') ?> Copyright:
+                <a href="{{ url('/') }}"> {{ config('app.name') }}</a>
             </div>
-            <!-- Copyright -->
         
         </footer>
-        <!-- Footer -->
 
     </div>
 </body>
 </html>
+
+<script>
+    $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
+</script>
