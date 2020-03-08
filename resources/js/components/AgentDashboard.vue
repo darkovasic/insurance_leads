@@ -1,5 +1,6 @@
 <template>
     <form>
+        <slot></slot>
         <loading 
             :active.sync="isLoading" 
             :can-cancel="false" 
@@ -110,7 +111,7 @@
                     <b-button disabled>Send to Broker</b-button>
                 </div>
             </div>
-        </div>        
+        </div>
     </form>
 
 </template>
@@ -125,14 +126,14 @@
     import 'vue-loading-overlay/dist/vue-loading.css';
 
     Vue.component('b-button', BButton);
-    Vue.component('b-select', BFormSelect)
+    Vue.component('b-select', BFormSelect);
 
     export default {
 
         name: "AgentDashboard",
         data() {
             return {
-                'state_hash': state_hash
+                state_hash: state_hash,
             }
         },
         mounted() {

@@ -2039,6 +2039,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2051,7 +2052,7 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
   name: "AgentDashboard",
   data: function data() {
     return {
-      'state_hash': _store_constants__WEBPACK_IMPORTED_MODULE_4__["state_hash"]
+      state_hash: _store_constants__WEBPACK_IMPORTED_MODULE_4__["state_hash"]
     };
   },
   mounted: function mounted() {},
@@ -74975,6 +74976,8 @@ var render = function() {
   return _c(
     "form",
     [
+      _vm._t("default"),
+      _vm._v(" "),
       _c("loading", {
         attrs: {
           active: _vm.isLoading,
@@ -75445,7 +75448,7 @@ var render = function() {
         ]
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

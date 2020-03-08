@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    <agent-dashboard></agent-dashboard>
+                    <agent-dashboard>
+                        {{ csrf_field() }}
+                    </agent-dashboard>
                     
                 </div>
             </div>
