@@ -74,7 +74,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phy_state">State</label>
-                    <input type="text" class="form-control" id="phy_state" :value="phy_state" @input="updateState">
+                    <b-select id="phy_state" :options="state_hash" :value="phy_state" @input="updateState"></b-select>
                     <small v:if="errors && errors.phy_state" class="text-danger">{{ getError(errors.phy_state) }}</small>
                 </div>
                 <div class="form-group">
@@ -119,18 +119,20 @@
     import {mapGetters, mapState} from 'vuex';
     import Datepicker from 'vuejs-datepicker';
     import Loading from 'vue-loading-overlay';
-    import { BButton } from 'bootstrap-vue';
+    import { BButton, BFormSelect } from 'bootstrap-vue';
+    import { state_hash } from '../store/constants'
 
     import 'vue-loading-overlay/dist/vue-loading.css';
 
     Vue.component('b-button', BButton);
+    Vue.component('b-select', BFormSelect)
 
     export default {
 
         name: "AgentDashboard",
         data() {
             return {
-
+                'state_hash': state_hash
             }
         },
         mounted() {
@@ -201,8 +203,8 @@
             updateCity(e) {
                 this.$store.commit('updateCity', e.target.value);
             },
-            updateState(e) {
-                this.$store.commit('updateState', e.target.value);
+            updateState(value) {
+                this.$store.commit('updateState', value);
             },
             updateDriverTotal(e) {
                 this.$store.commit('updateDriverTotal', e.target.value);

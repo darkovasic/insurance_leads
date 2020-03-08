@@ -1913,8 +1913,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
-/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _store_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/constants */ "./resources/js/store/constants.js");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
+/* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2043,11 +2044,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 Vue.component('b-button', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BButton"]);
+Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelect"]);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AgentDashboard",
   data: function data() {
-    return {};
+    return {
+      'state_hash': _store_constants__WEBPACK_IMPORTED_MODULE_4__["state_hash"]
+    };
   },
   mounted: function mounted() {},
   methods: {
@@ -2113,8 +2118,8 @@ Vue.component('b-button', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BButton"])
     updateCity: function updateCity(e) {
       this.$store.commit('updateCity', e.target.value);
     },
-    updateState: function updateState(e) {
-      this.$store.commit('updateState', e.target.value);
+    updateState: function updateState(value) {
+      this.$store.commit('updateState', value);
     },
     updateDriverTotal: function updateDriverTotal(e) {
       this.$store.commit('updateDriverTotal', e.target.value);
@@ -75267,25 +75272,32 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "text", id: "phy_state" },
-                domProps: { value: _vm.phy_state },
-                on: { input: _vm.updateState }
-              }),
-              _vm._v(" "),
-              _c(
-                "small",
-                {
-                  staticClass: "text-danger",
-                  attrs: { "v:if": "errors && errors.phy_state" }
-                },
-                [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_state)))]
-              )
-            ]),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
+                _vm._v(" "),
+                _c("b-select", {
+                  attrs: {
+                    id: "phy_state",
+                    options: _vm.state_hash,
+                    value: _vm.phy_state
+                  },
+                  on: { input: _vm.updateState }
+                }),
+                _vm._v(" "),
+                _c(
+                  "small",
+                  {
+                    staticClass: "text-danger",
+                    attrs: { "v:if": "errors && errors.phy_state" }
+                  },
+                  [_vm._v(_vm._s(_vm.getError(_vm.errors.phy_state)))]
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "driver_total" } }, [
@@ -92569,6 +92581,197 @@ var actions = {
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
+
+/***/ }),
+
+/***/ "./resources/js/store/constants.js":
+/*!*****************************************!*\
+  !*** ./resources/js/store/constants.js ***!
+  \*****************************************/
+/*! exports provided: state_hash */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state_hash", function() { return state_hash; });
+var state_hash = [{
+  "text": "Alabama",
+  "value": "AL"
+}, {
+  "text": "Alaska",
+  "value": "AK"
+}, {
+  "text": "American Samoa",
+  "value": "AS"
+}, {
+  "text": "Arizona",
+  "value": "AZ"
+}, {
+  "text": "Arkansas",
+  "value": "AR"
+}, {
+  "text": "California",
+  "value": "CA"
+}, {
+  "text": "Colorado",
+  "value": "CO"
+}, {
+  "text": "Connecticut",
+  "value": "CT"
+}, {
+  "text": "Delaware",
+  "value": "DE"
+}, {
+  "text": "District Of Columbia",
+  "value": "DC"
+}, {
+  "text": "Federated States Of Micronesia",
+  "value": "FM"
+}, {
+  "text": "Florida",
+  "value": "FL"
+}, {
+  "text": "Georgia",
+  "value": "GA"
+}, {
+  "text": "Guam",
+  "value": "GU"
+}, {
+  "text": "Hawaii",
+  "value": "HI"
+}, {
+  "text": "Idaho",
+  "value": "ID"
+}, {
+  "text": "Illinois",
+  "value": "IL"
+}, {
+  "text": "Indiana",
+  "value": "IN"
+}, {
+  "text": "Iowa",
+  "value": "IA"
+}, {
+  "text": "Kansas",
+  "value": "KS"
+}, {
+  "text": "Kentucky",
+  "value": "KY"
+}, {
+  "text": "Louisiana",
+  "value": "LA"
+}, {
+  "text": "Maine",
+  "value": "ME"
+}, {
+  "text": "Marshall Islands",
+  "value": "MH"
+}, {
+  "text": "Maryland",
+  "value": "MD"
+}, {
+  "text": "Massachusetts",
+  "value": "MA"
+}, {
+  "text": "Michigan",
+  "value": "MI"
+}, {
+  "text": "Minnesota",
+  "value": "MN"
+}, {
+  "text": "Mississippi",
+  "value": "MS"
+}, {
+  "text": "Missouri",
+  "value": "MO"
+}, {
+  "text": "Montana",
+  "value": "MT"
+}, {
+  "text": "Nebraska",
+  "value": "NE"
+}, {
+  "text": "Nevada",
+  "value": "NV"
+}, {
+  "text": "New Hampshire",
+  "value": "NH"
+}, {
+  "text": "New Jersey",
+  "value": "NJ"
+}, {
+  "text": "New Mexico",
+  "value": "NM"
+}, {
+  "text": "New York",
+  "value": "NY"
+}, {
+  "text": "North Carolina",
+  "value": "NC"
+}, {
+  "text": "North Dakota",
+  "value": "ND"
+}, {
+  "text": "Northern Mariana Islands",
+  "value": "MP"
+}, {
+  "text": "Ohio",
+  "value": "OH"
+}, {
+  "text": "Oklahoma",
+  "value": "OK"
+}, {
+  "text": "Oregon",
+  "value": "OR"
+}, {
+  "text": "Palau",
+  "value": "PW"
+}, {
+  "text": "Pennsylvania",
+  "value": "PA"
+}, {
+  "text": "Puerto Rico",
+  "value": "PR"
+}, {
+  "text": "Rhode Island",
+  "value": "RI"
+}, {
+  "text": "South Carolina",
+  "value": "SC"
+}, {
+  "text": "South Dakota",
+  "value": "SD"
+}, {
+  "text": "Tennessee",
+  "value": "TN"
+}, {
+  "text": "Texas",
+  "value": "TX"
+}, {
+  "text": "Utah",
+  "value": "UT"
+}, {
+  "text": "Vermont",
+  "value": "VT"
+}, {
+  "text": "Virgin Islands",
+  "value": "VI"
+}, {
+  "text": "Virginia",
+  "value": "VA"
+}, {
+  "text": "Washington",
+  "value": "WA"
+}, {
+  "text": "West Virginia",
+  "value": "WV"
+}, {
+  "text": "Wisconsin",
+  "value": "WI"
+}, {
+  "text": "Wyoming",
+  "value": "WY"
+}];
 
 /***/ }),
 
