@@ -43,7 +43,7 @@ class LeadController extends Controller
             'dba_name'                    => 'required',
             'phy_street'                  => 'required',
             'phy_city'                    => 'required',
-            'phy_zip'                     => 'required',
+            'phy_zip'                     => ['required', 'regex:/^[0-9]{5}(?:-[0-9]{4})?$/'],
             'phy_state'                   => 'required|max:2',
             'nbr_power_unit'              => 'required|integer',
             'driver_total'                => 'required|integer',
