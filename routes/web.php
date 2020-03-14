@@ -11,6 +11,19 @@
 |
 */
 
+Route::group(['middleware' => 'web'], function () {
+    Route::resource('users', 'UsersManagementController', [
+        'names' => [
+            'index'   => 'users',
+            'destroy' => 'user.destroy',
+        ],
+    ]);
+});
+
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::post('search-users', 'UsersManagementController@search')->name('search-users');
+});
+
 Route::get('/', function () {
     return view('auth.login');
 });
