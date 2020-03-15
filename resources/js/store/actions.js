@@ -49,6 +49,13 @@ let actions = {
             }).catch(error => {
             console.log("deleteLead", error);
         });
+    },
+
+    callApi({commit}, lead) {
+        const id = process.env.BOLD_PENGUIN_STAGING_CLIENT_ID;
+        const key = process.env.BOLD_PENGUIN_STAGING_CLIENT_SECRET;
+        console.log("id", id);
+        // axios.post(`/api/lead/${id}`, lead)
     }
 }
 

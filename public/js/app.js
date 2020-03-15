@@ -2086,6 +2086,9 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     deleteLead: function deleteLead(id) {
       this.$store.dispatch('deleteLead', id);
     },
+    callApi: function callApi(lead) {
+      this.$store.dispatch('callApi', lead);
+    },
     getError: function getError(error) {
       if (error) return error[0];
     },
@@ -75438,9 +75441,17 @@ var render = function() {
                   _vm._v("Save Changes")
                 ]),
                 _vm._v(" "),
-                _c("b-button", { attrs: { disabled: "" } }, [
-                  _vm._v("Send to Broker")
-                ])
+                _c(
+                  "b-button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.callApi(_vm.lead)
+                      }
+                    }
+                  },
+                  [_vm._v("Send to Broker")]
+                )
               ],
               1
             )
@@ -92581,6 +92592,12 @@ var actions = {
     })["catch"](function (error) {
       console.log("deleteLead", error);
     });
+  },
+  callApi: function callApi(_ref4, lead) {
+    var commit = _ref4.commit;
+    var id = "D4TPPA9MDxAuy8ebQtaYZwLHVvt6zqV6";
+    var key = "kzaLLfk8KrgaYr9HUcgHRu6D96gGUN22vjzzn9TJgXr4eU6wcPqywoZHdgp2WUGg";
+    console.log("id", id); // axios.post(`/api/lead/${id}`, lead)
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
