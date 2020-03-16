@@ -52,10 +52,16 @@ let actions = {
     },
 
     callApi({commit}, lead) {
-        const id = process.env.BOLD_PENGUIN_STAGING_CLIENT_ID;
-        const key = process.env.BOLD_PENGUIN_STAGING_CLIENT_SECRET;
-        console.log("id", id);
-        // axios.post(`/api/lead/${id}`, lead)
+        // const id = process.env.BOLD_PENGUIN_STAGING_URL_CREATE_FORM;
+
+        let token = $cookies.get('bp_token');
+        console.log("token", token);
+
+
+        // axios.get(`/api/bp-auth`)
+        //     .then(response => {
+                
+        //     })
     }
 }
 
