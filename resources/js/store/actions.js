@@ -1,6 +1,7 @@
 let actions = {
 
     updateLead({commit, state}, id) {
+
         commit('UPDATE_LEAD');
         axios.post(`/api/lead/${id}`, state.lead)
             .then(response => {
@@ -25,6 +26,7 @@ let actions = {
     },
 
     fetchLead({commit}, id) {  
+
         commit('FETCH_LEAD');
         axios.get(`/api/lead/${id}`)
             .then(response => {
@@ -36,7 +38,6 @@ let actions = {
                         text: 'Lead not found'
                     });
                 }
-                console.log("fetchLead", response);
                 commit('FETCH_LEAD_SUCCESS', response.data);
             }).catch(error => {
                 console.log("fetchLead", error);
@@ -45,6 +46,7 @@ let actions = {
     },
 
     deleteLead({commit}, id) {
+
         axios.delete(`/api/lead/${id}`)
             .then(response => {
                 if (response.data === 'ok')
@@ -57,43 +59,18 @@ let actions = {
     callApi({commit}, lead) {
 
         commit('SEND_LEAD');
-
-        const config = {
-            "application_form": {
-                "answer_values": [
-                    {
-                    "code": "mqs_first_name",
-                    "answer": lead.legal_name
-                    },
-                    {
-                    "code": "mqs_email",
-                    "answer": lead.email_address
-                    },
-                    {
-                    "code": "mqs_business_name",
-                    "answer": lead.dba_name
-                    },
-                    {
-                    "code": "mqs_phone",
-                    "answer": lead.telephone
-                    },
-                ]
-            }
-        };
-
         axios.post(`/api/send-lead`, lead)
             .then(response => {
-                console.log("bp_response", response);
+                Vue.notify({
+                    group: 'lead',
+                    type: 'success',
+                    title: 'SUCCESS!',
+                    text: 'Lead successfuly sent to Bold Penguin.'
+                });
                 commit('SEND_LEAD_SUCCESS', response.data);
             }).catch(error => {
                 console.log("bp_error", error);
             })
-
-
-        // axios.get(`/api/bp-auth`)
-        //     .then(response => {
-                
-        //     })
     }
 }
 

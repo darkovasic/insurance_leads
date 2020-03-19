@@ -38,12 +38,12 @@ class LeadController extends Controller
     {
         $this->validate($request, [
             'legal_name'                  => 'required',
-            'telephone'                   => 'required',
+            'telephone'                   => 'required|digits:10',
             'email_address'               => 'required|email',
             'dba_name'                    => 'required',
             'phy_street'                  => 'required',
             'phy_city'                    => 'required',
-            'phy_zip'                     => ['required', 'regex:/^[0-9]{5}(?:-[0-9]{4})?$/'],
+            'phy_zip'                     => 'required|digits:5',
             'phy_state'                   => 'required|max:2',
             'nbr_power_unit'              => 'required|integer',
             'driver_total'                => 'required|integer',

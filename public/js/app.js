@@ -92712,7 +92712,6 @@ var actions = {
         });
       }
 
-      console.log("fetchLead", response);
       commit('FETCH_LEAD_SUCCESS', response.data);
     })["catch"](function (error) {
       console.log("fetchLead", error);
@@ -92730,31 +92729,17 @@ var actions = {
   callApi: function callApi(_ref4, lead) {
     var commit = _ref4.commit;
     commit('SEND_LEAD');
-    var config = {
-      "application_form": {
-        "answer_values": [{
-          "code": "mqs_first_name",
-          "answer": lead.legal_name
-        }, {
-          "code": "mqs_email",
-          "answer": lead.email_address
-        }, {
-          "code": "mqs_business_name",
-          "answer": lead.dba_name
-        }, {
-          "code": "mqs_phone",
-          "answer": lead.telephone
-        }]
-      }
-    };
     axios.post("/api/send-lead", lead).then(function (response) {
-      console.log("bp_response", response);
+      Vue.notify({
+        group: 'lead',
+        type: 'success',
+        title: 'SUCCESS!',
+        text: 'Lead successfuly sent to Bold Penguin.'
+      });
       commit('SEND_LEAD_SUCCESS', response.data);
     })["catch"](function (error) {
       console.log("bp_error", error);
-    }); // axios.get(`/api/bp-auth`)
-    //     .then(response => {
-    //     })
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
