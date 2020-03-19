@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
+use App\ApiRequestLog;
 
-class ApiAuthController extends Controller
+class ApiController extends Controller
 {
     protected $username;
     protected $password;
     protected $urlAuth;
     protected $urlCreate;
+    protected $time;
 
     public function __construct(){
         $this->username   = env('BOLD_PENGUIN_STAGING_CLIENT_ID');
@@ -28,17 +32,19 @@ class ApiAuthController extends Controller
                 $request = $client->request('POST', $this->urlAuth, [
                     'auth' => [
                         $this->username, 
-                        $this->$password
+                        $this->password
                     ]
                 ]);
                 
-                $response = json_decode($request->getBody());
-                $access_token = $response->access_token;
-                $minutes = $response->expires_in / 60;
+                $authResponse = json_decode($request->getBody());
+                $access_token = $authResponse->access_token;
+                $minutes = $authResponse->expires_in / 60;
 
                 Cookie::queue(Cookie::make('bp_token', $access_token, $minutes));
 
-                return $this->sendLead($access_token, $lead);
+                $sendResponse = $this->sendLead($access_token, $lead);
+                $this->saveResponse($lead->id, $sendResponse);
+                return $sendResponse;
 
             } catch (\Exception $error) {
                 dd($error);
@@ -46,15 +52,28 @@ class ApiAuthController extends Controller
 
         } else {
             $access_token = Cookie::get('bp_token');
-            return $this->sendLead($access_token, $lead);
-            
+
+            $sendResponse = $this->sendLead($access_token, $lead);
+            $this->saveResponse($lead->id, $sendResponse);
+            return $sendResponse;
         }
+    }
+
+    public function saveResponse($id, $response) {
+
+        $log = new ApiRequestLog;
+        $log->user_id = Auth::id();
+        $log->lead_id = $id;
+        $log->response = $response;
+        $log->response_time = $this->time / 1000 . "ms";
+        $log->save();
+
+        dd($response);
     }
 
     public function sendLead($access_token, $lead) {
         
         try {
-            
             $curl = curl_init();
 
             if ($curl === false) {
@@ -80,14 +99,16 @@ class ApiAuthController extends Controller
                     ]
                 ]
             ];
-            // dd($this->urlCreate); 
+
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
             curl_setopt($curl, CURLOPT_URL, $this->urlCreate);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             
+            $current_timestamp = Carbon::now()->micro;
             $result = curl_exec($curl);
+            $this->time = Carbon::now()->micro - $current_timestamp;
 
             if ($result === false) {
                 throw new \Exception(curl_error($curl), curl_errno($curl));
@@ -97,9 +118,9 @@ class ApiAuthController extends Controller
 
             return $result;
 
-            } catch (\Exception $error) {
-                dd($error);
-            }
+        } catch (\Exception $error) {
+            dd($error);
+        }
 
         // $headers = [
         //     'Content-Type' => 'application/json',

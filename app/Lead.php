@@ -22,6 +22,7 @@ class Lead extends Model
         'last_insurance_date',
         'insurance_cancellation_date',
         'description',
-        'comment'
+        'comment',
+        'bp_response'
     ];
 }

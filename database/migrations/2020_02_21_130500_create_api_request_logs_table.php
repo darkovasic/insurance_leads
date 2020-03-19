@@ -16,6 +16,7 @@ class CreateApiRequestLogsTable extends Migration
         Schema::create('api_request_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
+            $table->integer('lead_id');
             $table->text('request');
             $table->text('response');
             $table->time('response_time');
