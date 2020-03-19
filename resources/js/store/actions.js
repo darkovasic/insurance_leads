@@ -1,4 +1,5 @@
 let actions = {
+
     updateLead({commit, state}, id) {
         commit('UPDATE_LEAD');
         axios.post(`/api/lead/${id}`, state.lead)
@@ -16,12 +17,13 @@ let actions = {
                     Vue.notify({
                         group: 'lead',
                         type: 'error',
-                        title: 'DAMN!',
+                        title: 'ERROR!',
                         text: error.response.data.message
                     });
                 }
             });
     },
+
     fetchLead({commit}, id) {  
         commit('FETCH_LEAD');
         axios.get(`/api/lead/${id}`)
@@ -41,6 +43,7 @@ let actions = {
                 commit('FETCH_LEAD_ERROR', error.response.data);
         });
     },
+
     deleteLead({commit}, id) {
         axios.delete(`/api/lead/${id}`)
             .then(response => {
@@ -52,10 +55,39 @@ let actions = {
     },
 
     callApi({commit}, lead) {
-        // const id = process.env.BOLD_PENGUIN_STAGING_URL_CREATE_FORM;
 
-        let token = $cookies.get('bp_token');
-        console.log("token", token);
+        commit('SEND_LEAD');
+
+        const config = {
+            "application_form": {
+                "answer_values": [
+                    {
+                    "code": "mqs_first_name",
+                    "answer": lead.legal_name
+                    },
+                    {
+                    "code": "mqs_email",
+                    "answer": lead.email_address
+                    },
+                    {
+                    "code": "mqs_business_name",
+                    "answer": lead.dba_name
+                    },
+                    {
+                    "code": "mqs_phone",
+                    "answer": lead.telephone
+                    },
+                ]
+            }
+        };
+
+        axios.post(`/api/send-lead`, lead)
+            .then(response => {
+                console.log("bp_response", response);
+                commit('SEND_LEAD_SUCCESS', response.data);
+            }).catch(error => {
+                console.log("bp_error", error);
+            })
 
 
         // axios.get(`/api/bp-auth`)

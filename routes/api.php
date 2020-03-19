@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('lead/{id}', 'LeadController@get');
     Route::delete('lead/{id}', 'LeadController@delete');
 
-    Route::get('bp-auth', 'ApiAuthController@boldPenguinAuth');
+    Route::post('send-lead', 'ApiAuthController@boldPenguinAuth');
 
 });
 

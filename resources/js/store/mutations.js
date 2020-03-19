@@ -27,6 +27,13 @@ let mutations = {
         let index = state.lead.findIndex(item => item.id === lead.id);
         state.lead.splice(index, 1);
     },
+    SEND_LEAD(state) {
+        state.isLoading = true;
+        state.errors = {};
+    },
+    SEND_LEAD_SUCCESS(state) {
+        state.isLoading = false;
+    },
 
     updateDotNumber (state, dot_number) {
         state.lead.dot_number = dot_number;
