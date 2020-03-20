@@ -17,7 +17,7 @@ class ApiController extends Controller
     protected $urlCreate;
     protected $time;
 
-    public function __construct(){
+    public function __construct() {
         $this->username   = env('BOLD_PENGUIN_STAGING_CLIENT_ID');
         $this->password   = env('BOLD_PENGUIN_STAGING_CLIENT_SECRET');
         $this->urlAuth    = env('BOLD_PENGUIN_STAGING_URL_AUTH');
@@ -28,6 +28,7 @@ class ApiController extends Controller
 
         if (!Cookie::has('bp_token')) {
             try {
+ 
                 $client = new Client();
                 $request = $client->request('POST', $this->urlAuth, [
                     'auth' => [
@@ -35,15 +36,14 @@ class ApiController extends Controller
                         $this->password
                     ]
                 ]);
-                
+                                
                 $authResponse = json_decode($request->getBody());
                 $access_token = $authResponse->access_token;
                 $minutes = $authResponse->expires_in / 60;
+                                
+                $sendResponse = $this->sendLead($access_token, $lead);
 
                 Cookie::queue(Cookie::make('bp_token', $access_token, $minutes));
-
-                $sendResponse = $this->sendLead($access_token, $lead);
-                $this->saveResponse($lead->id, $sendResponse);
                 return $sendResponse;
 
             } catch (\Exception $error) {
@@ -54,25 +54,13 @@ class ApiController extends Controller
             $access_token = Cookie::get('bp_token');
 
             $sendResponse = $this->sendLead($access_token, $lead);
-            $this->saveResponse($lead->id, $sendResponse);
+            
             return $sendResponse;
         }
     }
 
-    public function saveResponse($id, $response) {
-
-        $log = new ApiRequestLog;
-        $log->user_id = Auth::id();
-        $log->lead_id = $id;
-        $log->response = $response;
-        $log->response_time = $this->time / 1000 . "ms";
-        $log->save();
-
-        dd($response);
-    }
-
     public function sendLead($access_token, $lead) {
-        
+       
         try {
             $curl = curl_init();
 
@@ -106,15 +94,18 @@ class ApiController extends Controller
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             
-            $current_timestamp = Carbon::now()->micro;
             $result = curl_exec($curl);
-            $this->time = Carbon::now()->micro - $current_timestamp;
+
+            $info = curl_getinfo($curl);
+            $total_time = $info['total_time'];
 
             if ($result === false) {
                 throw new \Exception(curl_error($curl), curl_errno($curl));
             }
             
             curl_close($curl);
+
+            $this->saveResponse($lead->id, $result, $total_time);
 
             return $result;
 
@@ -155,5 +146,16 @@ class ApiController extends Controller
         //         ]                   
         //     ]
         // ]);
+    }
+
+    public function saveResponse($id, $response, $total_time) {
+
+        $log = new ApiRequestLog;
+        $log->user_id = Auth::id();
+        $log->lead_id = $id;
+        $log->response = $response;
+        $log->response_time = $total_time;
+        $log->save();
+
     }
 }
