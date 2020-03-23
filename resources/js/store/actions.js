@@ -12,6 +12,30 @@ let actions = {
                     title: 'SUCCESS!',
                     text: 'Lead successfuly saved in the database.'
                 });
+
+                commit('SEND_LEAD');
+                axios.post(`/api/send-lead`, state.lead)
+                    .then(response => {
+                        commit('SEND_LEAD_SUCCESS', response.data);
+                        if (response && response.data && response.data.error) {
+                            Vue.notify({
+                                group: 'lead',
+                                type: 'warn',
+                                title: 'Lead not sent to Bold Penguin',
+                                text: response.data.error
+                            });
+                        } else {
+                            Vue.notify({
+                                group: 'lead',
+                                type: 'success',
+                                title: 'SUCCESS!',
+                                text: 'Lead successfuly sent to Bold Penguin.'
+                            });
+                        }
+                    }).catch(error => {
+                        console.log("bp_error", error);
+                    })
+
             }).catch(error => {
                 if (error.response.status === 422) {
                     commit('UPDATE_LEAD_ERROR', error.response.data);
@@ -56,22 +80,22 @@ let actions = {
         });
     },
 
-    callApi({commit}, lead) {
+    // sendLead({commit}, lead) {
 
-        commit('SEND_LEAD');
-        axios.post(`/api/send-lead`, lead)
-            .then(response => {
-                Vue.notify({
-                    group: 'lead',
-                    type: 'success',
-                    title: 'SUCCESS!',
-                    text: 'Lead successfuly sent to Bold Penguin.'
-                });
-                commit('SEND_LEAD_SUCCESS', response.data);
-            }).catch(error => {
-                console.log("bp_error", error);
-            })
-    }
+    //     commit('SEND_LEAD');
+    //     axios.post(`/api/send-lead`, lead)
+    //         .then(response => {
+    //             Vue.notify({
+    //                 group: 'lead',
+    //                 type: 'success',
+    //                 title: 'SUCCESS!',
+    //                 text: 'Lead successfuly sent to Bold Penguin.'
+    //             });
+    //             commit('SEND_LEAD_SUCCESS', response.data);
+    //         }).catch(error => {
+    //             console.log("bp_error", error);
+    //         })
+    // },
 }
 
 export default actions;

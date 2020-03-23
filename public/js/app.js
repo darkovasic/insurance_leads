@@ -2086,9 +2086,9 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     deleteLead: function deleteLead(id) {
       this.$store.dispatch('deleteLead', id);
     },
-    callApi: function callApi(lead) {
-      this.$store.dispatch('callApi', lead);
-    },
+    // callApi(lead) {
+    //     this.$store.dispatch('callApi', lead);
+    // },
     getError: function getError(error) {
       if (error) return error[0];
     },
@@ -75572,20 +75572,8 @@ var render = function() {
               { staticClass: "input-group-btn lead-search float-right" },
               [
                 _c("b-button", { on: { click: _vm.showConfirmationModal } }, [
-                  _vm._v("Save Changes")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.callApi(_vm.lead)
-                      }
-                    }
-                  },
-                  [_vm._v("Send to Broker")]
-                )
+                  _vm._v("Send to Broker")
+                ])
               ],
               1
             )
@@ -92687,6 +92675,28 @@ var actions = {
         title: 'SUCCESS!',
         text: 'Lead successfuly saved in the database.'
       });
+      commit('SEND_LEAD');
+      axios.post("/api/send-lead", state.lead).then(function (response) {
+        commit('SEND_LEAD_SUCCESS', response.data);
+
+        if (response && response.data && response.data.error) {
+          Vue.notify({
+            group: 'lead',
+            type: 'warn',
+            title: 'Lead not sent to Bold Penguin',
+            text: response.data.error
+          });
+        } else {
+          Vue.notify({
+            group: 'lead',
+            type: 'success',
+            title: 'SUCCESS!',
+            text: 'Lead successfuly sent to Bold Penguin.'
+          });
+        }
+      })["catch"](function (error) {
+        console.log("bp_error", error);
+      });
     })["catch"](function (error) {
       if (error.response.status === 422) {
         commit('UPDATE_LEAD_ERROR', error.response.data);
@@ -92725,22 +92735,22 @@ var actions = {
     })["catch"](function (error) {
       console.log("deleteLead", error);
     });
-  },
-  callApi: function callApi(_ref4, lead) {
-    var commit = _ref4.commit;
-    commit('SEND_LEAD');
-    axios.post("/api/send-lead", lead).then(function (response) {
-      Vue.notify({
-        group: 'lead',
-        type: 'success',
-        title: 'SUCCESS!',
-        text: 'Lead successfuly sent to Bold Penguin.'
-      });
-      commit('SEND_LEAD_SUCCESS', response.data);
-    })["catch"](function (error) {
-      console.log("bp_error", error);
-    });
-  }
+  } // sendLead({commit}, lead) {
+  //     commit('SEND_LEAD');
+  //     axios.post(`/api/send-lead`, lead)
+  //         .then(response => {
+  //             Vue.notify({
+  //                 group: 'lead',
+  //                 type: 'success',
+  //                 title: 'SUCCESS!',
+  //                 text: 'Lead successfuly sent to Bold Penguin.'
+  //             });
+  //             commit('SEND_LEAD_SUCCESS', response.data);
+  //         }).catch(error => {
+  //             console.log("bp_error", error);
+  //         })
+  // },
+
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
 
