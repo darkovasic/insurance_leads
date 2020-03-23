@@ -38,8 +38,8 @@ let mutations = {
     updateDotNumber (state, dot_number) {
         state.lead.dot_number = dot_number;
     },
-    updateTelephone (state, telephone) {
-        state.lead.telephone = telephone;
+    updateTelephone (state, phone) {
+        state.lead.phone = phone;
     },
     updateLegalName (state, legal_name) {
         state.lead.legal_name = legal_name;

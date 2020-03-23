@@ -2142,8 +2142,8 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    telephone: function telephone(state) {
-      return state.lead.telephone;
+    phone: function phone(state) {
+      return state.lead.phone;
     },
     legal_name: function legal_name(state) {
       return state.lead.legal_name;
@@ -75351,14 +75351,14 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6 form-column" }, [
             _c("div", { staticClass: "form-group has-error" }, [
-              _c("label", { attrs: { for: "telephone" } }, [
+              _c("label", { attrs: { for: "phone" } }, [
                 _vm._v("Phone Number")
               ]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", id: "telephone" },
-                domProps: { value: _vm.telephone },
+                attrs: { type: "text", id: "phone" },
+                domProps: { value: _vm.phone },
                 on: { input: _vm.updateTelephone }
               }),
               _vm._v(" "),
@@ -75366,9 +75366,9 @@ var render = function() {
                 "small",
                 {
                   staticClass: "text-danger",
-                  attrs: { "v:if": "errors && errors.telephone" }
+                  attrs: { "v:if": "errors && errors.phone" }
                 },
-                [_vm._v(_vm._s(_vm.getError(_vm.errors.telephone)))]
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.phone)))]
               )
             ]),
             _vm._v(" "),
@@ -93057,8 +93057,8 @@ var mutations = {
   updateDotNumber: function updateDotNumber(state, dot_number) {
     state.lead.dot_number = dot_number;
   },
-  updateTelephone: function updateTelephone(state, telephone) {
-    state.lead.telephone = telephone;
+  updateTelephone: function updateTelephone(state, phone) {
+    state.lead.phone = phone;
   },
   updateLegalName: function updateLegalName(state, legal_name) {
     state.lead.legal_name = legal_name;
@@ -93151,7 +93151,7 @@ var state = {
     phy_state: null,
     phy_street: null,
     phy_zip: null,
-    telephone: null,
+    phone: null,
     updated_at: null
   },
   isLoading: false,

@@ -33,7 +33,7 @@ let state = {
         phy_state: null,
         phy_street: null,
         phy_zip: null,
-        telephone: null,
+        phone: null,
         updated_at: null,        
     },
     isLoading: false,

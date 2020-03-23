@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use Carbon\Carbon;
+// use Carbon\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use App\ApiRequestLog;
@@ -15,7 +15,6 @@ class ApiController extends Controller
     protected $password;
     protected $urlAuth;
     protected $urlCreate;
-    protected $time;
 
     public function __construct() {
         $this->username   = env('BOLD_PENGUIN_STAGING_CLIENT_ID');
@@ -25,10 +24,10 @@ class ApiController extends Controller
     }
 
     public function boldPenguinAuth(Request $lead) {
-
-        if (!Cookie::has('bp_token')) {
-            try {
  
+        if (!Cookie::has('bp_token')) {
+
+            try {
                 $client = new Client();
                 $request = $client->request('POST', $this->urlAuth, [
                     'auth' => [
@@ -36,13 +35,14 @@ class ApiController extends Controller
                         $this->password
                     ]
                 ]);
-                                
+                                                
                 $authResponse = json_decode($request->getBody());
                 $access_token = $authResponse->access_token;
+                 
                 $minutes = $authResponse->expires_in / 60;
-                                
+                              
                 $sendResponse = $this->sendLead($access_token, $lead);
-
+                
                 Cookie::queue(Cookie::make('bp_token', $access_token, $minutes));
                 return $sendResponse;
 
@@ -60,7 +60,7 @@ class ApiController extends Controller
     }
 
     public function sendLead($access_token, $lead) {
-       
+             
         try {
             $curl = curl_init();
 
@@ -72,11 +72,12 @@ class ApiController extends Controller
                 'Authorization: Bearer ' . $access_token,
                 'Content-Type: application/json'
             ];
+
             $data = [
                 'application_form' => [
                     'answer_values' => [
                         (object) ['code' => 'mqs_business_name', 'answer' => $lead->dba_name],
-                        (object) ['code' => 'mqs_phone', 'answer' => $lead->telephone],
+                        (object) ['code' => 'mqs_phone', 'answer' => $lead->phone],
                         (object) ['code' => 'mqs_first_name', 'answer' => $lead->legal_name],
                         (object) ['code' => 'mqs_email', 'answer' => $lead->email_address],
                         (object) ['code' => 'mqs_street_1', 'answer' => $lead->phy_street],
@@ -95,7 +96,16 @@ class ApiController extends Controller
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             
             $result = curl_exec($curl);
+            $result = json_decode($result);
 
+            if (isset($result->error)) {
+
+                $result_id = $result->error;             
+            } else {
+                $result_id = $result->id;
+            }
+            
+            
             $info = curl_getinfo($curl);
             $total_time = $info['total_time'];
 
@@ -105,11 +115,12 @@ class ApiController extends Controller
             
             curl_close($curl);
 
-            $this->saveResponse($lead->id, $result, $total_time);
+            $this->saveResponse($lead->id, $data, $result_id, $total_time);
 
-            return $result;
+            return json_encode($result);
 
         } catch (\Exception $error) {
+            dd("sendLead exception");
             dd($error);
         }
 
@@ -140,7 +151,7 @@ class ApiController extends Controller
         //                 // ],
         //                 (object) [
         //                 "code" => "mqs_phone",
-        //                 "answer" => $lead->telephone
+        //                 "answer" => $lead->phone
         //                 ]
         //             ]
         //         ]                   
@@ -148,14 +159,18 @@ class ApiController extends Controller
         // ]);
     }
 
-    public function saveResponse($id, $response, $total_time) {
+    public function saveResponse($id, $request, $response, $total_time) {
 
-        $log = new ApiRequestLog;
-        $log->user_id = Auth::id();
-        $log->lead_id = $id;
-        $log->response = $response;
-        $log->response_time = $total_time;
-        $log->save();
-
+        try {
+            $log = new ApiRequestLog;
+            $log->user_id = Auth::id();
+            $log->lead_id = $id;
+            $log->request = json_encode($request);
+            $log->response = $response;
+            $log->response_time = $total_time;
+            $log->save();
+        } catch (\Illuminate\Database\QueryException $error) {
+            return $error->getMessage();
+        }
     }
 }

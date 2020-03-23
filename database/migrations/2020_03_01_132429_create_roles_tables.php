@@ -13,6 +13,8 @@ class CreateRolesTables extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('roles')) { return; }
+
         Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');

@@ -38,7 +38,7 @@ class LeadController extends Controller
     {
         $this->validate($request, [
             'legal_name'                  => 'required',
-            'telephone'                   => 'required|digits:10',
+            'phone'                   => 'required|digits:10',
             'email_address'               => 'required|email',
             'dba_name'                    => 'required',
             'phy_street'                  => 'required',
@@ -57,7 +57,7 @@ class LeadController extends Controller
 
         $lead = Lead::where('dot_number', $id)->update([
             'legal_name'                  => $request->legal_name,
-            'telephone'                   => $request->telephone,
+            'phone'                       => $request->phone,
             'email_address'               => $request->email_address,
             'dba_name'                    => $request->dba_name,
             'phy_street'                  => $request->phy_street,

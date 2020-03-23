@@ -59,9 +59,9 @@
             </div>
             <div class="col-md-6 form-column">
                 <div class="form-group has-error">
-                    <label for="telephone">Phone Number</label>
-                    <input type="text" class="form-control" id="telephone" :value="telephone" @input="updateTelephone">
-                    <small v:if="errors && errors.telephone" class="text-danger">{{ getError(errors.telephone) }}</small>
+                    <label for="phone">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" :value="phone" @input="updateTelephone">
+                    <small v:if="errors && errors.phone" class="text-danger">{{ getError(errors.phone) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="dba_name">Company</label>
@@ -233,7 +233,7 @@
                 'isLoading'
             ]),
             ...mapState({
-                telephone: state => state.lead.telephone,
+                phone: state => state.lead.phone,
                 legal_name: state => state.lead.legal_name,
                 dot_number: state => state.lead.dot_number,
                 email_address: state => state.lead.email_address,
