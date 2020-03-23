@@ -96,22 +96,16 @@ class ApiController extends Controller
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             
             $result = curl_exec($curl);
-            $result = json_decode($result);
-
-            if (isset($result->error)) {
-
-                $result_id = $result->error;             
-            } else {
-                $result_id = $result->id;
-            }
-            
-            
-            $info = curl_getinfo($curl);
-            $total_time = $info['total_time'];
 
             if ($result === false) {
                 throw new \Exception(curl_error($curl), curl_errno($curl));
             }
+
+            $result = json_decode($result);
+            isset($result->error) ? $result_id = $result->error : $result_id = $result->id;            
+            
+            $info = curl_getinfo($curl);
+            $total_time = $info['total_time'];
             
             curl_close($curl);
 
