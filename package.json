@@ -25,6 +25,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@babel/preset-env": "^7.9.0",
         "bootstrap-vue": "^2.5.0",
         "dotenv": "^8.2.0",
         "vue-cookies": "^1.7.0",
