@@ -3,7 +3,7 @@ let actions = {
     updateLead({commit, state}, id) {
 
         commit('UPDATE_LEAD');
-        axios.post(`/api/lead/${id}`, state.lead)
+        axios.put(`/api/lead/${id}`, state.lead)
             .then(response => {
                 commit('UPDATE_LEAD_SUCCESS', response.data);
                 Vue.notify({
@@ -50,9 +50,9 @@ let actions = {
     },
 
     fetchLead({commit}, id) {  
-
+console.log("fetchLead", id)
         commit('FETCH_LEAD');
-        axios.get(`/api/lead/${id}`)
+        axios.post(`/api/lead`, id)
             .then(response => {
                 if (!response.data.id) {
                     Vue.notify({

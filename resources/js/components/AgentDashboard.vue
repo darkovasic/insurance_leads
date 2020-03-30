@@ -9,12 +9,21 @@
         <notifications group="lead" />
         <v-dialog />
         <div class="row" style="background:cadetblue">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="input-group lead-search align-items-center">
-                    <label for="dot_number" class="search-term">DOT Number</label>
-                    <input type="text" class="form-control" id="dot_number" @keyup.enter="fetchLead(dot_number)" :value="dot_number" @input="updateDotNumber">
+                    <label for="dot_search" class="search-term">DOT Number</label>
+                    <input type="text" class="form-control" id="dot_search" @keyup.enter="fetchLeadByDotNumber(dot_search)" :value="dot_search" @input="updateDotSearch">
                     <span class="input-group-btn">
-                        <b-button @click="fetchLead(dot_number)">Search</b-button>
+                        <b-button @click="fetchLeadByDotNumber(dot_search)">Search</b-button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group lead-search align-items-center">
+                    <label for="phone_search" class="search-term">Phone</label>
+                    <input type="text" class="form-control" id="phone_search" @keyup.enter="fetchLeadByPhoneNumber(phone_search)" :value="phone_search" @input="updatePhoneSearch">
+                    <span class="input-group-btn">
+                        <b-button @click="fetchLeadByPhoneNumber(phone_search)">Search</b-button>
                     </span>
                 </div>
             </div>
@@ -41,11 +50,24 @@
                     <input type="text" class="form-control" id="phy_zip" :value="phy_zip" @input="updateZipCode">
                     <small v:if="errors && errors.phy_zip" class="text-danger">{{ getError(errors.phy_zip) }}</small>
                 </div>
-                <div class="form-group">
-                    <label for="nbr_power_unit">Number of Trucks</label>
-                    <input type="number" class="form-control" id="nbr_power_unit" :value="nbr_power_unit" @input="updateNbrPowerUnit">
-                    <small v:if="errors && errors.nbr_power_unit" class="text-danger">{{ getError(errors.nbr_power_unit) }}</small>
+
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="nbr_power_unit">Number of Trucks</label>
+                            <input type="number" class="form-control" id="nbr_power_unit" :value="nbr_power_unit" @input="updateNbrPowerUnit">
+                            <small v:if="errors && errors.nbr_power_unit" class="text-danger">{{ getError(errors.nbr_power_unit) }}</small>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="driver_total">Number of Drivers</label>
+                            <input type="number" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
+                            <small v:if="errors && errors.driver_total" class="text-danger">{{ getError(errors.driver_total) }}</small>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="form-group">
                     <label for="last_insurance_carrier">Last Insurance Carrier</label>
                     <input type="text" class="form-control" id="last_insurance_carrier" :value="last_insurance_carrier" @input="updateLastInsuranceCarrier">
@@ -79,9 +101,9 @@
                     <small v:if="errors && errors.phy_state" class="text-danger">{{ getError(errors.phy_state) }}</small>
                 </div>
                 <div class="form-group">
-                    <label for="driver_total">Number of Drivers</label>
-                    <input type="number" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
-                    <small v:if="errors && errors.driver_total" class="text-danger">{{ getError(errors.driver_total) }}</small>
+                    <label for="dot_number">DOT Number</label>
+                    <input type="text" class="form-control" id="dot_number" :value="dot_number" @input="updateDriverTotal">
+                    <small v:if="errors && errors.dot_number" class="text-danger">{{ getError(errors.dot_number) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="last_insurance_date">Last Insurance Date</label>
@@ -137,7 +159,7 @@
             }
         },
         mounted() {
-
+console.log("dot_search", dot_search)
         },
         methods: {
             showConfirmationModal () {
@@ -160,8 +182,13 @@
                 this.$modal.hide('dialog');
             },
 
-            fetchLead(id) {
-                this.$store.dispatch('fetchLead', id);
+            fetchLeadByDotNumber(id) {
+                let term = { dot_number: id };
+                this.$store.dispatch('fetchLead', term);
+            },
+            fetchLeadByPhoneNumber(id) {
+                let term = { phone: id };
+                this.$store.dispatch('fetchLead', term);
             },
             updateLead(id) {            
                 this.$store.dispatch('updateLead', id);
@@ -225,6 +252,12 @@
             updateInsuranceCancellationDate(date) {
                 this.$store.commit('updateInsuranceCancellationDate', date);
             },
+            updateDotSearch(e) {
+                this.$store.commit('updateDotSearch', e.target.value);
+            },
+            updatePhoneSearch(e) {
+                this.$store.commit('updatePhoneSearch', e.target.value);
+            },
         },
         computed: {
             ...mapGetters([
@@ -249,6 +282,8 @@
                 insurance_cancellation_date: state => state.lead.insurance_cancellation_date,
                 comment: state => state.lead.comment,
                 description: state => state.lead.description,
+                dot_search: state => state.dot_search,
+                phone_search: state => state.phone_search,
             })            
         },
         components: {
@@ -262,7 +297,7 @@
     .lead-search {
         padding: 1rem 0;
     }
-    #dot_number {
+    #dot_search, #phone_search {
         margin: 0 1rem;
     }
     label {

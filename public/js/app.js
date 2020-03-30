@@ -2040,6 +2040,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2055,7 +2077,9 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
       state_hash: _store_constants__WEBPACK_IMPORTED_MODULE_4__["state_hash"]
     };
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log("dot_search", dot_search);
+  },
   methods: {
     showConfirmationModal: function showConfirmationModal() {
       var _this = this;
@@ -2077,8 +2101,17 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     hideConfirmationModal: function hideConfirmationModal() {
       this.$modal.hide('dialog');
     },
-    fetchLead: function fetchLead(id) {
-      this.$store.dispatch('fetchLead', id);
+    fetchLeadByDotNumber: function fetchLeadByDotNumber(id) {
+      var term = {
+        dot_number: id
+      };
+      this.$store.dispatch('fetchLead', term);
+    },
+    fetchLeadByPhoneNumber: function fetchLeadByPhoneNumber(id) {
+      var term = {
+        phone: id
+      };
+      this.$store.dispatch('fetchLead', term);
     },
     updateLead: function updateLead(id) {
       this.$store.dispatch('updateLead', id);
@@ -2139,6 +2172,12 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     updateInsuranceCancellationDate: function updateInsuranceCancellationDate(date) {
       this.$store.commit('updateInsuranceCancellationDate', date);
+    },
+    updateDotSearch: function updateDotSearch(e) {
+      this.$store.commit('updateDotSearch', e.target.value);
+    },
+    updatePhoneSearch: function updatePhoneSearch(e) {
+      this.$store.commit('updatePhoneSearch', e.target.value);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
@@ -2189,6 +2228,12 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     description: function description(state) {
       return state.lead.description;
+    },
+    dot_search: function dot_search(state) {
+      return state.dot_search;
+    },
+    phone_search: function phone_search(state) {
+      return state.phone_search;
     }
   })),
   components: {
@@ -42849,7 +42894,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n}\n#dot_number[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn-secondary[data-v-0f85a8ba] {\n    background:burlywood;\n    color: #212529;\n    border-color: burlywood;\n}\n.form-column[data-v-0f85a8ba] {\n    padding-top: 1rem;\n}\n", ""]);
+exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n}\n#dot_search[data-v-0f85a8ba], #phone_search[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn-secondary[data-v-0f85a8ba] {\n    background:burlywood;\n    color: #212529;\n    border-color: burlywood;\n}\n.form-column[data-v-0f85a8ba] {\n    padding-top: 1rem;\n}\n", ""]);
 
 // exports
 
@@ -75136,21 +75181,21 @@ var render = function() {
         "div",
         { staticClass: "row", staticStyle: { background: "cadetblue" } },
         [
-          _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-6" }, [
             _c(
               "div",
               { staticClass: "input-group lead-search align-items-center" },
               [
                 _c(
                   "label",
-                  { staticClass: "search-term", attrs: { for: "dot_number" } },
+                  { staticClass: "search-term", attrs: { for: "dot_search" } },
                   [_vm._v("DOT Number")]
                 ),
                 _vm._v(" "),
                 _c("input", {
                   staticClass: "form-control",
-                  attrs: { type: "text", id: "dot_number" },
-                  domProps: { value: _vm.dot_number },
+                  attrs: { type: "text", id: "dot_search" },
+                  domProps: { value: _vm.dot_search },
                   on: {
                     keyup: function($event) {
                       if (
@@ -75159,9 +75204,9 @@ var render = function() {
                       ) {
                         return null
                       }
-                      return _vm.fetchLead(_vm.dot_number)
+                      return _vm.fetchLeadByDotNumber(_vm.dot_search)
                     },
-                    input: _vm.updateDotNumber
+                    input: _vm.updateDotSearch
                   }
                 }),
                 _vm._v(" "),
@@ -75174,7 +75219,61 @@ var render = function() {
                       {
                         on: {
                           click: function($event) {
-                            return _vm.fetchLead(_vm.dot_number)
+                            return _vm.fetchLeadByDotNumber(_vm.dot_search)
+                          }
+                        }
+                      },
+                      [_vm._v("Search")]
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "div",
+              { staticClass: "input-group lead-search align-items-center" },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "search-term",
+                    attrs: { for: "phone_search" }
+                  },
+                  [_vm._v("Phone")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "phone_search" },
+                  domProps: { value: _vm.phone_search },
+                  on: {
+                    keyup: function($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.fetchLeadByPhoneNumber(_vm.phone_search)
+                    },
+                    input: _vm.updatePhoneSearch
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "input-group-btn" },
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.fetchLeadByPhoneNumber(_vm.phone_search)
                           }
                         }
                       },
@@ -75278,26 +75377,54 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "nbr_power_unit" } }, [
-                _vm._v("Number of Trucks")
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "nbr_power_unit" } }, [
+                    _vm._v("Number of Trucks")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "number", id: "nbr_power_unit" },
+                    domProps: { value: _vm.nbr_power_unit },
+                    on: { input: _vm.updateNbrPowerUnit }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "small",
+                    {
+                      staticClass: "text-danger",
+                      attrs: { "v:if": "errors && errors.nbr_power_unit" }
+                    },
+                    [_vm._v(_vm._s(_vm.getError(_vm.errors.nbr_power_unit)))]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { type: "number", id: "nbr_power_unit" },
-                domProps: { value: _vm.nbr_power_unit },
-                on: { input: _vm.updateNbrPowerUnit }
-              }),
-              _vm._v(" "),
-              _c(
-                "small",
-                {
-                  staticClass: "text-danger",
-                  attrs: { "v:if": "errors && errors.nbr_power_unit" }
-                },
-                [_vm._v(_vm._s(_vm.getError(_vm.errors.nbr_power_unit)))]
-              )
+              _c("div", { staticClass: "col-md" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "driver_total" } }, [
+                    _vm._v("Number of Drivers")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "number", id: "driver_total" },
+                    domProps: { value: _vm.driver_total },
+                    on: { input: _vm.updateDriverTotal }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "small",
+                    {
+                      staticClass: "text-danger",
+                      attrs: { "v:if": "errors && errors.driver_total" }
+                    },
+                    [_vm._v(_vm._s(_vm.getError(_vm.errors.driver_total)))]
+                  )
+                ])
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -75440,14 +75567,14 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "driver_total" } }, [
-                _vm._v("Number of Drivers")
+              _c("label", { attrs: { for: "dot_number" } }, [
+                _vm._v("DOT Number")
               ]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "number", id: "driver_total" },
-                domProps: { value: _vm.driver_total },
+                attrs: { type: "text", id: "dot_number" },
+                domProps: { value: _vm.dot_number },
                 on: { input: _vm.updateDriverTotal }
               }),
               _vm._v(" "),
@@ -75455,9 +75582,9 @@ var render = function() {
                 "small",
                 {
                   staticClass: "text-danger",
-                  attrs: { "v:if": "errors && errors.driver_total" }
+                  attrs: { "v:if": "errors && errors.dot_number" }
                 },
-                [_vm._v(_vm._s(_vm.getError(_vm.errors.driver_total)))]
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.dot_number)))]
               )
             ]),
             _vm._v(" "),
@@ -92667,7 +92794,7 @@ var actions = {
     var commit = _ref.commit,
         state = _ref.state;
     commit('UPDATE_LEAD');
-    axios.post("/api/lead/".concat(id), state.lead).then(function (response) {
+    axios.put("/api/lead/".concat(id), state.lead).then(function (response) {
       commit('UPDATE_LEAD_SUCCESS', response.data);
       Vue.notify({
         group: 'lead',
@@ -92711,8 +92838,9 @@ var actions = {
   },
   fetchLead: function fetchLead(_ref2, id) {
     var commit = _ref2.commit;
+    console.log("fetchLead", id);
     commit('FETCH_LEAD');
-    axios.get("/api/lead/".concat(id)).then(function (response) {
+    axios.post("/api/lead", id).then(function (response) {
       if (!response.data.id) {
         Vue.notify({
           group: 'lead',
@@ -93111,6 +93239,12 @@ var mutations = {
   },
   updateComment: function updateComment(state, comment) {
     state.lead.comment = comment;
+  },
+  updateDotSearch: function updateDotSearch(state, dot_search) {
+    state.dot_search = dot_search;
+  },
+  updatePhoneSearch: function updatePhoneSearch(state, phone_search) {
+    state.phone_search = phone_search;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -93134,7 +93268,7 @@ var state = {
     created_at: null,
     dba_name: null,
     description: null,
-    dot_number: '555',
+    dot_number: null,
     driver_total: null,
     email_address: null,
     fax: null,
@@ -93165,7 +93299,9 @@ var state = {
     updated_at: null
   },
   isLoading: false,
-  errors: {}
+  errors: {},
+  dot_search: null,
+  phone_search: null
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 

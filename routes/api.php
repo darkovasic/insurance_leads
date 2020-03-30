@@ -19,8 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth'], function() {
     
-    Route::post('lead/{id}', 'LeadController@store');
-    Route::get('lead/{id}', 'LeadController@get');
+    Route::put('lead/{id}', 'LeadController@store');
+    Route::post('lead', 'LeadController@get');
     Route::delete('lead/{id}', 'LeadController@delete');
 
     Route::post('send-lead', 'ApiController@boldPenguinAuth');

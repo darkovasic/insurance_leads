@@ -83,6 +83,12 @@ let mutations = {
     updateComment (state, comment) {
         state.lead.comment = comment;
     },
+    updateDotSearch (state, dot_search) {
+        state.dot_search = dot_search;
+    },
+    updatePhoneSearch (state, phone_search) {
+        state.phone_search = phone_search;
+    },
 }
 
 export default mutations

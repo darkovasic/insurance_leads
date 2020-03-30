@@ -28,9 +28,15 @@ class LeadController extends Controller
         return view('lead');
     }
 
-    public function get($id)
+    public function get(Request $id)
     {
-        $lead = Lead::where('dot_number', $id)->first();
+
+        $term = $id->json()->all();
+        // dd($term);
+        $key = array_key_first($term);
+        $value = reset($term);
+
+        $lead = Lead::where($key, $value)->first();
         return response()->json($lead);
     }
 
@@ -38,7 +44,7 @@ class LeadController extends Controller
     {
         $this->validate($request, [
             'legal_name'                  => 'required',
-            'phone'                   => 'required|digits:10',
+            'phone'                       => 'required|digits:10',
             'email_address'               => 'required|email',
             'dba_name'                    => 'required',
             'phy_street'                  => 'required',

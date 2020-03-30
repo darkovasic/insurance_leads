@@ -6,7 +6,7 @@ let state = {
         created_at: null,
         dba_name: null,
         description: null,
-        dot_number: '555',
+        dot_number: null,
         driver_total: null,
         email_address: null,
         fax: null,
@@ -34,10 +34,12 @@ let state = {
         phy_street: null,
         phy_zip: null,
         phone: null,
-        updated_at: null,        
+        updated_at: null,     
     },
     isLoading: false,
-    errors: {}
+    errors: {},
+    dot_search: null,
+    phone_search: null
 }
 
 export default state
