@@ -11388,3 +11388,7 @@ body {
   text-align: center;
 }
 
+.vue-notification {
+  font-size: 16px !important;
+}
+
