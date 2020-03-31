@@ -31,7 +31,7 @@
         <div class="row" style="background:burlywood">
             <div class="col-md-6 form-column">
                 <div class="form-group">
-                    <label for="legal_name">Contact Name</label>
+                    <label for="legal_name">Legal Name</label>
                     <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
                     <small v:if="errors && errors.legal_name" class="text-danger">{{ getError(errors.legal_name) }}</small>
                 </div>
@@ -86,7 +86,7 @@
                     <small v:if="errors && errors.phone" class="text-danger">{{ getError(errors.phone) }}</small>
                 </div>
                 <div class="form-group">
-                    <label for="dba_name">Company</label>
+                    <label for="dba_name">DBA Name</label>
                     <input type="text" class="form-control" id="dba_name" :value="dba_name" @input="updateCompany">
                     <small v:if="errors && errors.dba_name" class="text-danger">{{ getError(errors.dba_name) }}</small>
                 </div>

@@ -75295,7 +75295,7 @@ var render = function() {
           _c("div", { staticClass: "col-md-6 form-column" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "legal_name" } }, [
-                _vm._v("Contact Name")
+                _vm._v("Legal Name")
               ]),
               _vm._v(" "),
               _c("input", {
@@ -75500,7 +75500,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "dba_name" } }, [_vm._v("Company")]),
+              _c("label", { attrs: { for: "dba_name" } }, [_vm._v("DBA Name")]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
