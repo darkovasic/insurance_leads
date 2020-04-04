@@ -76,15 +76,16 @@ class ApiController extends Controller
             $data = [
                 'application_form' => [
                     'answer_values' => [
-                        (object) ['code' => 'mqs_business_name', 'answer' => $lead->dba_name],
+                        (object) ['code' => 'mqs_business_name', 'answer' => $lead->legal_name],
                         (object) ['code' => 'mqs_phone', 'answer' => $lead->phone],
-                        (object) ['code' => 'mqs_first_name', 'answer' => $lead->legal_name],
                         (object) ['code' => 'mqs_email', 'answer' => $lead->email_address],
                         (object) ['code' => 'mqs_street_1', 'answer' => $lead->phy_street],
                         (object) ['code' => 'mqs_city', 'answer' => $lead->phy_city],
                         (object) ['code' => 'mqs_state', 'answer' => $lead->phy_state],
                         (object) ['code' => 'mqs_zipcode', 'answer' => $lead->phy_zip],
                         (object) ['code' => 'mqs_full_time_employees', 'answer' => $lead->driver_total],
+                        (object) ['code' => 'mqs_first_name', 'answer' => $lead->first_name],
+                        (object) ['code' => 'mqs_last_name', 'answer' => $lead->last_name],
                     ]
                 ]
             ];
