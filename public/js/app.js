@@ -2062,6 +2062,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2178,6 +2204,12 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     updatePhoneSearch: function updatePhoneSearch(e) {
       this.$store.commit('updatePhoneSearch', e.target.value);
+    },
+    updateFirstName: function updateFirstName(e) {
+      this.$store.commit('updateFirstName', e.target.value);
+    },
+    updateLastName: function updateLastName(e) {
+      this.$store.commit('updateLastName', e.target.value);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
@@ -2234,6 +2266,12 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     phone_search: function phone_search(state) {
       return state.phone_search;
+    },
+    first_name: function first_name(state) {
+      return state.lead.first_name;
+    },
+    last_name: function last_name(state) {
+      return state.lead.last_name;
     }
   })),
   components: {
@@ -75477,7 +75515,57 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6 form-column" }, [
-            _c("div", { staticClass: "form-group has-error" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "first_name" } }, [
+                    _vm._v("First Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", id: "first_name" },
+                    domProps: { value: _vm.first_name },
+                    on: { input: _vm.updateFirstName }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "small",
+                    {
+                      staticClass: "text-danger",
+                      attrs: { "v:if": "errors && errors.first_name" }
+                    },
+                    [_vm._v(_vm._s(_vm.getError(_vm.errors.first_name)))]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "last_name" } }, [
+                    _vm._v("Last Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", id: "last_name" },
+                    domProps: { value: _vm.last_name },
+                    on: { input: _vm.updateLastName }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "small",
+                    {
+                      staticClass: "text-danger",
+                      attrs: { "v:if": "errors && errors.last_name" }
+                    },
+                    [_vm._v(_vm._s(_vm.getError(_vm.errors.last_name)))]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "phone" } }, [
                 _vm._v("Phone Number")
               ]),
@@ -75505,7 +75593,9 @@ var render = function() {
               _c("input", {
                 staticClass: "form-control",
                 attrs: { type: "text", id: "dba_name" },
-                domProps: { value: _vm.dba_name },
+                domProps: {
+                  value: _vm.dba_name ? _vm.dba_name : _vm.legal_name
+                },
                 on: { input: _vm.updateCompany }
               }),
               _vm._v(" "),
@@ -75588,75 +75678,89 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", { attrs: { for: "last_insurance_date" } }, [
-                  _vm._v("Last Insurance Date")
-                ]),
-                _vm._v(" "),
-                _c("datepicker", {
-                  attrs: {
-                    typeable: false,
-                    type: "text",
-                    "input-class": "form-control",
-                    id: "last_insurance_date",
-                    value: _vm.last_insurance_date
-                  },
-                  on: { selected: _vm.updateLastInsuranceDate }
-                }),
-                _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md" }, [
                 _c(
-                  "small",
-                  {
-                    staticClass: "text-danger",
-                    attrs: { "v:if": "errors && errors.last_insurance_date" }
-                  },
-                  [_vm._v(_vm._s(_vm.getError(_vm.errors.last_insurance_date)))]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", { attrs: { for: "insurance_cancellation_date" } }, [
-                  _vm._v("Insurance Cancellation Date")
-                ]),
-                _vm._v(" "),
-                _c("datepicker", {
-                  attrs: {
-                    typeable: false,
-                    type: "text",
-                    "input-class": "form-control",
-                    id: "insurance_cancellation_date",
-                    value: _vm.insurance_cancellation_date
-                  },
-                  on: { selected: _vm.updateInsuranceCancellationDate }
-                }),
-                _vm._v(" "),
-                _c(
-                  "small",
-                  {
-                    staticClass: "text-danger",
-                    attrs: {
-                      "v:if": "errors && errors.insurance_cancellation_date"
-                    }
-                  },
+                  "div",
+                  { staticClass: "form-group" },
                   [
-                    _vm._v(
-                      _vm._s(
-                        _vm.getError(_vm.errors.insurance_cancellation_date)
-                      )
+                    _c("label", { attrs: { for: "last_insurance_date" } }, [
+                      _vm._v("Last Insurance Date")
+                    ]),
+                    _vm._v(" "),
+                    _c("datepicker", {
+                      attrs: {
+                        typeable: false,
+                        type: "text",
+                        "input-class": "form-control",
+                        id: "last_insurance_date",
+                        value: _vm.last_insurance_date
+                      },
+                      on: { selected: _vm.updateLastInsuranceDate }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: {
+                          "v:if": "errors && errors.last_insurance_date"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(_vm.getError(_vm.errors.last_insurance_date))
+                        )
+                      ]
                     )
-                  ]
+                  ],
+                  1
                 )
-              ],
-              1
-            )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c(
+                      "label",
+                      { attrs: { for: "insurance_cancellation_date" } },
+                      [_vm._v("Insurance Cancellation Date")]
+                    ),
+                    _vm._v(" "),
+                    _c("datepicker", {
+                      attrs: {
+                        typeable: false,
+                        type: "text",
+                        "input-class": "form-control",
+                        id: "insurance_cancellation_date",
+                        value: _vm.insurance_cancellation_date
+                      },
+                      on: { selected: _vm.updateInsuranceCancellationDate }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "text-danger",
+                        attrs: {
+                          "v:if": "errors && errors.insurance_cancellation_date"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.getError(_vm.errors.insurance_cancellation_date)
+                          )
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
           ])
         ]
       ),
@@ -93245,6 +93349,12 @@ var mutations = {
   },
   updatePhoneSearch: function updatePhoneSearch(state, phone_search) {
     state.phone_search = phone_search;
+  },
+  updateFirstName: function updateFirstName(state, first_name) {
+    state.lead.first_name = first_name;
+  },
+  updateLastName: function updateLastName(state, last_name) {
+    state.lead.last_name = last_name;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -93296,7 +93406,9 @@ var state = {
     phy_street: null,
     phy_zip: null,
     phone: null,
-    updated_at: null
+    updated_at: null,
+    first_name: null,
+    last_name: null
   },
   isLoading: false,
   errors: {},

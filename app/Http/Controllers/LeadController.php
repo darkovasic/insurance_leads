@@ -32,7 +32,6 @@ class LeadController extends Controller
     {
 
         $term = $id->json()->all();
-        // dd($term);
         $key = array_key_first($term);
         $value = reset($term);
 
@@ -58,7 +57,9 @@ class LeadController extends Controller
             // 'insurance_cancellation_date' => 'date',
             // 'comment'                     => '',
             'dot_number'                  => 'required',
-            'description'                 => 'required',          
+            'description'                 => 'required',
+            'first_name'                  => 'required',
+            'last_name'                   => 'required',
         ]);
 
         $lead = Lead::where('dot_number', $id)->update([
@@ -78,6 +79,8 @@ class LeadController extends Controller
             'comment'                     => $request->comment,
             'dot_number'                  => $request->dot_number,
             'description'                 => $request->description,            
+            'first_name'                  => $request->first_name,
+            'last_name'                   => $request->last_name,
         ]);        
 
         return response()->json($lead);

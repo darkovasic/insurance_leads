@@ -89,6 +89,12 @@ let mutations = {
     updatePhoneSearch (state, phone_search) {
         state.phone_search = phone_search;
     },
+    updateFirstName (state, first_name) {
+        state.lead.first_name = first_name;
+    },
+    updateLastName (state, last_name) {
+        state.lead.last_name = last_name;
+    },
 }
 
 export default mutations

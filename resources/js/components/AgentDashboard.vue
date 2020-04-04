@@ -80,14 +80,34 @@
                 </div>                           
             </div>
             <div class="col-md-6 form-column">
-                <div class="form-group has-error">
+
+
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" id="first_name" :value="first_name" @input="updateFirstName">
+                            <small v:if="errors && errors.first_name" class="text-danger">{{ getError(errors.first_name) }}</small>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" :value="last_name" @input="updateLastName">
+                            <small v:if="errors && errors.last_name" class="text-danger">{{ getError(errors.last_name) }}</small>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="text" class="form-control" id="phone" :value="phone" @input="updateTelephone">
                     <small v:if="errors && errors.phone" class="text-danger">{{ getError(errors.phone) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="dba_name">DBA Name</label>
-                    <input type="text" class="form-control" id="dba_name" :value="dba_name" @input="updateCompany">
+                    <input type="text" class="form-control" id="dba_name" :value="dba_name ? dba_name : legal_name" @input="updateCompany">
                     <small v:if="errors && errors.dba_name" class="text-danger">{{ getError(errors.dba_name) }}</small>
                 </div>
                 <div class="form-group">
@@ -105,16 +125,22 @@
                     <input type="text" class="form-control" id="dot_number" :value="dot_number" @input="updateDriverTotal">
                     <small v:if="errors && errors.dot_number" class="text-danger">{{ getError(errors.dot_number) }}</small>
                 </div>
-                <div class="form-group">
-                    <label for="last_insurance_date">Last Insurance Date</label>
-                    <datepicker :typeable="false" type="text" input-class="form-control" id="last_insurance_date" :value="last_insurance_date" @selected="updateLastInsuranceDate"></datepicker>
-                    <small v:if="errors && errors.last_insurance_date" class="text-danger">{{ getError(errors.last_insurance_date) }}</small>
-                </div> 
-                <div class="form-group">
-                    <label for="insurance_cancellation_date">Insurance Cancellation Date</label>
-                    <datepicker :typeable="false" type="text" input-class="form-control" id="insurance_cancellation_date" :value="insurance_cancellation_date" @selected="updateInsuranceCancellationDate"></datepicker>
-                    <small v:if="errors && errors.insurance_cancellation_date" class="text-danger">{{ getError(errors.insurance_cancellation_date) }}</small>
-                </div>                           
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="last_insurance_date">Last Insurance Date</label>
+                            <datepicker :typeable="false" type="text" input-class="form-control" id="last_insurance_date" :value="last_insurance_date" @selected="updateLastInsuranceDate"></datepicker>
+                            <small v:if="errors && errors.last_insurance_date" class="text-danger">{{ getError(errors.last_insurance_date) }}</small>
+                        </div> 
+                    </div>
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="insurance_cancellation_date">Insurance Cancellation Date</label>
+                            <datepicker :typeable="false" type="text" input-class="form-control" id="insurance_cancellation_date" :value="insurance_cancellation_date" @selected="updateInsuranceCancellationDate"></datepicker>
+                            <small v:if="errors && errors.insurance_cancellation_date" class="text-danger">{{ getError(errors.insurance_cancellation_date) }}</small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row" style="background:burlywood">
@@ -258,6 +284,12 @@ console.log("dot_search", dot_search)
             updatePhoneSearch(e) {
                 this.$store.commit('updatePhoneSearch', e.target.value);
             },
+            updateFirstName(e) {
+                this.$store.commit('updateFirstName', e.target.value);
+            },
+            updateLastName(e) {
+                this.$store.commit('updateLastName', e.target.value);
+            },
         },
         computed: {
             ...mapGetters([
@@ -284,6 +316,8 @@ console.log("dot_search", dot_search)
                 description: state => state.lead.description,
                 dot_search: state => state.dot_search,
                 phone_search: state => state.phone_search,
+                first_name: state => state.lead.first_name,
+                last_name: state => state.lead.last_name,
             })            
         },
         components: {
