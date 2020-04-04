@@ -83,9 +83,14 @@ class ApiController extends Controller
                         (object) ['code' => 'mqs_city', 'answer' => $lead->phy_city],
                         (object) ['code' => 'mqs_state', 'answer' => \StateHelper::instance()->getStateNameFromAbbreviation($lead->phy_state, 'US')],
                         (object) ['code' => 'mqs_zipcode', 'answer' => $lead->phy_zip],
-                        (object) ['code' => 'mqs_full_time_employees', 'answer' => $lead->driver_total],
+                        (object) ['code' => 'mqs_full_time_employees', 'answer' => $lead->full_time_employees],
                         (object) ['code' => 'mqs_first_name', 'answer' => $lead->first_name],
-                        (object) ['code' => 'mqs_last_name', 'answer' => $lead->last_name],
+                        (object) ['code' => 'mqs_part_time_employees', 'answer' => $lead->part_time_employees],
+                        (object) ['code' => 'mqs_currently_insured', 'answer' => $lead->currently_insured],
+                        (object) ['code' => 'mqs_years_of_experience', 'answer' => $lead->years_of_experience],
+                        (object) ['code' => 'mqs_legal_entity', 'answer' => $lead->legal_entity],
+                        (object) ['code' => 'CoverageTypes', 'answer' => $lead->coverage_type],
+                        (object) ['code' => 'mqs_actual_years_in_business', 'answer' => '',
                     ]
                 ]
             ];

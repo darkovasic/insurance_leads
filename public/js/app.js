@@ -1916,12 +1916,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/constants */ "./resources/js/store/constants.js");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__);
+var _mapState;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2100,12 +2124,13 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
   name: "AgentDashboard",
   data: function data() {
     return {
-      state_hash: _store_constants__WEBPACK_IMPORTED_MODULE_4__["state_hash"]
+      state_hash: _store_constants__WEBPACK_IMPORTED_MODULE_4__["state_hash"],
+      currently_insured_hash: _store_constants__WEBPACK_IMPORTED_MODULE_4__["currently_insured_hash"],
+      legal_entity_hash: _store_constants__WEBPACK_IMPORTED_MODULE_4__["legal_entity_hash"],
+      coverage_type_hash: _store_constants__WEBPACK_IMPORTED_MODULE_4__["coverage_type_hash"]
     };
   },
-  mounted: function mounted() {
-    console.log("dot_search", dot_search);
-  },
+  mounted: function mounted() {},
   methods: {
     showConfirmationModal: function showConfirmationModal() {
       var _this = this;
@@ -2210,9 +2235,27 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     updateLastName: function updateLastName(e) {
       this.$store.commit('updateLastName', e.target.value);
+    },
+    updateFullTimeEmployees: function updateFullTimeEmployees(e) {
+      this.$store.commit('updateFullTimeEmployees', e.target.value);
+    },
+    updatePartTimeEmployees: function updatePartTimeEmployees(e) {
+      this.$store.commit('updatePartTimeEmployees', e.target.value);
+    },
+    updateCurrentlyInsured: function updateCurrentlyInsured(value) {
+      this.$store.commit('updateCurrentlyInsured', value);
+    },
+    updateYearsOfExperience: function updateYearsOfExperience(e) {
+      this.$store.commit('updateYearsOfExperience', e.target.value);
+    },
+    updateLegalEntity: function updateLegalEntity(e) {
+      this.$store.commit('updateLegalEntity', e.target.value);
+    },
+    updateCoverageType: function updateCoverageType(value) {
+      this.$store.commit('updateCoverageType', value);
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])((_mapState = {
     phone: function phone(state) {
       return state.lead.phone;
     },
@@ -2272,8 +2315,30 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     last_name: function last_name(state) {
       return state.lead.last_name;
+    },
+    full_time_employees: function full_time_employees(state) {
+      return state.lead.full_time_employees;
+    },
+    part_time_employees: function part_time_employees(state) {
+      return state.lead.part_time_employees;
+    },
+    currently_insured: function currently_insured(state) {
+      return state.lead.currently_insured;
+    },
+    years_of_experience: function years_of_experience(state) {
+      return state.lead.years_of_experience;
     }
-  })),
+  }, _defineProperty(_mapState, "part_time_employees", function part_time_employees(state) {
+    return state.lead.part_time_employees;
+  }), _defineProperty(_mapState, "part_time_employees", function part_time_employees(state) {
+    return state.lead.part_time_employees;
+  }), _defineProperty(_mapState, "part_time_employees", function part_time_employees(state) {
+    return state.lead.part_time_employees;
+  }), _defineProperty(_mapState, "legal_entity", function legal_entity(state) {
+    return state.lead.legal_entity;
+  }), _defineProperty(_mapState, "coverage_type", function coverage_type(state) {
+    return state.lead.coverage_type;
+  }), _mapState))),
   components: {
     Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__["default"],
     Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default.a
@@ -75330,7 +75395,7 @@ var render = function() {
         "div",
         { staticClass: "row", staticStyle: { background: "burlywood" } },
         [
-          _c("div", { staticClass: "col-md-6 form-column" }, [
+          _c("div", { staticClass: "col-md-4 form-column" }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "legal_name" } }, [
                 _vm._v("Legal Name")
@@ -75419,7 +75484,7 @@ var render = function() {
               _c("div", { staticClass: "col-md" }, [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "nbr_power_unit" } }, [
-                    _vm._v("Number of Trucks")
+                    _vm._v("# Trucks")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -75443,7 +75508,7 @@ var render = function() {
               _c("div", { staticClass: "col-md" }, [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "driver_total" } }, [
-                    _vm._v("Number of Drivers")
+                    _vm._v("# Drivers")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -75514,7 +75579,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 form-column" }, [
+          _c("div", { staticClass: "col-md-4 form-column" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md" }, [
                 _c("div", { staticClass: "form-group" }, [
@@ -75678,89 +75743,230 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md" }, [
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "last_insurance_date" } }, [
+                  _vm._v("Last Insurance Date")
+                ]),
+                _vm._v(" "),
+                _c("datepicker", {
+                  attrs: {
+                    typeable: false,
+                    type: "text",
+                    "input-class": "form-control",
+                    id: "last_insurance_date",
+                    value: _vm.last_insurance_date
+                  },
+                  on: { selected: _vm.updateLastInsuranceDate }
+                }),
+                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "form-group" },
-                  [
-                    _c("label", { attrs: { for: "last_insurance_date" } }, [
-                      _vm._v("Last Insurance Date")
-                    ]),
-                    _vm._v(" "),
-                    _c("datepicker", {
-                      attrs: {
-                        typeable: false,
-                        type: "text",
-                        "input-class": "form-control",
-                        id: "last_insurance_date",
-                        value: _vm.last_insurance_date
-                      },
-                      on: { selected: _vm.updateLastInsuranceDate }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-danger",
-                        attrs: {
-                          "v:if": "errors && errors.last_insurance_date"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          _vm._s(_vm.getError(_vm.errors.last_insurance_date))
-                        )
-                      ]
-                    )
-                  ],
-                  1
+                  "small",
+                  {
+                    staticClass: "text-danger",
+                    attrs: { "v:if": "errors && errors.last_insurance_date" }
+                  },
+                  [_vm._v(_vm._s(_vm.getError(_vm.errors.last_insurance_date)))]
                 )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4 form-column" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "full_time_employees" } }, [
+                _vm._v("Full Time Employees")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "number", id: "full_time_employees" },
+                domProps: { value: _vm.full_time_employees },
+                on: { input: _vm.updateFullTimeEmployees }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.full_time_employees" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.full_time_employees)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "part_time_employees" } }, [
+                _vm._v("Part Time Employees")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "number", id: "part_time_employees" },
+                domProps: { value: _vm.part_time_employees },
+                on: { input: _vm.updatePartTimeEmployees }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.part_time_employees" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.part_time_employees)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "currently_insured" } }, [
+                  _vm._v("Currently Insured")
+                ]),
+                _vm._v(" "),
+                _c("b-select", {
+                  attrs: {
+                    id: "currently_insured",
+                    options: _vm.currently_insured_hash,
+                    value: _vm.currently_insured
+                  },
+                  on: { input: _vm.updateCurrentlyInsured }
+                }),
+                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "form-group" },
-                  [
-                    _c(
-                      "label",
-                      { attrs: { for: "insurance_cancellation_date" } },
-                      [_vm._v("Insurance Cancellation Date")]
-                    ),
-                    _vm._v(" "),
-                    _c("datepicker", {
-                      attrs: {
-                        typeable: false,
-                        type: "text",
-                        "input-class": "form-control",
-                        id: "insurance_cancellation_date",
-                        value: _vm.insurance_cancellation_date
-                      },
-                      on: { selected: _vm.updateInsuranceCancellationDate }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "text-danger",
-                        attrs: {
-                          "v:if": "errors && errors.insurance_cancellation_date"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          _vm._s(
-                            _vm.getError(_vm.errors.insurance_cancellation_date)
-                          )
-                        )
-                      ]
-                    )
-                  ],
-                  1
+                  "small",
+                  {
+                    staticClass: "text-danger",
+                    attrs: { "v:if": "errors && errors.currently_insured" }
+                  },
+                  [_vm._v(_vm._s(_vm.getError(_vm.errors.currently_insured)))]
                 )
-              ])
-            ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "years_of_experience" } }, [
+                _vm._v("Years of Experience")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "number", id: "years_of_experience" },
+                domProps: { value: _vm.years_of_experience },
+                on: { input: _vm.updateYearsOfExperience }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "text-danger",
+                  attrs: { "v:if": "errors && errors.years_of_experience" }
+                },
+                [_vm._v(_vm._s(_vm.getError(_vm.errors.years_of_experience)))]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "legal_entity" } }, [
+                  _vm._v("Legal Entity")
+                ]),
+                _vm._v(" "),
+                _c("b-select", {
+                  attrs: {
+                    id: "legal_entity",
+                    options: _vm.legal_entity_hash,
+                    value: _vm.legal_entity
+                  },
+                  on: { input: _vm.updateLegalEntity }
+                }),
+                _vm._v(" "),
+                _c(
+                  "small",
+                  {
+                    staticClass: "text-danger",
+                    attrs: { "v:if": "errors && errors.legal_entity" }
+                  },
+                  [_vm._v(_vm._s(_vm.getError(_vm.errors.legal_entity)))]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "coverage_type" } }, [
+                  _vm._v("Coverage Type")
+                ]),
+                _vm._v(" "),
+                _c("b-select", {
+                  attrs: {
+                    id: "coverage_type",
+                    options: _vm.coverage_type_hash,
+                    value: _vm.coverage_type
+                  },
+                  on: { input: _vm.updateCoverageType }
+                }),
+                _vm._v(" "),
+                _c(
+                  "small",
+                  {
+                    staticClass: "text-danger",
+                    attrs: { "v:if": "errors && errors.coverage_type" }
+                  },
+                  [_vm._v(_vm._s(_vm.getError(_vm.errors.coverage_type)))]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", { attrs: { for: "insurance_cancellation_date" } }, [
+                  _vm._v("Insurance Cancelation Date")
+                ]),
+                _vm._v(" "),
+                _c("datepicker", {
+                  attrs: {
+                    typeable: false,
+                    type: "text",
+                    "input-class": "form-control",
+                    id: "insurance_cancellation_date",
+                    value: _vm.insurance_cancellation_date
+                  },
+                  on: { selected: _vm.updateInsuranceCancellationDate }
+                }),
+                _vm._v(" "),
+                _c(
+                  "small",
+                  {
+                    staticClass: "text-danger",
+                    attrs: {
+                      "v:if": "errors && errors.insurance_cancellation_date"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm.getError(_vm.errors.insurance_cancellation_date)
+                      )
+                    )
+                  ]
+                )
+              ],
+              1
+            )
           ])
         ]
       ),
@@ -92992,12 +93198,15 @@ var actions = {
 /*!*****************************************!*\
   !*** ./resources/js/store/constants.js ***!
   \*****************************************/
-/*! exports provided: state_hash */
+/*! exports provided: state_hash, currently_insured_hash, legal_entity_hash, coverage_type_hash */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state_hash", function() { return state_hash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "currently_insured_hash", function() { return currently_insured_hash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "legal_entity_hash", function() { return legal_entity_hash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "coverage_type_hash", function() { return coverage_type_hash; });
 var state_hash = [{
   "text": "Alabama",
   "value": "AL"
@@ -93175,6 +93384,75 @@ var state_hash = [{
 }, {
   "text": "Wyoming",
   "value": "WY"
+}];
+var currently_insured_hash = [{
+  "text": "YES",
+  "value": "YES"
+}, {
+  "text": "NO",
+  "value": "NO"
+}];
+var legal_entity_hash = [{
+  "text": "",
+  "value": ""
+}, {
+  "text": "Sole Proprietorship",
+  "value": "Sole Proprietorship"
+}, {
+  "text": "Partnership",
+  "value": "Partnership"
+}, {
+  "text": "LLC",
+  "value": "LLC"
+}, {
+  "text": "S Corporation",
+  "value": "S Corporation"
+}, {
+  "text": "C Corporation",
+  "value": "C Corporation"
+}, {
+  "text": "Joint Venture",
+  "value": "Joint Venture"
+}, {
+  "text": "Trust",
+  "value": "Trust"
+}, {
+  "text": "Association",
+  "value": "Association"
+}, {
+  "text": "Municipality",
+  "value": "Municipality"
+}, {
+  "text": "Other",
+  "value": "Other"
+}];
+var coverage_type_hash = [{
+  "text": "",
+  "value": ""
+}, {
+  "text": "Bond",
+  "value": "Bond"
+}, {
+  "text": "Liability",
+  "value": "Liability"
+}, {
+  "text": "Professional Liability (E&O)",
+  "value": "Professional Liability (E&O)"
+}, {
+  "text": "Commercial Property",
+  "value": "Commercial Property"
+}, {
+  "text": "Workers Compensation",
+  "value": "Workers Compensation"
+}, {
+  "text": "Commercial Auto",
+  "value": "Commercial Auto"
+}, {
+  "text": "BOP",
+  "value": "BOP"
+}, {
+  "text": "Other/Not Sure",
+  "value": "Other/Not Sure"
 }];
 
 /***/ }),
@@ -93355,6 +93633,21 @@ var mutations = {
   },
   updateLastName: function updateLastName(state, last_name) {
     state.lead.last_name = last_name;
+  },
+  updateFullTimeEmployees: function updateFullTimeEmployees(state, full_time_employees) {
+    state.lead.full_time_employees = full_time_employees;
+  },
+  updatePartTimeEmployees: function updatePartTimeEmployees(state, part_time_employees) {
+    state.lead.part_time_employees = part_time_employees;
+  },
+  updateCurrentlyInsured: function updateCurrentlyInsured(state, currently_insured) {
+    state.lead.currently_insured = currently_insured;
+  },
+  updateYearsOfExperience: function updateYearsOfExperience(state, years_of_experience) {
+    state.lead.years_of_experience = years_of_experience;
+  },
+  updateLegalEntity: function updateLegalEntity(state, legal_entity) {
+    state.lead.legal_entity = legal_entity;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -93408,7 +93701,11 @@ var state = {
     phone: null,
     updated_at: null,
     first_name: null,
-    last_name: null
+    last_name: null,
+    full_time_employees: null,
+    part_time_employees: null,
+    currently_insured: null,
+    years_of_experience: null
   },
   isLoading: false,
   errors: {},

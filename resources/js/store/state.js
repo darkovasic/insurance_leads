@@ -36,7 +36,12 @@ let state = {
         phone: null,
         updated_at: null, 
         first_name: null,
-        last_name: null,    
+        last_name: null,
+        full_time_employees: null,
+        part_time_employees: null,
+        currently_insured: null,
+        years_of_experience: null,
+        
     },
     isLoading: false,
     errors: {},

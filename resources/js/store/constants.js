@@ -236,3 +236,100 @@ export const state_hash =  [
         "value": "WY"
     }
 ];
+
+export const currently_insured_hash =  [
+    {
+        "text": "YES",
+        "value": "YES"
+    },
+    {
+        "text": "NO",
+        "value": "NO"
+    },
+];
+
+export const legal_entity_hash =  [
+    {
+        "text": "",
+        "value": ""
+    },
+    {
+        "text": "Sole Proprietorship",
+        "value": "Sole Proprietorship"
+    },
+    {
+        "text": "Partnership",
+        "value": "Partnership"
+    },
+    {
+        "text": "LLC",
+        "value": "LLC"
+    },
+    {
+        "text": "S Corporation",
+        "value": "S Corporation"
+    },
+    {
+        "text": "C Corporation",
+        "value": "C Corporation"
+    },
+    {
+        "text": "Joint Venture",
+        "value": "Joint Venture"
+    },
+    {
+        "text": "Trust",
+        "value": "Trust"
+    },
+    {
+        "text": "Association",
+        "value": "Association"
+    },
+    {
+        "text": "Municipality",
+        "value": "Municipality"
+    },
+    {
+        "text": "Other",
+        "value": "Other"
+    },
+];
+
+export const coverage_type_hash =  [
+    {
+        "text": "",
+        "value": ""
+    },
+    {
+        "text": "Bond",
+        "value": "Bond"
+    },
+    {
+        "text": "Liability",
+        "value": "Liability"
+    },
+    {
+        "text": "Professional Liability (E&O)",
+        "value": "Professional Liability (E&O)"
+    },
+    {
+        "text": "Commercial Property",
+        "value": "Commercial Property"
+    },
+    {
+        "text": "Workers Compensation",
+        "value": "Workers Compensation"
+    },
+    {
+        "text": "Commercial Auto",
+        "value": "Commercial Auto"
+    },
+    {
+        "text": "BOP",
+        "value": "BOP"
+    },
+    {
+        "text": "Other/Not Sure",
+        "value": "Other/Not Sure"
+    },
+];

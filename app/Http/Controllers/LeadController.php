@@ -60,6 +60,11 @@ class LeadController extends Controller
             'description'                 => 'required',
             'first_name'                  => 'required',
             'last_name'                   => 'required',
+            'full_time_employees'         => 'nullable|integer',
+            'part_time_employees'         => 'nullable|integer',
+            'currently_insured'           => 'nullable|string',
+            'years_of_experience'         => 'nullable|integer',
+            'legal_entity'                => 'nullable|string',
         ]);
 
         $lead = Lead::where('dot_number', $id)->update([
@@ -81,6 +86,11 @@ class LeadController extends Controller
             'description'                 => $request->description,            
             'first_name'                  => $request->first_name,
             'last_name'                   => $request->last_name,
+            'full_time_employees'         => $request->full_time_employees,
+            'part_time_employees'         => $request->part_time_employees,
+            'currently_insured'           => $request->currently_insured,
+            'years_of_experience'         => $request->years_of_experience,
+            'legal_entity'                => $request->legal_entity,
         ]);        
 
         return response()->json($lead);

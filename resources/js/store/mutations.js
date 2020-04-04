@@ -95,6 +95,21 @@ let mutations = {
     updateLastName (state, last_name) {
         state.lead.last_name = last_name;
     },
+    updateFullTimeEmployees (state, full_time_employees) {
+        state.lead.full_time_employees = full_time_employees;
+    },
+    updatePartTimeEmployees (state, part_time_employees) {
+        state.lead.part_time_employees = part_time_employees;
+    },
+    updateCurrentlyInsured (state, currently_insured) {
+        state.lead.currently_insured = currently_insured;
+    },
+    updateYearsOfExperience (state, years_of_experience) {
+        state.lead.years_of_experience = years_of_experience;
+    },
+    updateLegalEntity (state, legal_entity) {
+        state.lead.legal_entity = legal_entity;
+    },
 }
 
 export default mutations

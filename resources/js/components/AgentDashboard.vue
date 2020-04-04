@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="row" style="background:burlywood">
-            <div class="col-md-6 form-column">
+            <div class="col-md-4 form-column">
                 <div class="form-group">
                     <label for="legal_name">Legal Name</label>
                     <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
@@ -54,14 +54,14 @@
                 <div class="row">
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="nbr_power_unit">Number of Trucks</label>
+                            <label for="nbr_power_unit"># Trucks</label>
                             <input type="number" class="form-control" id="nbr_power_unit" :value="nbr_power_unit" @input="updateNbrPowerUnit">
                             <small v:if="errors && errors.nbr_power_unit" class="text-danger">{{ getError(errors.nbr_power_unit) }}</small>
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="driver_total">Number of Drivers</label>
+                            <label for="driver_total"># Drivers</label>
                             <input type="number" class="form-control" id="driver_total" :value="driver_total" @input="updateDriverTotal">
                             <small v:if="errors && errors.driver_total" class="text-danger">{{ getError(errors.driver_total) }}</small>
                         </div>
@@ -79,9 +79,7 @@
                     <small v:if="errors && errors.description" class="text-danger">{{ getError(errors.description) }}</small>
                 </div>                           
             </div>
-            <div class="col-md-6 form-column">
-
-
+            <div class="col-md-4 form-column">
                 <div class="row">
                     <div class="col-md">
                         <div class="form-group">
@@ -98,8 +96,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="text" class="form-control" id="phone" :value="phone" @input="updateTelephone">
@@ -125,21 +121,47 @@
                     <input type="text" class="form-control" id="dot_number" :value="dot_number" @input="updateDriverTotal">
                     <small v:if="errors && errors.dot_number" class="text-danger">{{ getError(errors.dot_number) }}</small>
                 </div>
-                <div class="row">
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="last_insurance_date">Last Insurance Date</label>
-                            <datepicker :typeable="false" type="text" input-class="form-control" id="last_insurance_date" :value="last_insurance_date" @selected="updateLastInsuranceDate"></datepicker>
-                            <small v:if="errors && errors.last_insurance_date" class="text-danger">{{ getError(errors.last_insurance_date) }}</small>
-                        </div> 
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="insurance_cancellation_date">Insurance Cancellation Date</label>
-                            <datepicker :typeable="false" type="text" input-class="form-control" id="insurance_cancellation_date" :value="insurance_cancellation_date" @selected="updateInsuranceCancellationDate"></datepicker>
-                            <small v:if="errors && errors.insurance_cancellation_date" class="text-danger">{{ getError(errors.insurance_cancellation_date) }}</small>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="last_insurance_date">Last Insurance Date</label>
+                    <datepicker :typeable="false" type="text" input-class="form-control" id="last_insurance_date" :value="last_insurance_date" @selected="updateLastInsuranceDate"></datepicker>
+                    <small v:if="errors && errors.last_insurance_date" class="text-danger">{{ getError(errors.last_insurance_date) }}</small>
+                </div>
+            </div>
+            <div class="col-md-4 form-column">
+                <div class="form-group">
+                    <label for="full_time_employees">Full Time Employees</label>
+                    <input type="number" class="form-control" id="full_time_employees" :value="full_time_employees" @input="updateFullTimeEmployees">
+                    <small v:if="errors && errors.full_time_employees" class="text-danger">{{ getError(errors.full_time_employees) }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="part_time_employees">Part Time Employees</label>
+                    <input type="number" class="form-control" id="part_time_employees" :value="part_time_employees" @input="updatePartTimeEmployees">
+                    <small v:if="errors && errors.part_time_employees" class="text-danger">{{ getError(errors.part_time_employees) }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="currently_insured">Currently Insured</label>
+                    <b-select id="currently_insured" :options="currently_insured_hash" :value="currently_insured" @input="updateCurrentlyInsured"></b-select>
+                    <small v:if="errors && errors.currently_insured" class="text-danger">{{ getError(errors.currently_insured) }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="years_of_experience">Years of Experience</label>
+                    <input type="number" class="form-control" id="years_of_experience" :value="years_of_experience" @input="updateYearsOfExperience">
+                    <small v:if="errors && errors.years_of_experience" class="text-danger">{{ getError(errors.years_of_experience) }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="legal_entity">Legal Entity</label>
+                    <b-select id="legal_entity" :options="legal_entity_hash" :value="legal_entity" @input="updateLegalEntity"></b-select>
+                    <small v:if="errors && errors.legal_entity" class="text-danger">{{ getError(errors.legal_entity) }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="coverage_type">Coverage Type</label>
+                    <b-select id="coverage_type" :options="coverage_type_hash" :value="coverage_type" @input="updateCoverageType"></b-select>
+                    <small v:if="errors && errors.coverage_type" class="text-danger">{{ getError(errors.coverage_type) }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="insurance_cancellation_date">Insurance Cancelation Date</label>
+                    <datepicker :typeable="false" type="text" input-class="form-control" id="insurance_cancellation_date" :value="insurance_cancellation_date" @selected="updateInsuranceCancellationDate"></datepicker>
+                    <small v:if="errors && errors.insurance_cancellation_date" class="text-danger">{{ getError(errors.insurance_cancellation_date) }}</small>
                 </div>
             </div>
         </div>
@@ -169,7 +191,7 @@
     import Datepicker from 'vuejs-datepicker';
     import Loading from 'vue-loading-overlay';
     import { BButton, BFormSelect } from 'bootstrap-vue';
-    import { state_hash } from '../store/constants'
+    import { state_hash, currently_insured_hash, legal_entity_hash, coverage_type_hash } from '../store/constants'
 
     import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -182,10 +204,12 @@
         data() {
             return {
                 state_hash: state_hash,
+                currently_insured_hash: currently_insured_hash,
+                legal_entity_hash: legal_entity_hash,
+                coverage_type_hash: coverage_type_hash
             }
         },
         mounted() {
-console.log("dot_search", dot_search)
         },
         methods: {
             showConfirmationModal () {
@@ -290,6 +314,24 @@ console.log("dot_search", dot_search)
             updateLastName(e) {
                 this.$store.commit('updateLastName', e.target.value);
             },
+            updateFullTimeEmployees(e) {
+                this.$store.commit('updateFullTimeEmployees', e.target.value);
+            },
+            updatePartTimeEmployees(e) {
+                this.$store.commit('updatePartTimeEmployees', e.target.value);
+            },
+            updateCurrentlyInsured(value) {
+                this.$store.commit('updateCurrentlyInsured', value);
+            },
+            updateYearsOfExperience(e) {
+                this.$store.commit('updateYearsOfExperience', e.target.value);
+            },
+            updateLegalEntity(e) {
+                this.$store.commit('updateLegalEntity', e.target.value);
+            },
+            updateCoverageType(value) {
+                this.$store.commit('updateCoverageType', value);
+            },
         },
         computed: {
             ...mapGetters([
@@ -318,6 +360,15 @@ console.log("dot_search", dot_search)
                 phone_search: state => state.phone_search,
                 first_name: state => state.lead.first_name,
                 last_name: state => state.lead.last_name,
+                full_time_employees: state => state.lead.full_time_employees,
+                part_time_employees: state => state.lead.part_time_employees,
+                currently_insured: state => state.lead.currently_insured,
+                years_of_experience: state => state.lead.years_of_experience,
+                part_time_employees: state => state.lead.part_time_employees,
+                part_time_employees: state => state.lead.part_time_employees,
+                part_time_employees: state => state.lead.part_time_employees,
+                legal_entity: state => state.lead.legal_entity,
+                coverage_type: state => state.lead.coverage_type,
             })            
         },
         components: {
