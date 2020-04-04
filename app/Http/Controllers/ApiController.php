@@ -82,7 +82,7 @@ class ApiController extends Controller
                         (object) ['code' => 'mqs_email', 'answer' => $lead->email_address],
                         (object) ['code' => 'mqs_street_1', 'answer' => $lead->phy_street],
                         (object) ['code' => 'mqs_city', 'answer' => $lead->phy_city],
-                        (object) ['code' => 'mqs_state', 'answer' => $lead->phy_state],
+                        (object) ['code' => 'mqs_state', 'answer' => \StateHelper::instance()->getStateNameFromAbbreviation($lead->phy_state, 'US')],
                         (object) ['code' => 'mqs_zipcode', 'answer' => $lead->phy_zip],
                         (object) ['code' => 'mqs_full_time_employees', 'answer' => $lead->driver_total],
                     ]
