@@ -32,19 +32,4 @@ Route::get('send_test_email', function(){
 	});
 });
 
-Route::get('/clear-cache', function() {
-    $exitCode = Artisan::call('config:clear');
-    $exitCode = Artisan::call('cache:clear');
-    $exitCode = Artisan::call('config:cache');
-
-    $return =
-        "url: '" . env('DATABASE_URL') . "'<br>" .
-        "host: '" . env('DB_HOST') . "'<br>" .
-        "port: '" . env('DB_PORT') . "'<br>" .
-        "database: '" . env('DB_DATABASE') . "'<br>" .
-        "username: '" . env('DB_USERNAME') . "'<br>" .
-        "password: '" . env('DB_PASSWORD') . "'<br>" .
-        "<br>DONE<br>";
-
-    return 'DONE'; //Return anything
-});
+Route::get('/clear-cache', 'ClearCacheController@index')->middleware('can:register_user');
