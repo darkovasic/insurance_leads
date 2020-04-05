@@ -43,7 +43,7 @@ class ClearCacheController extends Controller
         foreach ($this->commands as $command)
         {
             $stream = fopen("php://output", "w");
-            Artisan::call($command, array(), new StreamOutput($stream));
+            Artisan::call($command, [], new StreamOutput($stream));
             file_put_contents('php://output', '<br>');
         }
 

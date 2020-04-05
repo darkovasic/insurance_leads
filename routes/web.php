@@ -33,3 +33,5 @@ Route::get('send_test_email', function(){
 });
 
 Route::get('/clear-cache', 'ClearCacheController@index')->middleware('can:register_user');
+
+Route::get('/db-migrate', 'DbMigrateController@index')->middleware('can:register_user');
