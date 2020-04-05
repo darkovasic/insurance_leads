@@ -75722,9 +75722,9 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
-                attrs: { type: "text", id: "dot_number" },
+                attrs: { type: "text", id: "dot_number", disabled: "" },
                 domProps: { value: _vm.dot_number },
-                on: { input: _vm.updateDriverTotal }
+                on: { input: _vm.updateDotNumber }
               }),
               _vm._v(" "),
               _c(

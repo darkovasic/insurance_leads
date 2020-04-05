@@ -118,7 +118,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dot_number">DOT Number</label>
-                    <input type="text" class="form-control" id="dot_number" :value="dot_number" @input="updateDriverTotal">
+                    <input type="text" class="form-control" id="dot_number" :value="dot_number" @input="updateDotNumber" disabled>
                     <small v:if="errors && errors.dot_number" class="text-danger">{{ getError(errors.dot_number) }}</small>
                 </div>
                 <div class="form-group">
