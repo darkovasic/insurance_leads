@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-// use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use App\ApiRequestLog;
@@ -90,7 +90,7 @@ class ApiController extends Controller
                         (object) ['code' => 'mqs_years_of_experience', 'answer' => $lead->years_of_experience],
                         (object) ['code' => 'mqs_legal_entity', 'answer' => $lead->legal_entity],
                         (object) ['code' => 'CoverageTypes', 'answer' => $lead->coverage_type],
-                        (object) ['code' => 'mqs_actual_years_in_business', 'answer' => ''],
+                        (object) ['code' => 'mqs_actual_years_in_business', 'answer' => $this->getYearsInBusiness($lead->id)],
                     ]
                 ]
             ];
@@ -172,5 +172,14 @@ class ApiController extends Controller
         } catch (\Illuminate\Database\QueryException $error) {
             return $error->getMessage();
         }
+    }
+
+    public function getYearsInBusiness($id) {
+
+        $response = DB::select('SELECT TIMESTAMPDIFF(YEAR, add_date_date, CURDATE()) + 1 AS years_in_business FROM leads WHERE id = ' . $id);
+        $years = $response[0]->years_in_business;
+
+        return $years;
+
     }
 }
