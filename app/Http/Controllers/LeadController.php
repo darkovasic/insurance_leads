@@ -68,7 +68,7 @@ class LeadController extends Controller
             'coverage_type'               => 'nullable|string',
         ]);
 
-        $lead = Lead::where('dot_number', $id)->update([
+        $lead = Lead::where('id', $id)->update([
             'legal_name'                  => $request->legal_name,
             'phone'                       => $request->phone,
             'email_address'               => $request->email_address,

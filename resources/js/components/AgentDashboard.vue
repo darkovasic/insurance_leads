@@ -219,7 +219,7 @@
                     buttons: [
                         {
                             title: 'Send',
-                            handler: () => { this.updateLead(this.dot_number), this.hideConfirmationModal() },
+                            handler: () => { this.updateLead(this.lead.id), this.hideConfirmationModal() },
                         },
                         {
                             title: 'Cancel',

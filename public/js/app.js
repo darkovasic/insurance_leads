@@ -2139,7 +2139,7 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
         buttons: [{
           title: 'Send',
           handler: function handler() {
-            _this.updateLead(_this.dot_number), _this.hideConfirmationModal();
+            _this.updateLead(_this.lead.id), _this.hideConfirmationModal();
           }
         }, {
           title: 'Cancel',
