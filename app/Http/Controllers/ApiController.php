@@ -90,7 +90,7 @@ class ApiController extends Controller
                         (object) ['code' => 'mqs_years_of_experience', 'answer' => $lead->years_of_experience],
                         (object) ['code' => 'mqs_legal_entity', 'answer' => $lead->legal_entity],
                         (object) ['code' => 'CoverageTypes', 'answer' => $lead->coverage_type],
-                        (object) ['code' => 'mqs_actual_years_in_business', 'answer' => '',
+                        (object) ['code' => 'mqs_actual_years_in_business', 'answer' => ''],
                     ]
                 ]
             ];

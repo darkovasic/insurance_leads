@@ -110,6 +110,9 @@ let mutations = {
     updateLegalEntity (state, legal_entity) {
         state.lead.legal_entity = legal_entity;
     },
+    updateCoverageType (state, coverage_type) {
+        state.lead.coverage_type = coverage_type;
+    },
 }
 
 export default mutations

@@ -65,6 +65,7 @@ class LeadController extends Controller
             'currently_insured'           => 'nullable|string',
             'years_of_experience'         => 'nullable|integer',
             'legal_entity'                => 'nullable|string',
+            'coverage_type'               => 'nullable|string',
         ]);
 
         $lead = Lead::where('dot_number', $id)->update([
@@ -91,6 +92,7 @@ class LeadController extends Controller
             'currently_insured'           => $request->currently_insured,
             'years_of_experience'         => $request->years_of_experience,
             'legal_entity'                => $request->legal_entity,
+            'coverage_type'               => $request->coverage_type,
         ]);        
 
         return response()->json($lead);

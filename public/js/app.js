@@ -1916,8 +1916,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/constants */ "./resources/js/store/constants.js");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-overlay/dist/vue-loading.css */ "./node_modules/vue-loading-overlay/dist/vue-loading.css");
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_5__);
-var _mapState;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2248,14 +2246,14 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     updateYearsOfExperience: function updateYearsOfExperience(e) {
       this.$store.commit('updateYearsOfExperience', e.target.value);
     },
-    updateLegalEntity: function updateLegalEntity(e) {
-      this.$store.commit('updateLegalEntity', e.target.value);
+    updateLegalEntity: function updateLegalEntity(value) {
+      this.$store.commit('updateLegalEntity', value);
     },
     updateCoverageType: function updateCoverageType(value) {
       this.$store.commit('updateCoverageType', value);
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])((_mapState = {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     phone: function phone(state) {
       return state.lead.phone;
     },
@@ -2327,18 +2325,14 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     years_of_experience: function years_of_experience(state) {
       return state.lead.years_of_experience;
+    },
+    legal_entity: function legal_entity(state) {
+      return state.lead.legal_entity;
+    },
+    coverage_type: function coverage_type(state) {
+      return state.lead.coverage_type;
     }
-  }, _defineProperty(_mapState, "part_time_employees", function part_time_employees(state) {
-    return state.lead.part_time_employees;
-  }), _defineProperty(_mapState, "part_time_employees", function part_time_employees(state) {
-    return state.lead.part_time_employees;
-  }), _defineProperty(_mapState, "part_time_employees", function part_time_employees(state) {
-    return state.lead.part_time_employees;
-  }), _defineProperty(_mapState, "legal_entity", function legal_entity(state) {
-    return state.lead.legal_entity;
-  }), _defineProperty(_mapState, "coverage_type", function coverage_type(state) {
-    return state.lead.coverage_type;
-  }), _mapState))),
+  })),
   components: {
     Datepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_1__["default"],
     Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default.a
@@ -93648,6 +93642,9 @@ var mutations = {
   },
   updateLegalEntity: function updateLegalEntity(state, legal_entity) {
     state.lead.legal_entity = legal_entity;
+  },
+  updateCoverageType: function updateCoverageType(state, coverage_type) {
+    state.lead.coverage_type = coverage_type;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -93705,7 +93702,9 @@ var state = {
     full_time_employees: null,
     part_time_employees: null,
     currently_insured: null,
-    years_of_experience: null
+    years_of_experience: null,
+    legal_entity: null,
+    coverage_type: null
   },
   isLoading: false,
   errors: {},

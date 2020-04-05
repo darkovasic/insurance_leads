@@ -326,8 +326,8 @@
             updateYearsOfExperience(e) {
                 this.$store.commit('updateYearsOfExperience', e.target.value);
             },
-            updateLegalEntity(e) {
-                this.$store.commit('updateLegalEntity', e.target.value);
+            updateLegalEntity(value) {
+                this.$store.commit('updateLegalEntity', value);
             },
             updateCoverageType(value) {
                 this.$store.commit('updateCoverageType', value);
@@ -364,9 +364,6 @@
                 part_time_employees: state => state.lead.part_time_employees,
                 currently_insured: state => state.lead.currently_insured,
                 years_of_experience: state => state.lead.years_of_experience,
-                part_time_employees: state => state.lead.part_time_employees,
-                part_time_employees: state => state.lead.part_time_employees,
-                part_time_employees: state => state.lead.part_time_employees,
                 legal_entity: state => state.lead.legal_entity,
                 coverage_type: state => state.lead.coverage_type,
             })            

@@ -41,7 +41,8 @@ let state = {
         part_time_employees: null,
         currently_insured: null,
         years_of_experience: null,
-        
+        legal_entity: null,
+        coverage_type: null
     },
     isLoading: false,
     errors: {},
