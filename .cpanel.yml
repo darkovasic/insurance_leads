@@ -1,0 +1,67 @@
+---
+
+deployment:
+
+  tasks:
+    # Set folder path variables.
+    - export PROJECT_=coveragecenter
+    - export ROOT_DIR_=/home/srbio
+    - export RELEASE_DIR_=releases
+    - export TEMP_DIR_=temp
+    - export WORK_DIR_=work
+    - export PUBLIC_DIR_=coveragecenter.net
+
+    # Set working folder files you want to keep.
+    - export KEEP_FILE_ENV_=.env
+    - export KEEP_FILE_PROD_=.production.env
+
+    # Remove temporary deployment folder.
+    - rm -rf $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_
+
+    # Create temporary deployment folder.
+    - mkdir -p $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_
+
+    # Copy repo to temporary release folder.
+    - cp -R * $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_/
+    - cp .htaccess $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_/
+
+    # Copy files you want to keep to temporary release folder.
+    - cp $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_/$KEEP_FILE_ENV_ $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_/ | true
+    - cp $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_/$KEEP_FILE_PROD_ $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_/ | true
+
+    # Run composer
+    #- cd $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_
+    #- composer update
+
+    # Sym link public to temporary release folder.
+    - rm -f $ROOT_DIR_/$PUBLIC_DIR_
+    #- unlink $ROOT_DIR_/$PUBLIC_DIR_
+    - ln -sf $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_ $ROOT_DIR_/$PUBLIC_DIR_
+
+    # Make a pause before deleting temporary deployment folder, might be sym linked still
+    - sleep 10
+
+    # Remove working deployment folder.
+    - rm -rf $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_
+
+    # Create working deployment folder.
+    - mkdir -p $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_
+    
+    # Copy repo to working release folder.
+    - cp -R * $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_/
+    - cp .htaccess $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_/
+
+    # Copy files you want to keep from temporary release folder.
+    - cp $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_/$KEEP_FILE_ENV_ $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_/ | true
+    - cp $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_/$KEEP_FILE_PROD_ $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_/ | true
+
+    # Sym link public to working release folder.
+    - unlink $ROOT_DIR_/$PUBLIC_DIR_
+    #- rm -f $ROOT_DIR_/$PUBLIC_DIR_
+    - ln -sf $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$WORK_DIR_ $ROOT_DIR_/$PUBLIC_DIR_
+
+    # Make a pause before deleting temporary deployment folder, might be sym linked still
+    - sleep 10
+
+    # Remove temporary deployment folder.
+    - rm -rf $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_
