@@ -165,7 +165,7 @@
                     	<div style="padding-top:0px; padding-right:40px; padding-bottom:0px; padding-left:40px;">
                             <div style="color: #555555; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: left; border-bottom: 1px solid #ccd6e7; padding-bottom:10px;">
                                 <!--<span style="font-size: 16px; line-height: 1.2; word-break: break-word; mso-line-height-alt: 19px; color: #003188;">What is your phone number:<strong> (954) 415-6266  </strong></span>-->
-                                <span data-mce-style="font-size: 12px; line-height: 14px;" style="font-size: 12px; line-height: 14px; color: #003188;">How many years has this entity been in business:<strong></strong></span>
+                            <span data-mce-style="font-size: 12px; line-height: 14px;" style="font-size: 12px; line-height: 14px; color: #003188;">How many years has this entity been in business:<strong>{{ $yearsInBusiness }}</strong></span>
                             </div>
                         </div>
                     </div>
