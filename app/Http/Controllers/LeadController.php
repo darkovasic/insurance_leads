@@ -41,23 +41,23 @@ class LeadController extends Controller
 
     public function store($id, Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'legal_name'                  => 'required',
             'phone'                       => 'required|digits:10',
             'email_address'               => 'required|email',
-            'dba_name'                    => 'required',
-            'phy_street'                  => 'required',
+            // 'dba_name'                    => 'required',
+            // 'phy_street'                  => 'required',
             'phy_city'                    => 'required',
             'phy_zip'                     => 'required|digits:5',
             'phy_state'                   => 'required|max:2',
-            'nbr_power_unit'              => 'required|integer',
-            'driver_total'                => 'required|integer',
-            'last_insurance_carrier'      => 'required',
+            // 'nbr_power_unit'              => 'required|integer',
+            // 'driver_total'                => 'required|integer',
+            // 'last_insurance_carrier'      => 'required',
             'last_insurance_date'         => 'required|date',
             // 'insurance_cancellation_date' => 'date',
             // 'comment'                     => '',
             'dot_number'                  => 'required',
-            'description'                 => 'required',
+            // 'description'                 => 'required',
             'first_name'                  => 'required',
             'last_name'                   => 'required',
             'full_time_employees'         => 'nullable|integer',
@@ -84,7 +84,7 @@ class LeadController extends Controller
             'insurance_cancellation_date' => Carbon::parse($request->insurance_cancellation_date)->toDateTimeString(),
             'comment'                     => $request->comment,
             'dot_number'                  => $request->dot_number,
-            'description'                 => $request->description,            
+            'description'                 => $request->description,
             'first_name'                  => $request->first_name,
             'last_name'                   => $request->last_name,
             'full_time_employees'         => $request->full_time_employees,
@@ -93,7 +93,7 @@ class LeadController extends Controller
             'years_of_experience'         => $request->years_of_experience,
             'legal_entity'                => $request->legal_entity,
             'coverage_type'               => $request->coverage_type,
-        ]);        
+        ]);
 
         return response()->json($lead);
     }

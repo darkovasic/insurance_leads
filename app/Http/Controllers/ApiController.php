@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use App\ApiRequestLog;
+use Log;
 
 class ApiController extends Controller
 {
@@ -15,6 +16,30 @@ class ApiController extends Controller
     protected $password;
     protected $urlAuth;
     protected $urlCreate;
+
+    /**
+     * Map of request -> BP API codes
+     *
+     * @var array
+     */
+    protected $bp_api_codes_map = [
+        'phone' => 'mqs_phone',
+        'legal_name' => 'mqs_business_name',
+        'first_name' => 'mqs_first_name',
+        'last_name' => 'mqs_last_name',
+        'email_address' => 'mqs_email',
+        'phy_street' => 'mqs_street_1',
+        'phy_city' => 'mqs_city',
+        'phy_state' => 'mqs_state',
+        'phy_zip' => 'mqs_zipcode',
+        'full_time_employees' => 'mqs_full_time_employees',
+        'part_time_employees' => 'mqs_part_time_employees',
+        'currently_insured' => 'mqs_currently_insured',
+        'years_of_experience' => 'mqs_years_of_experience',
+        'legal_entity' => 'mqs_legal_entity',
+        'coverage_type' => 'CoverageTypes',
+        'actual_years_in_business' => 'mqs_actual_years_in_business'
+    ];
 
     public function __construct() {
         $this->username   = env('BOLD_PENGUIN_CLIENT_ID');
@@ -62,6 +87,8 @@ class ApiController extends Controller
     public function sendLead($access_token, $lead) {
 
         try {
+            $data = $this->compileApplicationForm($lead);
+
             $curl = curl_init();
 
             if ($curl === false) {
@@ -71,28 +98,6 @@ class ApiController extends Controller
             $headers = [
                 'Authorization: Bearer ' . $access_token,
                 'Content-Type: application/json'
-            ];
-
-            $data = [
-                'application_form' => [
-                    'answer_values' => [
-                        (object) ['code' => 'mqs_business_name', 'answer' => $lead->legal_name],
-                        (object) ['code' => 'mqs_phone', 'answer' => $lead->phone],
-                        (object) ['code' => 'mqs_email', 'answer' => $lead->email_address],
-                        (object) ['code' => 'mqs_street_1', 'answer' => $lead->phy_street],
-                        (object) ['code' => 'mqs_city', 'answer' => $lead->phy_city],
-                        (object) ['code' => 'mqs_state', 'answer' => \StateHelper::instance()->getStateNameFromAbbreviation($lead->phy_state, 'US')],
-                        (object) ['code' => 'mqs_zipcode', 'answer' => $lead->phy_zip],
-                        (object) ['code' => 'mqs_full_time_employees', 'answer' => $lead->full_time_employees],
-                        (object) ['code' => 'mqs_first_name', 'answer' => $lead->first_name],
-                        (object) ['code' => 'mqs_part_time_employees', 'answer' => $lead->part_time_employees],
-                        (object) ['code' => 'mqs_currently_insured', 'answer' => $lead->currently_insured],
-                        (object) ['code' => 'mqs_years_of_experience', 'answer' => $lead->years_of_experience],
-                        (object) ['code' => 'mqs_legal_entity', 'answer' => $lead->legal_entity],
-                        (object) ['code' => 'CoverageTypes', 'answer' => $lead->coverage_type],
-                        (object) ['code' => 'mqs_actual_years_in_business', 'answer' => $this->getYearsInBusiness($lead->id)],
-                    ]
-                ]
             ];
 
             curl_setopt($curl, CURLOPT_POST, 1);
@@ -180,6 +185,36 @@ class ApiController extends Controller
         $years = $response[0]->years_in_business;
 
         return $years;
+    }
 
+    /**
+     * Compiles application form data
+     *
+     * @param  string[2]  $lead  Lead request object
+     * @return array Compiled application form
+     */
+    protected function compileApplicationForm($lead) {
+
+        // Init empty application form
+        $data = [
+            'application_form' => [
+                'answer_values' => []
+            ]
+        ];
+
+        // Update/add missing fields first
+        $lead->merge(['phy_state' => \StateHelper::instance()->getStateNameFromAbbreviation($lead->phy_state, 'US')]);
+        $lead->merge(['actual_years_in_business' => $this->getYearsInBusiness($lead->id)]);
+
+        // Add items to application form
+        foreach ($this->bp_api_codes_map as $property => $code)
+        {
+            if (!empty($lead->$property))
+            {
+                $data['application_form']['answer_values'][] = (object) ['code' => $code, 'answer' => $lead->$property];
+            }
+        }
+
+        return $data;
     }
 }
