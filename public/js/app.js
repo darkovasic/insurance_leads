@@ -2168,9 +2168,9 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     deleteLead: function deleteLead(id) {
       this.$store.dispatch('deleteLead', id);
     },
-    // callApi(lead) {
-    //     this.$store.dispatch('callApi', lead);
-    // },
+    sendErEmail: function sendErEmail(id) {
+      this.$store.dispatch('sendErEmail', id);
+    },
     getError: function getError(error) {
       if (error) return error[0];
     },
@@ -76004,7 +76004,19 @@ var render = function() {
               [
                 _c("b-button", { on: { click: _vm.showConfirmationModal } }, [
                   _vm._v("Send to Broker")
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.sendErEmail(_vm.lead)
+                      }
+                    }
+                  },
+                  [_vm._v("Send ER Email")]
+                )
               ],
               1
             )
@@ -93167,22 +93179,46 @@ var actions = {
     })["catch"](function (error) {
       console.log("deleteLead", error);
     });
-  } // sendLead({commit}, lead) {
-  //     commit('SEND_LEAD');
-  //     axios.post(`/api/send-lead`, lead)
-  //         .then(response => {
-  //             Vue.notify({
-  //                 group: 'lead',
-  //                 type: 'success',
-  //                 title: 'SUCCESS!',
-  //                 text: 'Lead successfuly sent to Bold Penguin.'
-  //             });
-  //             commit('SEND_LEAD_SUCCESS', response.data);
-  //         }).catch(error => {
-  //             console.log("bp_error", error);
-  //         })
-  // },
-
+  },
+  sendErEmail: function sendErEmail(_ref4) {
+    var commit = _ref4.commit,
+        state = _ref4.state;
+    commit('UPDATE_LEAD');
+    axios.put("/api/lead/".concat(state.lead.id), state.lead).then(function (response) {
+      commit('UPDATE_LEAD_SUCCESS', response.data);
+      Vue.notify({
+        group: 'lead',
+        type: 'success',
+        title: 'SUCCESS!',
+        text: 'Lead successfuly saved in the database.'
+      });
+      console.log('lead id', state.lead.id);
+      axios.post("/api/send-er-email", {
+        'id': state.lead.id
+      }).then(function (response) {
+        if (response && response.data && response.data.error) {
+          Vue.notify({
+            group: 'lead',
+            type: 'warn',
+            title: 'ER Mail not sent.',
+            text: response.data.error
+          });
+        }
+      })["catch"](function (error) {
+        console.log("send_er_email_error", error);
+      });
+    })["catch"](function (error) {
+      if (error.response.status === 422) {
+        commit('UPDATE_LEAD_ERROR', error.response.data);
+        Vue.notify({
+          group: 'lead',
+          type: 'error',
+          title: 'ERROR!',
+          text: error.response.data.message
+        });
+      }
+    });
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
 

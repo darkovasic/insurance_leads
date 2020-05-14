@@ -80,22 +80,45 @@ console.log("fetchLead", id)
         });
     },
 
-    // sendLead({commit}, lead) {
 
-    //     commit('SEND_LEAD');
-    //     axios.post(`/api/send-lead`, lead)
-    //         .then(response => {
-    //             Vue.notify({
-    //                 group: 'lead',
-    //                 type: 'success',
-    //                 title: 'SUCCESS!',
-    //                 text: 'Lead successfuly sent to Bold Penguin.'
-    //             });
-    //             commit('SEND_LEAD_SUCCESS', response.data);
-    //         }).catch(error => {
-    //             console.log("bp_error", error);
-    //         })
-    // },
+    sendErEmail({commit, state}) {
+        commit('UPDATE_LEAD');
+        axios.put(`/api/lead/${state.lead.id}`, state.lead)
+            .then(response => {
+                commit('UPDATE_LEAD_SUCCESS', response.data);
+                Vue.notify({
+                    group: 'lead',
+                    type: 'success',
+                    title: 'SUCCESS!',
+                    text: 'Lead successfuly saved in the database.'
+                });
+console.log('lead id', state.lead.id);                
+                axios.post(`/api/send-er-email`, {'id' : state.lead.id})
+                    .then(response => {
+                        if (response && response.data && response.data.error) {
+                            Vue.notify({
+                                group: 'lead',
+                                type: 'warn',
+                                title: 'ER Mail not sent.',
+                                text: response.data.error
+                            });
+                        }
+                    }).catch(error => {
+                        console.log("send_er_email_error", error);
+                    })
+
+            }).catch(error => {
+                if (error.response.status === 422) {
+                    commit('UPDATE_LEAD_ERROR', error.response.data);
+                    Vue.notify({
+                        group: 'lead',
+                        type: 'error',
+                        title: 'ERROR!',
+                        text: error.response.data.message
+                    });
+                }
+            });        
+    }
 }
 
 export default actions;

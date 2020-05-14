@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Mail\SendErEmail;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('lead/{id}', 'LeadController@delete');
 
     Route::post('send-lead', 'ApiController@boldPenguinAuth');
+
+    Route::post('send-er-email', function(Request $request) {
+        $id = $request->input('id');
+        $email = new SendErEmail($id);
+        Mail::send($email);
+    });
 
 });
 

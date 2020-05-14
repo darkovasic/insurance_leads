@@ -178,7 +178,7 @@
             <div class="col-md-12">
                 <div class="input-group-btn lead-search float-right">
                     <b-button @click="showConfirmationModal">Send to Broker</b-button>
-                    <!-- <b-button @click="callApi(lead)">Send to Broker</b-button> -->
+                    <b-button @click="sendErEmail(lead)">Send ER Email</b-button>
                 </div>
             </div>
         </div>
@@ -246,9 +246,9 @@
             deleteLead(id) {
                 this.$store.dispatch('deleteLead', id);
             },
-            // callApi(lead) {
-            //     this.$store.dispatch('callApi', lead);
-            // },
+            sendErEmail(id) {
+                this.$store.dispatch('sendErEmail', id);
+            },
 
             getError(error) {
                 if (error) return error[0];
