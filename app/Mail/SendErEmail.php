@@ -37,8 +37,11 @@ class SendErEmail extends Mailable
      */
     public function build()
     {
-        
-        // dd($this->lead);
+        $this->withSwiftMessage(function ($message) {
+            $message->type = 'er';
+            $message->senderId = $this->user->id;
+            $message->leadId = $this->lead->id;
+        });
 
         return $this
         ->from($this->user->email)
