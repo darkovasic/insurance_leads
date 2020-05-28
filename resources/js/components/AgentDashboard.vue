@@ -31,7 +31,7 @@
         <div class="row" style="background:burlywood">
             <div class="col-md-4 form-column">
                 <div class="form-group">
-                    <label for="legal_name">Legal Name</label>
+                    <label for="legal_name">Legal Name <span>*</span></label>
                     <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
                     <small v:if="errors && errors.legal_name" class="text-danger">{{ getError(errors.legal_name) }}</small>
                 </div>
@@ -46,7 +46,7 @@
                     <small v:if="errors && errors.phy_street" class="text-danger">{{ getError(errors.phy_street) }}</small>
                 </div>
                 <div class="form-group">
-                    <label for="phy_zip">ZIP Code</label>
+                    <label for="phy_zip">ZIP Code <span>*</span></label>
                     <input type="text" class="form-control" id="phy_zip" :value="phy_zip" @input="updateZipCode">
                     <small v:if="errors && errors.phy_zip" class="text-danger">{{ getError(errors.phy_zip) }}</small>
                 </div>
@@ -83,7 +83,7 @@
                 <div class="row">
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="first_name">First Name</label>
+                            <label for="first_name">First Name <span>*</span></label>
                             <input type="text" class="form-control" id="first_name" :value="first_name" @input="updateFirstName">
                             <small v:if="errors && errors.first_name" class="text-danger">{{ getError(errors.first_name) }}</small>
                         </div>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone">Phone Number <span>*</span></label>
                     <input type="text" class="form-control" id="phone" :value="phone" @input="updateTelephone">
                     <small v:if="errors && errors.phone" class="text-danger">{{ getError(errors.phone) }}</small>
                 </div>
@@ -107,12 +107,12 @@
                     <small v:if="errors && errors.dba_name" class="text-danger">{{ getError(errors.dba_name) }}</small>
                 </div>
                 <div class="form-group">
-                    <label for="phy_city">City</label>
+                    <label for="phy_city">City <span>*</span></label>
                     <input type="text" class="form-control" id="phy_city" :value="phy_city" @input="updateCity">
                     <small v:if="errors && errors.phy_city" class="text-danger">{{ getError(errors.phy_city) }}</small>
                 </div>
                 <div class="form-group">
-                    <label for="phy_state">State</label>
+                    <label for="phy_state">State <span>*</span></label>
                     <b-select id="phy_state" :options="state_hash" :value="phy_state" @input="updateState"></b-select>
                     <small v:if="errors && errors.phy_state" class="text-danger">{{ getError(errors.phy_state) }}</small>
                 </div>
@@ -397,6 +397,9 @@
     }
     .form-column {
         padding-top: 1rem;
+    }
+    label span {
+        color: crimson;
     }
 </style>
 

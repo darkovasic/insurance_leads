@@ -42991,7 +42991,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n}\n#dot_search[data-v-0f85a8ba], #phone_search[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn-secondary[data-v-0f85a8ba] {\n    background:burlywood;\n    color: #212529;\n    border-color: burlywood;\n}\n.form-column[data-v-0f85a8ba] {\n    padding-top: 1rem;\n}\n", ""]);
+exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n}\n#dot_search[data-v-0f85a8ba], #phone_search[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn-secondary[data-v-0f85a8ba] {\n    background:burlywood;\n    color: #212529;\n    border-color: burlywood;\n}\n.form-column[data-v-0f85a8ba] {\n    padding-top: 1rem;\n}\nlabel span[data-v-0f85a8ba] {\n    color: crimson;\n}\n", ""]);
 
 // exports
 
@@ -75391,9 +75391,7 @@ var render = function() {
         [
           _c("div", { staticClass: "col-md-4 form-column" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "legal_name" } }, [
-                _vm._v("Legal Name")
-              ]),
+              _vm._m(0),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
@@ -75455,7 +75453,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "phy_zip" } }, [_vm._v("ZIP Code")]),
+              _vm._m(1),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
@@ -75577,9 +75575,7 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "first_name" } }, [
-                    _vm._v("First Name")
-                  ]),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "form-control",
@@ -75625,9 +75621,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "phone" } }, [
-                _vm._v("Phone Number")
-              ]),
+              _vm._m(3),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
@@ -75669,7 +75663,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "phy_city" } }, [_vm._v("City")]),
+              _vm._m(4),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
@@ -75692,7 +75686,7 @@ var render = function() {
               "div",
               { staticClass: "form-group" },
               [
-                _c("label", { attrs: { for: "phy_state" } }, [_vm._v("State")]),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("b-select", {
                   attrs: {
@@ -76027,7 +76021,62 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "legal_name" } }, [
+      _vm._v("Legal Name "),
+      _c("span", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "phy_zip" } }, [
+      _vm._v("ZIP Code "),
+      _c("span", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "first_name" } }, [
+      _vm._v("First Name "),
+      _c("span", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "phone" } }, [
+      _vm._v("Phone Number "),
+      _c("span", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "phy_city" } }, [
+      _vm._v("City "),
+      _c("span", [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "phy_state" } }, [
+      _vm._v("State "),
+      _c("span", [_vm._v("*")])
+    ])
+  }
+]
 render._withStripped = true
 
 
