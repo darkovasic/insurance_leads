@@ -93160,13 +93160,13 @@ var actions = {
         state = _ref.state;
     commit('UPDATE_LEAD');
     axios.put("/api/lead/".concat(id), state.lead).then(function (response) {
-      commit('UPDATE_LEAD_SUCCESS', response.data);
-      Vue.notify({
-        group: 'lead',
-        type: 'success',
-        title: 'SUCCESS!',
-        text: 'Lead successfuly saved in the database.'
-      });
+      commit('UPDATE_LEAD_SUCCESS', response.data); // Vue.notify({
+      //     group: 'lead',
+      //     type: 'success',
+      //     title: 'SUCCESS!',
+      //     text: 'Lead successfuly saved in the database.'
+      // });
+
       commit('SEND_LEAD');
       axios.post("/api/send-lead", state.lead).then(function (response) {
         commit('SEND_LEAD_SUCCESS', response.data);
@@ -93203,7 +93203,6 @@ var actions = {
   },
   fetchLead: function fetchLead(_ref2, id) {
     var commit = _ref2.commit;
-    console.log("fetchLead", id);
     commit('FETCH_LEAD');
     axios.post("/api/lead", id).then(function (response) {
       if (!response.data.id) {
@@ -93241,7 +93240,6 @@ var actions = {
         title: 'SUCCESS!',
         text: 'Lead successfuly saved in the database.'
       });
-      console.log('lead id', state.lead.id);
       axios.post("/api/send-er-email", {
         'id': state.lead.id
       }).then(function (response) {

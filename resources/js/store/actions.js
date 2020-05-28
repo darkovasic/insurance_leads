@@ -6,12 +6,12 @@ let actions = {
         axios.put(`/api/lead/${id}`, state.lead)
             .then(response => {
                 commit('UPDATE_LEAD_SUCCESS', response.data);
-                Vue.notify({
-                    group: 'lead',
-                    type: 'success',
-                    title: 'SUCCESS!',
-                    text: 'Lead successfuly saved in the database.'
-                });
+                // Vue.notify({
+                //     group: 'lead',
+                //     type: 'success',
+                //     title: 'SUCCESS!',
+                //     text: 'Lead successfuly saved in the database.'
+                // });
 
                 commit('SEND_LEAD');
                 axios.post(`/api/send-lead`, state.lead)
@@ -50,7 +50,7 @@ let actions = {
     },
 
     fetchLead({commit}, id) {  
-console.log("fetchLead", id)
+
         commit('FETCH_LEAD');
         axios.post(`/api/lead`, id)
             .then(response => {
@@ -92,7 +92,7 @@ console.log("fetchLead", id)
                     title: 'SUCCESS!',
                     text: 'Lead successfuly saved in the database.'
                 });
-console.log('lead id', state.lead.id);                
+               
                 axios.post(`/api/send-er-email`, {'id' : state.lead.id})
                     .then(response => {
                         if (response && response.data && response.data.error) {
