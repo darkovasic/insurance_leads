@@ -17,7 +17,7 @@
                     <agent-dashboard>
                         {{ csrf_field() }}
                     </agent-dashboard>
-                    
+
                 </div>
             </div>
         </div>
