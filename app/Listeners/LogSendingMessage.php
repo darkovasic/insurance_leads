@@ -7,8 +7,6 @@ use Illuminate\Mail\Events\MessageSending;
 use Illuminate\Queue\InteractsWithQueue;
 use App\SentEmailsLog;
 
-use Log;
-
 class LogSendingMessage
 {
     /**
@@ -30,8 +28,6 @@ class LogSendingMessage
     public function handle(MessageSending $event)
     {
         $message = $event->message;
-
-        return;
 
         $messageId = $message->getId();
         $senderId = $message->senderId;
