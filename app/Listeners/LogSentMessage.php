@@ -36,9 +36,11 @@ class LogSentMessage
         if ($type === 'er') {
 
             $log = SentEmailsLog::firstWhere('message_id', $messageId);
-            $log->status = $status;
-            $log->save();
-
+            if (!empty($log))
+            {
+                $log->status = $status;
+                $log->save();
+            }
         }
     }
 }
