@@ -30,6 +30,7 @@ class LogSendingMessage
     public function handle(MessageSending $event)
     {
         $message = $event->message;
+
         return;
 
         $messageId = $message->getId();
