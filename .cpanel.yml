@@ -4,12 +4,12 @@ deployment:
 
   tasks:
     # Set folder path variables.
-    - export PROJECT_=staging-coveragecenter
+    - export PROJECT_=coveragecenter
     - export ROOT_DIR_=/home/srbio
     - export RELEASE_DIR_=releases
     - export TEMP_DIR_=temp
     - export WORK_DIR_=work
-    - export PUBLIC_DIR_=staging.coveragecenter.net
+    - export PUBLIC_DIR_=coveragecenter.net
 
     # Set working folder files you want to keep.
     - export KEEP_FILE_ENV_=.env
