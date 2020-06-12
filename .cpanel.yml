@@ -9,7 +9,7 @@ deployment:
     - export RELEASE_DIR_=releases
     - export TEMP_DIR_=temp
     - export WORK_DIR_=work
-    - export PUBLIC_DIR_=coveragecenter.net
+    - export PUBLIC_DIR_=test.coveragecenter.net
 
     # Set working folder files you want to keep.
     - export KEEP_FILE_ENV_=.env
