@@ -9,6 +9,7 @@
 .production.env
 .env.backup
 .cpanel.yml
+testfile.txt
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
