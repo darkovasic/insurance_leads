@@ -24,7 +24,7 @@ class SendErEmail extends Mailable
      * @return void
      */
     public function __construct($id)
-    {      
+    {
         $this->user = auth()->user();
         $this->lead = Lead::where('id', '=', $id)->first();
         $this->yearsInBusiness = $this->getYearsInBusiness($id);
@@ -46,7 +46,7 @@ class SendErEmail extends Mailable
         return $this
         ->from($this->user->email)
         ->to($this->lead->email_address)
-        ->subject('Lead Review')
+        ->subject($this->lead->legal_name . ' Truck Insurance Quote')
         ->view('emails.er_email');
     }
 
