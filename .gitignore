@@ -8,6 +8,7 @@
 .staging.env
 .production.env
 .env.backup
+.cpanel.yml
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
