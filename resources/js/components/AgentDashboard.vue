@@ -33,12 +33,14 @@
                 <div class="form-group">
                     <label for="legal_name">Legal Name <span>*</span></label>
                     <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
+                    <small v-if="$v.lead.legal_name.$error && !$v.lead.legal_name.required" class="text-danger">Legal Name is required</small>                    
                     <small v:if="errors && errors.legal_name" class="text-danger">{{ getError(errors.legal_name) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="email_address">Email</label>
                     <input type="email" class="form-control" id="email_address" :value="email_address" @input="updateEmail">
-                    <small v:if="errors && errors.email_address" class="text-danger">{{ getError(errors.email_address) }}</small>
+                    <small v-if="$v.lead.email_address.$error && !$v.lead.email_address.email" class="text-danger">Email is not a properly formatted email address</small> 
+                    <small v:if="errors && errors.email_address" class="text-danger">{{ getError(errors.email_address) }}</small>                  
                 </div>
                 <div class="form-group">
                     <label for="phy_street">Street</label>
@@ -48,6 +50,8 @@
                 <div class="form-group">
                     <label for="phy_zip">ZIP Code <span>*</span></label>
                     <input type="text" class="form-control" id="phy_zip" :value="phy_zip" @input="updateZipCode">
+                    <small v-if="$v.lead.phy_zip.$error && !$v.lead.phy_zip.required" class="text-danger">ZIP Code is required</small>
+                    <small v-if="$v.lead.phy_zip.$error && !$v.lead.phy_zip.between" class="text-danger">ZIP Code must have 5 digits</small>
                     <small v:if="errors && errors.phy_zip" class="text-danger">{{ getError(errors.phy_zip) }}</small>
                 </div>
 
@@ -85,6 +89,7 @@
                         <div class="form-group">
                             <label for="first_name">First Name <span>*</span></label>
                             <input type="text" class="form-control" id="first_name" :value="first_name" @input="updateFirstName">
+                            <small v-if="$v.lead.first_name.$error && !$v.lead.first_name.required" class="text-danger">First Name is required</small>
                             <small v:if="errors && errors.first_name" class="text-danger">{{ getError(errors.first_name) }}</small>
                         </div>
                     </div>
@@ -99,6 +104,8 @@
                 <div class="form-group">
                     <label for="phone">Phone Number <span>*</span></label>
                     <input type="text" class="form-control" id="phone" :value="phone" @input="updateTelephone">
+                    <small v-if="$v.lead.phone.$error && !$v.lead.phone.required" class="text-danger">Phone Number is required</small>
+                    <small v-if="$v.lead.phone.$error && !$v.lead.phone.between" class="text-danger">Phone Number must have 10 digits</small>
                     <small v:if="errors && errors.phone" class="text-danger">{{ getError(errors.phone) }}</small>
                 </div>
                 <div class="form-group">
@@ -109,11 +116,13 @@
                 <div class="form-group">
                     <label for="phy_city">City <span>*</span></label>
                     <input type="text" class="form-control" id="phy_city" :value="phy_city" @input="updateCity">
+                    <small v-if="$v.lead.phy_city.$error && !$v.lead.phy_city.required" class="text-danger">City is required</small>
                     <small v:if="errors && errors.phy_city" class="text-danger">{{ getError(errors.phy_city) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="phy_state">State <span>*</span></label>
                     <b-select id="phy_state" :options="state_hash" :value="phy_state" @input="updateState"></b-select>
+                    <small v-if="$v.lead.phy_state.$error && !$v.lead.phy_state.required" class="text-danger">State is required</small>
                     <small v:if="errors && errors.phy_state" class="text-danger">{{ getError(errors.phy_state) }}</small>
                 </div>
                 <div class="form-group">
@@ -191,7 +200,13 @@
     import Datepicker from 'vuejs-datepicker';
     import Loading from 'vue-loading-overlay';
     import { BButton, BFormSelect } from 'bootstrap-vue';
-    import { state_hash, currently_insured_hash, legal_entity_hash, coverage_type_hash } from '../store/constants'
+    import { required, email, between } from "vuelidate/lib/validators";
+    import { 
+        state_hash, 
+        currently_insured_hash, 
+        legal_entity_hash, 
+        coverage_type_hash 
+    } from '../store/constants';
 
     import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -206,13 +221,28 @@
                 state_hash: state_hash,
                 currently_insured_hash: currently_insured_hash,
                 legal_entity_hash: legal_entity_hash,
-                coverage_type_hash: coverage_type_hash
+                coverage_type_hash: coverage_type_hash,
             }
         },
         mounted() {
         },
+        validations: {
+            lead: {
+                legal_name: { required },
+                email_address: { email },
+                phy_city: { required },
+                phy_zip: { required, between: between(10000, 99999) },
+                phy_state: { required },
+                first_name: { required },
+                phone: { required, between: between(1000000000, 9999999999) }
+            }
+        },        
         methods: {
             showConfirmationModal () {
+                // this.$v.lead.$reset();
+
+                if (this.$v.$invalid) return;
+
                 this.$modal.show('dialog', {
                     title: 'Are you sure?',
                     text: 'Do you want to send this lead to the broker?',
@@ -232,12 +262,12 @@
                 this.$modal.hide('dialog');
             },
 
-            fetchLeadByDotNumber(id) {
-                let term = { dot_number: id };
+            fetchLeadByDotNumber(dot_number) {
+                let term = { dot_number: dot_number };
                 this.$store.dispatch('fetchLead', term);
             },
-            fetchLeadByPhoneNumber(id) {
-                let term = { phone: id };
+            fetchLeadByPhoneNumber(phone) {
+                let term = { phone: phone };
                 this.$store.dispatch('fetchLead', term);
             },
             updateLead(id) {            
@@ -259,18 +289,22 @@
             },
             updateTelephone(e) {
                 this.$store.commit('updateTelephone', e.target.value);
+                this.$v.lead.phone.$touch();
             },
             updateLegalName(e) {
                 this.$store.commit('updateLegalName', e.target.value);
+                this.$v.lead.legal_name.$touch();
             },
             updateEmail(e) {
                 this.$store.commit('updateEmail', e.target.value);
+                this.$v.lead.email_address.$touch();
             },
             updateStreet(e) {
                 this.$store.commit('updateStreet', e.target.value);
             },
             updateZipCode(e) {
                 this.$store.commit('updateZipCode', e.target.value);
+                this.$v.lead.phy_zip.$touch();
             },
             updateNbrPowerUnit(e) {
                 this.$store.commit('updateNbrPowerUnit', e.target.value);
@@ -283,9 +317,11 @@
             },
             updateCity(e) {
                 this.$store.commit('updateCity', e.target.value);
+                this.$v.lead.phy_city.$touch();
             },
             updateState(value) {
                 this.$store.commit('updateState', value);
+                this.$v.lead.phy_state.$touch();
             },
             updateDriverTotal(e) {
                 this.$store.commit('updateDriverTotal', e.target.value);
@@ -310,6 +346,7 @@
             },
             updateFirstName(e) {
                 this.$store.commit('updateFirstName', e.target.value);
+                this.$v.lead.first_name.$touch();
             },
             updateLastName(e) {
                 this.$store.commit('updateLastName', e.target.value);
