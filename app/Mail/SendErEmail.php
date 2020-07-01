@@ -44,10 +44,11 @@ class SendErEmail extends Mailable
         });
 
         return $this
-        ->from($this->user->email)
-        ->to($this->lead->email_address)
-        ->subject($this->lead->legal_name . ' Truck Insurance Quote')
-        ->view('emails.er_email');
+            ->from($this->user->email)
+            ->to($this->lead->email_address)
+            ->bcc(env('MAIL_BCC_ADDRESS', 'dukic.n@gmail.com'))
+            ->subject($this->lead->legal_name . ' Truck Insurance Quote')
+            ->view('emails.er_email');
     }
 
     public function getYearsInBusiness($id) {
