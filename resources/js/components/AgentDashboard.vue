@@ -372,30 +372,22 @@
             updateCoverageType(value) {
                 this.$store.commit('updateCoverageType', value);
             },
-copyToClipboard () {
-    var elements = ["dot_number", "legal_name", "first_name", "last_name", "email_address", "phone", "dba_name", "phy_street", "phy_zip", "phy_city", "phy_state", "nbr_power_unit", "driver_total", "last_insurance_carrier", "last_insurance_date", "full_time_employees", "part_time_employees", "currently_insured", "years_of_experience", "legal_entity", "coverage_type", "insurance_cancellation_date"];
-    var copiedText = '';
-    var i;
-    for (i = 0; i < elements.length; i++) {
-        var element = document.getElementById(elements[i]);
-        copiedText = copiedText + "\n" + elements[i] + ": " + element.value;
-    }
+            copyToClipboard () {
+                var elements = ["dot_number", "legal_name", "first_name", "last_name", "email_address", "phone", "dba_name", "phy_street", "phy_zip", "phy_city", "phy_state", "nbr_power_unit", "driver_total", "last_insurance_carrier", "last_insurance_date", "full_time_employees", "part_time_employees", "currently_insured", "years_of_experience", "legal_entity", "coverage_type", "insurance_cancellation_date"];
+                var copiedText = '';
+                var i;
+                for (i = 0; i < elements.length; i++) {
+                    var element = document.getElementById(elements[i]);
+                    copiedText = copiedText + "\n" + elements[i] + ": " + element.value;
+                }
 
-    var dummy = document.createElement("textarea");
-    document.body.appendChild(dummy);
-    dummy.value = copiedText;
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-
-
-
-    alert('copired: ' + copiedText);
-  //var copyGfGText = document.getElementById("legal_name");
-  //copyGfGText.select();
-  //document.execCommand("copy");
-  //alert("Copied the text: " + copyGfGText.value);
-},
+                var dummy = document.createElement("textarea");
+                document.body.appendChild(dummy);
+                dummy.value = copiedText;
+                dummy.select();
+                document.execCommand("copy");
+                document.body.removeChild(dummy);
+            },
 
 
         },

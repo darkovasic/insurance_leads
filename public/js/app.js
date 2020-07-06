@@ -2319,10 +2319,6 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
       dummy.select();
       document.execCommand("copy");
       document.body.removeChild(dummy);
-      alert('copired: ' + copiedText); //var copyGfGText = document.getElementById("legal_name");
-      //copyGfGText.select();
-      //document.execCommand("copy");
-      //alert("Copied the text: " + copyGfGText.value);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
