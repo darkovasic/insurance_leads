@@ -2121,6 +2121,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2299,6 +2302,27 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     },
     updateCoverageType: function updateCoverageType(value) {
       this.$store.commit('updateCoverageType', value);
+    },
+    copyToClipboard: function copyToClipboard() {
+      var elements = ["dot_number", "legal_name", "first_name", "last_name", "email_address", "phone", "dba_name", "phy_street", "phy_zip", "phy_city", "phy_state", "nbr_power_unit", "driver_total", "last_insurance_carrier", "last_insurance_date", "full_time_employees", "part_time_employees", "currently_insured", "years_of_experience", "legal_entity", "coverage_type", "insurance_cancellation_date"];
+      var copiedText = '';
+      var i;
+
+      for (i = 0; i < elements.length; i++) {
+        var element = document.getElementById(elements[i]);
+        copiedText = copiedText + "\n" + elements[i] + ": " + element.value;
+      }
+
+      var dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = copiedText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      alert('copired: ' + copiedText); //var copyGfGText = document.getElementById("legal_name");
+      //copyGfGText.select();
+      //document.execCommand("copy");
+      //alert("Copied the text: " + copyGfGText.value);
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
@@ -75964,6 +75988,17 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c(
               "div",
+              { staticClass: "input-group-btn lead-search float-left" },
+              [
+                _c("b-button", { on: { click: _vm.copyToClipboard } }, [
+                  _vm._v("Copy to clipboard")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
               { staticClass: "input-group-btn lead-search float-right" },
               [
                 _c("b-button", { on: { click: _vm.showConfirmationModal } }, [
@@ -95733,8 +95768,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/darko/Projects/insurance_leads/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/darko/Projects/insurance_leads/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! G:\xampp\htdocs\staging-coveragecenter\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! G:\xampp\htdocs\staging-coveragecenter\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

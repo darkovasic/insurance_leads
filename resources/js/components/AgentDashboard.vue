@@ -1,9 +1,9 @@
 <template>
     <form>
         <slot></slot>
-        <loading 
-            :active.sync="isLoading" 
-            :can-cancel="false" 
+        <loading
+            :active.sync="isLoading"
+            :can-cancel="false"
             :is-full-page="false">
         </loading>
         <notifications group="lead" />
@@ -33,14 +33,14 @@
                 <div class="form-group">
                     <label for="legal_name">Legal Name <span>*</span></label>
                     <input type="text" class="form-control" id="legal_name" :value="legal_name" @input="updateLegalName">
-                    <small v-if="$v.lead.legal_name.$error && !$v.lead.legal_name.required" class="text-danger">Legal Name is required</small>                    
+                    <small v-if="$v.lead.legal_name.$error && !$v.lead.legal_name.required" class="text-danger">Legal Name is required</small>
                     <small v:if="errors && errors.legal_name" class="text-danger">{{ getError(errors.legal_name) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="email_address">Email</label>
                     <input type="email" class="form-control" id="email_address" :value="email_address" @input="updateEmail">
-                    <small v-if="$v.lead.email_address.$error && !$v.lead.email_address.email" class="text-danger">Email is not a properly formatted email address</small> 
-                    <small v:if="errors && errors.email_address" class="text-danger">{{ getError(errors.email_address) }}</small>                  
+                    <small v-if="$v.lead.email_address.$error && !$v.lead.email_address.email" class="text-danger">Email is not a properly formatted email address</small>
+                    <small v:if="errors && errors.email_address" class="text-danger">{{ getError(errors.email_address) }}</small>
                 </div>
                 <div class="form-group">
                     <label for="phy_street">Street</label>
@@ -81,7 +81,7 @@
                     <label for="description">Description</label>
                     <input type="text" class="form-control" id="description" :value="description" @input="updateDescription">
                     <small v:if="errors && errors.description" class="text-danger">{{ getError(errors.description) }}</small>
-                </div>                           
+                </div>
             </div>
             <div class="col-md-4 form-column">
                 <div class="row">
@@ -185,6 +185,9 @@
         </div>
         <div class="row" style="background:cadetblue">
             <div class="col-md-12">
+                <div class="input-group-btn lead-search float-left">
+                    <b-button @click="copyToClipboard">Copy to clipboard</b-button>
+                </div>
                 <div class="input-group-btn lead-search float-right">
                     <b-button @click="showConfirmationModal">Send to Broker</b-button>
                     <b-button @click="sendErEmail(lead)">Send ER Email</b-button>
@@ -201,11 +204,11 @@
     import Loading from 'vue-loading-overlay';
     import { BButton, BFormSelect } from 'bootstrap-vue';
     import { required, email, between } from "vuelidate/lib/validators";
-    import { 
-        state_hash, 
-        currently_insured_hash, 
-        legal_entity_hash, 
-        coverage_type_hash 
+    import {
+        state_hash,
+        currently_insured_hash,
+        legal_entity_hash,
+        coverage_type_hash
     } from '../store/constants';
 
     import 'vue-loading-overlay/dist/vue-loading.css';
@@ -236,7 +239,7 @@
                 first_name: { required },
                 phone: { required, between: between(1000000000, 9999999999) }
             }
-        },        
+        },
         methods: {
             showConfirmationModal () {
                 // this.$v.lead.$reset();
@@ -270,7 +273,7 @@
                 let term = { phone: phone };
                 this.$store.dispatch('fetchLead', term);
             },
-            updateLead(id) {            
+            updateLead(id) {
                 this.$store.dispatch('updateLead', id);
             },
             deleteLead(id) {
@@ -369,6 +372,32 @@
             updateCoverageType(value) {
                 this.$store.commit('updateCoverageType', value);
             },
+copyToClipboard () {
+    var elements = ["dot_number", "legal_name", "first_name", "last_name", "email_address", "phone", "dba_name", "phy_street", "phy_zip", "phy_city", "phy_state", "nbr_power_unit", "driver_total", "last_insurance_carrier", "last_insurance_date", "full_time_employees", "part_time_employees", "currently_insured", "years_of_experience", "legal_entity", "coverage_type", "insurance_cancellation_date"];
+    var copiedText = '';
+    var i;
+    for (i = 0; i < elements.length; i++) {
+        var element = document.getElementById(elements[i]);
+        copiedText = copiedText + "\n" + elements[i] + ": " + element.value;
+    }
+
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = copiedText;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+
+
+
+    alert('copired: ' + copiedText);
+  //var copyGfGText = document.getElementById("legal_name");
+  //copyGfGText.select();
+  //document.execCommand("copy");
+  //alert("Copied the text: " + copyGfGText.value);
+},
+
+
         },
         computed: {
             ...mapGetters([
@@ -403,7 +432,7 @@
                 years_of_experience: state => state.lead.years_of_experience,
                 legal_entity: state => state.lead.legal_entity,
                 coverage_type: state => state.lead.coverage_type,
-            })            
+            })
         },
         components: {
             Datepicker,

@@ -13,7 +13,7 @@ deployment:
 
     # Set working folder files you want to keep.
     - export KEEP_FILE_ENV_=.env
-    - export KEEP_FILE_PROD_=.production.env
+    - export KEEP_FILE_PROD_=.staging.env
 
     # Remove temporary deployment folder.
     - rm -rf $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_
