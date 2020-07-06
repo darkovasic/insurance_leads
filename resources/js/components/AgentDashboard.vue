@@ -234,7 +234,7 @@
                 legal_name: { required },
                 email_address: { email },
                 phy_city: { required },
-                phy_zip: { required, between: between(10000, 99999) },
+                phy_zip: { required },
                 phy_state: { required },
                 first_name: { required },
                 phone: { required, between: between(1000000000, 9999999999) }
@@ -384,6 +384,7 @@
                 var dummy = document.createElement("textarea");
                 document.body.appendChild(dummy);
                 dummy.value = copiedText;
+alert('alert');
                 dummy.select();
                 document.execCommand("copy");
                 document.body.removeChild(dummy);

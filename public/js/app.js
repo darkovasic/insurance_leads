@@ -2156,8 +2156,7 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["required"]
       },
       phy_zip: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["required"],
-        between: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["between"])(10000, 99999)
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["required"]
       },
       phy_state: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["required"]
@@ -2316,6 +2315,7 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
       var dummy = document.createElement("textarea");
       document.body.appendChild(dummy);
       dummy.value = copiedText;
+      alert('alert');
       dummy.select();
       document.execCommand("copy");
       document.body.removeChild(dummy);
