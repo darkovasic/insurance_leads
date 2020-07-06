@@ -4,16 +4,16 @@ deployment:
 
   tasks:
     # Set folder path variables.
-    - export PROJECT_=coveragecenter
+    - export PROJECT_=staging-coveragecenter
     - export ROOT_DIR_=/home/srbio
     - export RELEASE_DIR_=releases
     - export TEMP_DIR_=temp
     - export WORK_DIR_=work
-    - export PUBLIC_DIR_=coveragecenter.net
+    - export PUBLIC_DIR_=staging.coveragecenter.net
 
     # Set working folder files you want to keep.
     - export KEEP_FILE_ENV_=.env
-    - export KEEP_FILE_PROD_=.production.env
+    - export KEEP_FILE_PROD_=.staging.env
 
     # Remove temporary deployment folder.
     - rm -rf $ROOT_DIR_/$RELEASE_DIR_/$PROJECT_/$TEMP_DIR_
