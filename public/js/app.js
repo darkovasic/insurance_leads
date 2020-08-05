@@ -2124,6 +2124,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2145,6 +2156,14 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
   },
   mounted: function mounted() {},
   validations: {
+    dot_search: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["required"],
+      numeric: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["numeric"]
+    },
+    phone_search: {
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["required"],
+      between: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["between"])(1000000000, 9999999999)
+    },
     lead: {
       legal_name: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__["required"]
@@ -2193,15 +2212,19 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
     hideConfirmationModal: function hideConfirmationModal() {
       this.$modal.hide('dialog');
     },
-    fetchLeadByDotNumber: function fetchLeadByDotNumber(dot_number) {
+    fetchLeadByDotNumber: function fetchLeadByDotNumber(dot_search) {
+      this.$v.dot_search.$touch();
+      if (this.$v.dot_search.$invalid) return;
       var term = {
-        dot_number: dot_number
+        dot_number: dot_search
       };
       this.$store.dispatch('fetchLead', term);
     },
-    fetchLeadByPhoneNumber: function fetchLeadByPhoneNumber(phone) {
+    fetchLeadByPhoneNumber: function fetchLeadByPhoneNumber(phone_search) {
+      this.$v.phone_search.$touch();
+      if (this.$v.phone_search.$invalid) return;
       var term = {
-        phone: phone
+        phone: phone_search
       };
       this.$store.dispatch('fetchLead', term);
     },
@@ -43058,7 +43081,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n}\n#dot_search[data-v-0f85a8ba], #phone_search[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn-secondary[data-v-0f85a8ba] {\n    background:burlywood;\n    color: #212529;\n    border-color: burlywood;\n}\n.form-column[data-v-0f85a8ba] {\n    padding-top: 1rem;\n}\nlabel span[data-v-0f85a8ba] {\n    color: crimson;\n}\n", ""]);
+exports.push([module.i, "\n.lead-search[data-v-0f85a8ba] {\n    padding: 1rem 0;\n    position: relative;\n}\n#dot_search[data-v-0f85a8ba], #phone_search[data-v-0f85a8ba] {\n    margin: 0 1rem;\n}\nlabel[data-v-0f85a8ba] {\n    margin-bottom: 0px;\n}\n.search-term[data-v-0f85a8ba] {\n    color: white;\n    font-size: 1rem;\n    font-weight: 600;\n}\n.btn-secondary[data-v-0f85a8ba] {\n    background:burlywood;\n    color: #212529;\n    border-color: burlywood;\n}\n.form-column[data-v-0f85a8ba] {\n    padding-top: 1rem;\n}\nlabel span[data-v-0f85a8ba] {\n    color: crimson;\n}\n.dot-search[data-v-0f85a8ba] {\n    position: absolute; \n    bottom: 0; \n    left: 109px; \n    color: white !important;\n}\n.phone-search[data-v-0f85a8ba] {\n    position: absolute; \n    bottom: 0; \n    left: 61px; \n    color: white !important;\n}\n", ""]);
 
 // exports
 
@@ -75257,7 +75280,19 @@ var render = function() {
                     )
                   ],
                   1
-                )
+                ),
+                _vm._v(" "),
+                _vm.$v.dot_search.$error && !_vm.$v.dot_search.required
+                  ? _c("small", { staticClass: "text-danger dot-search" }, [
+                      _vm._v("DOT Number is required")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.$v.dot_search.$error && !_vm.$v.dot_search.numeric
+                  ? _c("small", { staticClass: "text-danger dot-search" }, [
+                      _vm._v("DOT Number should be a number")
+                    ])
+                  : _vm._e()
               ]
             )
           ]),
@@ -75293,6 +75328,18 @@ var render = function() {
                     input: _vm.updatePhoneSearch
                   }
                 }),
+                _vm._v(" "),
+                _vm.$v.phone_search.$error && !_vm.$v.phone_search.required
+                  ? _c("small", { staticClass: "text-danger phone-search" }, [
+                      _vm._v("Phone Number is required")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.$v.phone_search.$error && !_vm.$v.phone_search.between
+                  ? _c("small", { staticClass: "text-danger phone-search" }, [
+                      _vm._v("Phone Number must have 10 digits")
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "span",
@@ -75411,12 +75458,6 @@ var render = function() {
               _vm.$v.lead.phy_zip.$error && !_vm.$v.lead.phy_zip.required
                 ? _c("small", { staticClass: "text-danger" }, [
                     _vm._v("ZIP Code is required")
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.$v.lead.phy_zip.$error && !_vm.$v.lead.phy_zip.between
-                ? _c("small", { staticClass: "text-danger" }, [
-                    _vm._v("ZIP Code must have 5 digits")
                   ])
                 : _vm._e(),
               _vm._v(" "),
@@ -95525,7 +95566,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/mutations.js");
 /* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./getters */ "./resources/js/store/getters.js");
 /* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./state */ "./resources/js/store/state.js");
- // import VueCookies from 'vue-cookies';
 
 
 
@@ -95534,7 +95574,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Vue.use(VueCookies);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_notification__WEBPACK_IMPORTED_MODULE_2___default.a);
@@ -95575,7 +95614,7 @@ var mutations = {
   },
   FETCH_LEAD: function FETCH_LEAD(state, lead) {
     state.isLoading = true;
-    state.errors = {}; // state.lead = lead;
+    state.errors = {};
   },
   FETCH_LEAD_SUCCESS: function FETCH_LEAD_SUCCESS(state, lead) {
     state.lead = lead;
@@ -95763,8 +95802,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! G:\xampp\htdocs\staging-coveragecenter\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! G:\xampp\htdocs\staging-coveragecenter\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/darko/Projects/insurance_leads/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/darko/Projects/insurance_leads/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

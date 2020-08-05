@@ -13,7 +13,6 @@ let mutations = {
     FETCH_LEAD(state, lead) {
         state.isLoading = true;
         state.errors = {};
-        // state.lead = lead;
     },
     FETCH_LEAD_SUCCESS(state, lead) {
         state.lead = lead;

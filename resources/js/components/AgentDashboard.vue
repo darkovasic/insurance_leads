@@ -12,16 +12,27 @@
             <div class="col-md-6">
                 <div class="input-group lead-search align-items-center">
                     <label for="dot_search" class="search-term">DOT Number</label>
-                    <input type="text" class="form-control" id="dot_search" @keyup.enter="fetchLeadByDotNumber(dot_search)" :value="dot_search" @input="updateDotSearch">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="dot_search" 
+                        @keyup.enter="fetchLeadByDotNumber(dot_search)" 
+                        :value="dot_search" 
+                        @input="updateDotSearch" 
+                    >   
                     <span class="input-group-btn">
                         <b-button @click="fetchLeadByDotNumber(dot_search)">Search</b-button>
                     </span>
+                    <small v-if="$v.dot_search.$error && !$v.dot_search.required" class="text-danger dot-search">DOT Number is required</small>
+                    <small v-if="$v.dot_search.$error && !$v.dot_search.numeric" class="text-danger dot-search">DOT Number should be a number</small>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-group lead-search align-items-center">
                     <label for="phone_search" class="search-term">Phone</label>
                     <input type="text" class="form-control" id="phone_search" @keyup.enter="fetchLeadByPhoneNumber(phone_search)" :value="phone_search" @input="updatePhoneSearch">
+                    <small v-if="$v.phone_search.$error && !$v.phone_search.required" class="text-danger phone-search">Phone Number is required</small>
+                    <small v-if="$v.phone_search.$error && !$v.phone_search.between" class="text-danger phone-search">Phone Number must have 10 digits</small>
                     <span class="input-group-btn">
                         <b-button @click="fetchLeadByPhoneNumber(phone_search)">Search</b-button>
                     </span>
@@ -51,7 +62,7 @@
                     <label for="phy_zip">ZIP Code <span>*</span></label>
                     <input type="text" class="form-control" id="phy_zip" :value="phy_zip" @input="updateZipCode">
                     <small v-if="$v.lead.phy_zip.$error && !$v.lead.phy_zip.required" class="text-danger">ZIP Code is required</small>
-                    <small v-if="$v.lead.phy_zip.$error && !$v.lead.phy_zip.between" class="text-danger">ZIP Code must have 5 digits</small>
+                    <!-- <small v-if="$v.lead.phy_zip.$error && !$v.lead.phy_zip.between" class="text-danger">ZIP Code must have 5 digits</small> -->
                     <small v:if="errors && errors.phy_zip" class="text-danger">{{ getError(errors.phy_zip) }}</small>
                 </div>
 
@@ -203,7 +214,7 @@
     import Datepicker from 'vuejs-datepicker';
     import Loading from 'vue-loading-overlay';
     import { BButton, BFormSelect } from 'bootstrap-vue';
-    import { required, email, between } from "vuelidate/lib/validators";
+    import { required, email, between, numeric } from "vuelidate/lib/validators";
     import {
         state_hash,
         currently_insured_hash,
@@ -230,6 +241,8 @@
         mounted() {
         },
         validations: {
+            dot_search: { required, numeric },
+            phone_search: { required, between: between(1000000000, 9999999999) },
             lead: {
                 legal_name: { required },
                 email_address: { email },
@@ -265,12 +278,16 @@
                 this.$modal.hide('dialog');
             },
 
-            fetchLeadByDotNumber(dot_number) {
-                let term = { dot_number: dot_number };
+            fetchLeadByDotNumber(dot_search) {
+                this.$v.dot_search.$touch();
+                if (this.$v.dot_search.$invalid) return;                
+                let term = { dot_number: dot_search };
                 this.$store.dispatch('fetchLead', term);
             },
-            fetchLeadByPhoneNumber(phone) {
-                let term = { phone: phone };
+            fetchLeadByPhoneNumber(phone_search) {
+                this.$v.phone_search.$touch();
+                if (this.$v.phone_search.$invalid) return; 
+                let term = { phone: phone_search };
                 this.$store.dispatch('fetchLead', term);
             },
             updateLead(id) {
@@ -436,6 +453,7 @@
 <style scoped>
     .lead-search {
         padding: 1rem 0;
+        position: relative;
     }
     #dot_search, #phone_search {
         margin: 0 1rem;
@@ -458,6 +476,18 @@
     }
     label span {
         color: crimson;
+    }
+    .dot-search {
+        position: absolute; 
+        bottom: 0; 
+        left: 109px; 
+        color: white !important;
+    }
+    .phone-search {
+        position: absolute; 
+        bottom: 0; 
+        left: 61px; 
+        color: white !important;
     }
 </style>
 

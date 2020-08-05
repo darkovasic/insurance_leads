@@ -1,5 +1,4 @@
 import Vue from 'vue';
-// import VueCookies from 'vue-cookies';
 import Vuex from 'vuex';
 import Notifications from 'vue-notification';
 import VModal from 'vue-js-modal';
@@ -10,7 +9,7 @@ import mutations from './mutations';
 import getters from './getters';
 import state from "./state";
 
-// Vue.use(VueCookies);
+
 Vue.use(Vuex);
 Vue.use(Notifications);
 Vue.use(VModal, { dialog: true });

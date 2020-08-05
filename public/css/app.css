@@ -11364,6 +11364,10 @@ html {
   overflow-y: scroll;
 }
 
+.vue-notification {
+  font-size: 14px !important;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 
@@ -11386,9 +11390,5 @@ body {
   line-height: 45px;
   /* Vertically center the text there */
   text-align: center;
-}
-
-.vue-notification {
-  font-size: 14px !important;
 }
 
