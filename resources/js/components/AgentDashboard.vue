@@ -257,7 +257,7 @@
             showConfirmationModal () {
                 // this.$v.lead.$reset();
 
-                if (this.$v.$invalid) return;
+                if (this.$v.lead.$invalid) return;
 
                 this.$modal.show('dialog', {
                     title: 'Are you sure?',
