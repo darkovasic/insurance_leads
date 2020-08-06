@@ -95802,8 +95802,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/darko/Projects/insurance_leads/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/darko/Projects/insurance_leads/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/darko/Projects/insurance_leads_temp/insurance_leads/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/darko/Projects/insurance_leads_temp/insurance_leads/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
