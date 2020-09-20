@@ -2345,82 +2345,82 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['lead', 'errors', 'isLoading']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
     phone: function phone(state) {
-      return state.lead.phone;
+      return state.lead.phone || null;
     },
     legal_name: function legal_name(state) {
-      return state.lead.legal_name;
+      return state.lead.legal_name || null;
     },
     dot_number: function dot_number(state) {
-      return state.lead.dot_number;
+      return state.lead.dot_number || null;
     },
     email_address: function email_address(state) {
-      return state.lead.email_address;
+      return state.lead.email_address || null;
     },
     dba_name: function dba_name(state) {
-      return state.lead.dba_name;
+      return state.lead.dba_name || null;
     },
     phy_street: function phy_street(state) {
-      return state.lead.phy_street;
+      return state.lead.phy_street || null;
     },
     phy_city: function phy_city(state) {
-      return state.lead.phy_city;
+      return state.lead.phy_city || null;
     },
     phy_zip: function phy_zip(state) {
-      return state.lead.phy_zip;
+      return state.lead.phy_zip || null;
     },
     phy_state: function phy_state(state) {
-      return state.lead.phy_state;
+      return state.lead.phy_state || null;
     },
     nbr_power_unit: function nbr_power_unit(state) {
-      return state.lead.nbr_power_unit;
+      return state.lead.nbr_power_unit || null;
     },
     driver_total: function driver_total(state) {
-      return state.lead.driver_total;
+      return state.lead.driver_total || null;
     },
     last_insurance_carrier: function last_insurance_carrier(state) {
-      return state.lead.last_insurance_carrier;
+      return state.lead.last_insurance_carrier || null;
     },
     last_insurance_date: function last_insurance_date(state) {
-      return state.lead.last_insurance_date;
+      return state.lead.last_insurance_date || null;
     },
     insurance_cancellation_date: function insurance_cancellation_date(state) {
-      return state.lead.insurance_cancellation_date;
+      return state.lead.insurance_cancellation_date || null;
     },
     comment: function comment(state) {
-      return state.lead.comment;
+      return state.lead.comment || null;
     },
     description: function description(state) {
-      return state.lead.description;
+      return state.lead.description || null;
     },
     dot_search: function dot_search(state) {
-      return state.dot_search;
+      return state.dot_search || null;
     },
     phone_search: function phone_search(state) {
-      return state.phone_search;
+      return state.phone_search || null;
     },
     first_name: function first_name(state) {
-      return state.lead.first_name;
+      return state.lead.first_name || null;
     },
     last_name: function last_name(state) {
-      return state.lead.last_name;
+      return state.lead.last_name || null;
     },
     full_time_employees: function full_time_employees(state) {
-      return state.lead.full_time_employees;
+      return state.lead.full_time_employees || null;
     },
     part_time_employees: function part_time_employees(state) {
-      return state.lead.part_time_employees;
+      return state.lead.part_time_employees || null;
     },
     currently_insured: function currently_insured(state) {
-      return state.lead.currently_insured;
+      return state.lead.currently_insured || null;
     },
     years_of_experience: function years_of_experience(state) {
-      return state.lead.years_of_experience;
+      return state.lead.years_of_experience || null;
     },
     legal_entity: function legal_entity(state) {
-      return state.lead.legal_entity;
+      return state.lead.legal_entity || null;
     },
     coverage_type: function coverage_type(state) {
-      return state.lead.coverage_type;
+      return state.lead.coverage_type || null;
     }
   })),
   components: {
