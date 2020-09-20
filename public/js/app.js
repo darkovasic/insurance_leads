@@ -2194,7 +2194,7 @@ Vue.component('b-select', bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormSelec
       var _this = this;
 
       // this.$v.lead.$reset();
-      if (this.$v.$invalid) return;
+      if (this.$v.lead.$invalid) return;
       this.$modal.show('dialog', {
         title: 'Are you sure?',
         text: 'Do you want to send this lead to the broker?',
