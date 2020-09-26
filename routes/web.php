@@ -15,24 +15,15 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 
 Route::get('/lead', 'LeadController@index')->name('lead')->middleware('can:edit_lead');
 
-Route::view('/demo', 'demo');
+Route::view('/admin/dashboard', 'admin.dashboard');
+Route::get('/admin/users', 'Admin\UserController@index');
+Route::view('/admin/ui', 'admin.ui');
 
-
-
-Route::get('send_test_email', function(){
-	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-	{
-		$message->to('darko.vasic@gmail.com');
-	});
-});
-
-// Route::get('/clear-cache', 'ClearCacheController@index')->middleware('can:register_user');
 Route::get('/clear-cache', 'ClearCacheController@index');
 
 Route::get('/db-migrate', 'DbMigrateController@index')->middleware('can:register_user');
