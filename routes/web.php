@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/lead', 'LeadController@index')->name('lead')->middleware('can:edit_lead');
 
 Route::view('/admin/dashboard', 'admin.dashboard');
-Route::get('/admin/users', 'Admin\UserController@index');
+Route::resource('/admin/users','Admin\UserController')->middleware('can:register_user');
 Route::view('/admin/ui', 'admin.ui');
 
 Route::get('/clear-cache', 'ClearCacheController@index');

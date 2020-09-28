@@ -61,7 +61,12 @@
                         </li>
                         <li>
                             <a href="#"
-                                ><i class="fa fa-bar-chart-o"></i>My Link Two</a
+                                ><i class="fa fa-bar-chart-o"></i>Recent Activities</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><i class="fa fa-bar-chart-o"></i>Email Log</a
                             >
                         </li>
                     </ul>

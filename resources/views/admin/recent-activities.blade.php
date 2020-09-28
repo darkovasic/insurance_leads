@@ -4,13 +4,13 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-lg-12">
-            <h2>USERS</h2>
+            <h2>RECENT ACTIVITIES</h2>
         </div>
     </div>
     <hr />
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <a href="#" class="btn btn-default">default</a>
+            {{-- <a href="#" class="btn btn-default">default</a> --}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -35,33 +35,6 @@
                         <td><a href="#"><i class="fa fa-times fa-2x"></i></a></td>
                     </tr>
                     @endforeach
-                    {{-- <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>2014-01-01 08:30 PM</td>
-                        <td>2014-01-01 08:30 PM</td>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>2014-01-01 08:30 PM</td>
-                        <td>2014-01-01 08:30 PM</td>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>2014-01-01 08:30 PM</td>
-                        <td>2014-01-01 08:30 PM</td>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr> --}}
                 </tbody>
             </table>
         </div>

@@ -19,7 +19,7 @@
     <div class="row text-center pad-top">
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
-                <a href="blank.html">
+                <a href="#">
                     <i class="fa fa-circle-o-notch fa-5x"></i>
                     <h4>Check Data</h4>
                 </a>
@@ -27,7 +27,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
-                <a href="/admin/users">
+                <a href="{{ route('users.index') }}">
                     <i class="fa fa-users fa-5x"></i>
                     <h4>See Users</h4>
                 </a>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
-                <a href="blank.html">
+                <a href="{{ route('users.create') }}">
                     <i class="fa fa-user fa-5x"></i>
                     <h4>Register User</h4>
                 </a>
