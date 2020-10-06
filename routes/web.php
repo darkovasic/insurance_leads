@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if (Auth::check()) {
+        return view('/lead');
+    } else {
+        return view('auth.login');
+    }
 });
 
 

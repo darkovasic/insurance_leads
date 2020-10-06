@@ -44,7 +44,7 @@
                         @endcan
                         @can ('register_user')
                             <li class="nav-item">
-                                <a class="nav-link" href="/register">Register User</a>
+                                <a class="nav-link" href="/admin/users/create">Register User</a>
                             </li>
                         @endcan
                     </ul>
