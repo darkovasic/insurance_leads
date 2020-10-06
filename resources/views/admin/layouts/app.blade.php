@@ -12,10 +12,11 @@
             rel="stylesheet"
             type="text/css"
         />
+        @notifyCss
     </head>
     <body>
         <div id="wrapper">
-            <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 2">
                 <div class="adjust-nav">
                     <div class="navbar-header">
                         <button
@@ -49,17 +50,17 @@
                             >
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <a href="/admin/ui"
                                 ><i class="fa fa-table "></i>UI Elements</a
                             >
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="/admin/users"
                                 ><i class="fa fa-users "></i>Users</a
                             >
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#"
                                 ><i class="fa fa-bar-chart-o"></i>Recent Activities</a
                             >
@@ -68,7 +69,7 @@
                             <a href="#"
                                 ><i class="fa fa-bar-chart-o"></i>Email Log</a
                             >
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </nav>
@@ -89,5 +90,7 @@
         <script src="/js/admin/jquery-1.10.2.js"></script>
         <script src="/js/admin/bootstrap.min.js"></script>
         <script src="/js/admin/custom.js"></script>
+        @include('notify::messages')
+        @notifyJs
     </body>
 </html>

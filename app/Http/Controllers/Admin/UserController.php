@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('can:register_user');
     }
 
     /**
@@ -44,7 +45,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'role' => ['required', 'string', 'in:admin,agent'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+
+        $user->assignRole($request['role']);
+
+        notify()->success('User created!');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -94,7 +112,11 @@ class UserController extends Controller
             $user->update($request->all());
         }
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
+        $user->assignRole($request['role']);
+
+        notify()->success('User updated!');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -106,7 +128,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        notify()->success('User deleted!');
 
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('users.index');
     }
 }

@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="form-container">
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('users.store') }}">
                     @csrf
 
                     <div class="form-group row">
