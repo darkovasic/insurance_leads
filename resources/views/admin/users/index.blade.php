@@ -35,14 +35,11 @@
                         <td>{{ $user->email ?? '' }}</td>
                         <td>{{ $user->created_at ?? '' }}</td>
                         <td>{{ $user->updated_at ?? '' }}</td>
-                        {{-- <td><a href="{{ route('users.edit', $user->id) }}"><i class="fa fa-edit fa-2x"></i></a></td>
-                        <td><a href="{{ route('users.destroy', $user->id) }}"><i class="fa fa-times fa-2x"></i></a></td> --}}
                         <td>
                             <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                {{-- <a class="btn btn-info" href="{{ route('users.show',$post->id) }}">Show</a> --}}
-                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
+                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>

@@ -24,6 +24,9 @@ Auth::routes();
 
 Route::get('/lead', 'LeadController@index')->name('lead')->middleware('can:edit_lead');
 
+Route::get('/admin', function () {
+    return redirect('/admin/dashboard');
+});
 Route::view('/admin/dashboard', 'admin.dashboard');
 Route::resource('/admin/users','Admin\UserController')->middleware('can:register_user');
 Route::view('/admin/ui', 'admin.ui');
