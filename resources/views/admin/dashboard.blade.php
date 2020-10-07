@@ -17,14 +17,14 @@
         </div>
     </div> --}}
     <div class="row text-center pad-top">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+        {{-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="#">
                     <i class="fa fa-circle-o-notch fa-5x"></i>
                     <h4>Check Data</h4>
                 </a>
             </div>
-        </div>
+        </div> --}}
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="{{ route('users.index') }}">

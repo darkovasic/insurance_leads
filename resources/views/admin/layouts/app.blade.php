@@ -60,16 +60,16 @@
                                 ><i class="fa fa-users "></i>Users</a
                             >
                         </li>
-                        {{-- <li>
-                            <a href="#"
+                        <li>
+                            <a href="/admin/recent-activities"
                                 ><i class="fa fa-bar-chart-o"></i>Recent Activities</a
                             >
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="/admin/email-log"
                                 ><i class="fa fa-bar-chart-o"></i>Email Log</a
                             >
-                        </li> --}}
+                        </li>
                     </ul>
                 </div>
             </nav>

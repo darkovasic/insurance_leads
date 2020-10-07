@@ -10,29 +10,34 @@
     <hr />
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            {{-- <a href="#" class="btn btn-default">default</a> --}}
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Lead</th>
+                        <th>Bold Penguin Response</th>
+                        <th>Response Time</th>                        
+                        <th>Created</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
+                    @foreach($apiLog as $log)
                     <tr>
-                        <td>{{ $user->id ?? '' }}</td>
-                        <td>{{ $user->name ?? '' }}</td>
-                        <td>{{ $user->email ?? '' }}</td>
-                        <td>{{ $user->created_at ?? '' }}</td>
-                        <td>{{ $user->updated_at ?? '' }}</td>
-                        <td><a href="#"><i class="fa fa-edit fa-2x"></i></a></td>
-                        <td><a href="#"><i class="fa fa-times fa-2x"></i></a></td>
+                        <td>{{ $log->id ?? '' }}</td>
+                        <td>{{ $log->user_id ?? '' }}</td>
+                        <td>{{ $log->lead_id ?? '' }}</td>
+                        <td>{{ $log->response ?? '' }}</td>
+                        <td>{{ $log->response_time ?? '' }}</td>
+                        <td>{{ $log->created_at ?? '' }}</td>
+                        {{-- <td>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

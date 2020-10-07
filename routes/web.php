@@ -29,6 +29,9 @@ Route::get('/admin', function () {
 });
 Route::view('/admin/dashboard', 'admin.dashboard');
 Route::resource('/admin/users','Admin\UserController')->middleware('can:register_user');
+Route::get('/admin/recent-activities', 'Admin\ApiRequestLogController@index');
+Route::view('/admin/email-log', 'admin.email-log');
+
 Route::view('/admin/ui', 'admin.ui');
 
 Route::get('/clear-cache', 'ClearCacheController@index');

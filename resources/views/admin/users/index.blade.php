@@ -22,8 +22,6 @@
                         <th>Email</th>
                         <th>Created</th>
                         <th>Updated</th>
-                        {{-- <th>Edit</th>
-                        <th>Delete</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -36,10 +34,10 @@
                         <td>{{ $user->created_at ?? '' }}</td>
                         <td>{{ $user->updated_at ?? '' }}</td>
                         <td>
-                            <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
