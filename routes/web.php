@@ -30,7 +30,7 @@ Route::get('/admin', function () {
 Route::view('/admin/dashboard', 'admin.dashboard');
 Route::resource('/admin/users','Admin\UserController')->middleware('can:register_user');
 Route::get('/admin/recent-activities', 'Admin\ApiRequestLogController@index');
-Route::view('/admin/email-log', 'admin.email-log');
+Route::get('/admin/email-log', 'Admin\SentEmailsLogController@index');
 
 Route::view('/admin/ui', 'admin.ui');
 
