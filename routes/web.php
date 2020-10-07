@@ -24,15 +24,17 @@ Auth::routes();
 
 Route::get('/lead', 'LeadController@index')->name('lead')->middleware('can:edit_lead');
 
-Route::get('/admin', function () {
-    return redirect('/admin/dashboard');
-});
-Route::view('/admin/dashboard', 'admin.dashboard');
-Route::resource('/admin/users','Admin\UserController')->middleware('can:register_user');
-Route::get('/admin/recent-activities', 'Admin\ApiRequestLogController@index');
-Route::get('/admin/email-log', 'Admin\SentEmailsLogController@index');
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return redirect('/admin/dashboard');
+    });
+    Route::view('/dashboard', 'admin.dashboard');
+    Route::resource('/users','Admin\UserController');
+    Route::get('/recent-activities', 'Admin\ApiRequestLogController@index');
+    Route::get('/email-log', 'Admin\SentEmailsLogController@index');
 
-Route::view('/admin/ui', 'admin.ui');
+    Route::view('/ui', 'admin.ui');
+});
 
 Route::get('/clear-cache', 'ClearCacheController@index');
 
