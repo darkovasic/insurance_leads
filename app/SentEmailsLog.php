@@ -12,4 +12,10 @@ class SentEmailsLog extends Model
      * @var string
      */
     protected $table = 'sent_emails_log';
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

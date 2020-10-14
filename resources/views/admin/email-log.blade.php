@@ -27,7 +27,7 @@
                     @foreach($emailLog as $log)
                     <tr>
                         <td>{{ $log->id ?? '' }}</td>
-                        <td>{{ $log->user_id ?? '' }}</td>
+                        <td>{{ $log->user->name }}</td>
                         <td>{{ $log->lead_id ?? '' }}</td>
                         <td>{{ $log->message_id ?? '' }}</td>
                         <td>{{ $log->type ?? '' }}</td>
