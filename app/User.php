@@ -56,5 +56,8 @@ class User extends Authenticatable
         return $this->roles->map->abilities->flatten()->pluck('name')->unique();
     }
 
-    
+    public function emails()
+    {
+        return $this->hasMany(SentEmailsLog::class);
+    }
 }

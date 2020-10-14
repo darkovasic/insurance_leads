@@ -25,8 +25,8 @@
                     @foreach($apiLog as $log)
                     <tr>
                         <td>{{ $log->id ?? '' }}</td>
-                        <td>{{ $log->user_id ?? '' }}</td>
-                        <td>{{ $log->lead_id ?? '' }}</td>
+                        <td>{{ $log->user->name ?? '' }}</td>
+                        <td>{{ $log->lead->legal_name ?? '' }}</td>
                         <td>{{ $log->response ?? '' }}</td>
                         <td>{{ $log->response_time ?? '' }}</td>
                         <td>{{ $log->created_at ?? '' }}</td>
