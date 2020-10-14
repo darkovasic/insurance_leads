@@ -24,12 +24,12 @@
                 <tbody>
                     @foreach($apiLog as $log)
                     <tr>
-                        <td>{{ $log->id ?? '' }}</td>
-                        <td>{{ $log->user->name ?? '' }}</td>
-                        <td>{{ $log->lead->legal_name ?? '' }}</td>
-                        <td>{{ $log->response ?? '' }}</td>
-                        <td>{{ $log->response_time ?? '' }}</td>
-                        <td>{{ $log->created_at ?? '' }}</td>
+                        <td>{{ $log->id ?? 'n/a' }}</td>
+                        <td>{{ $log->user->name ?? 'n/a' }}</td>
+                        <td>{{ $log->lead->legal_name ?? 'n/a' }}</td>
+                        <td>{{ $log->response ?? 'n/a' }}</td>
+                        <td>{{ round($log->response_time, 2).' seconds' ?? 'n/a' }}</td>
+                        <td>{{ $log->created_at ?? 'n/a' }}</td>
                         {{-- <td>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                 @csrf

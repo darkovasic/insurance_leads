@@ -16,7 +16,6 @@ class ApiRequestLogController extends Controller
     public function index()
     {
         $apiLog = ApiRequestLog::all();
-        // $apiLog = json_decode($data);
 
         return view('admin.recent-activities', compact('apiLog'));
     }

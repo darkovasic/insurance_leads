@@ -19,21 +19,21 @@
                         <th>Email ID</th>
                         <th>Email Type</th>                        
                         <th>Email Status</th> 
-                        <th>Created</th>
+                        {{-- <th>Created</th> --}}
                         <th>Updated</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($emailLog as $log)
                     <tr>
-                        <td>{{ $log->id ?? '' }}</td>
-                        <td>{{ $log->user->name ?? '' }}</td>
-                        <td>{{ $log->lead->legal_name ?? '' }}</td>
-                        <td>{{ $log->message_id ?? '' }}</td>
-                        <td>{{ $log->type ?? '' }}</td>
-                        <td>{{ $log->status ?? '' }}</td>
-                        <td>{{ $log->created_at ?? '' }}</td>
-                        <td>{{ $log->updated_at ?? '' }}</td>
+                        <td>{{ $log->id ?? 'n/a' }}</td>
+                        <td>{{ $log->user->name ?? 'n/a' }}</td>
+                        <td>{{ $log->lead->legal_name ?? 'n/a' }}</td>
+                        <td>{{ $log->message_id ?? 'n/a' }}</td>
+                        <td>{{ $log->type ?? 'n/a' }}</td>
+                        <td>{{ $log->status ?? 'n/a' }}</td>
+                        {{-- <td>{{ $log->created_at ?? 'n/a' }}</td> --}}
+                        <td>{{ $log->updated_at ?? 'n/a' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

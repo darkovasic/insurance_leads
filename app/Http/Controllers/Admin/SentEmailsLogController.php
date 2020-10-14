@@ -16,7 +16,6 @@ class SentEmailsLogController extends Controller
     public function index()
     {
         $emailLog = SentEmailsLog::all();
-        // $emailLog = json_decode($data);
 
         return view('admin.email-log', compact('emailLog'));
     }
