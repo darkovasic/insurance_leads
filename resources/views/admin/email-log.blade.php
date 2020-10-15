@@ -38,7 +38,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $emailLog->links() }}
+            {!! $emailLog->appends(Request::except('page'))->render() !!}
         </div>
     </div>
 </div>

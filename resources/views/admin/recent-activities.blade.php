@@ -34,7 +34,8 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $apiLog->links() }}
+            {{-- {{ $apiLog->links() }} --}}
+            {!! $apiLog->appends(Request::except('page'))->render() !!}
         </div>
     </div>
 </div>

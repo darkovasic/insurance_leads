@@ -46,7 +46,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $users->links() }}
+            {!! $users->appends(Request::except('page'))->render() !!}
         </div>
     </div>
 </div>
