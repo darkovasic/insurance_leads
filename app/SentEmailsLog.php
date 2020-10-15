@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class SentEmailsLog extends Model
 {
+    use Sortable;
+
     /**
      * The table associated with the model.
      *
@@ -13,6 +16,13 @@ class SentEmailsLog extends Model
      */
     protected $table = 'sent_emails_log';
 
+    public $sortable = [
+        'id',
+        'message_id',
+        'type',
+        'status',
+        'updated_at',
+    ];
 
     public function user()
     {

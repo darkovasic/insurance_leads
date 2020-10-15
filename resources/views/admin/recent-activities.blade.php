@@ -13,12 +13,12 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Lead</th>
-                        <th>Bold Penguin Response</th>
-                        <th>Response Time</th>                        
-                        <th>Created</th>
+                        <th>@sortablelink('id', 'ID')</th>
+                        <th>@sortablelink('user.name', 'User')</th>
+                        <th>@sortablelink('lead.legal_name', 'Lead')</th>
+                        <th>@sortablelink('response', 'Bold Penguin Response')</th>
+                        <th>@sortablelink('response_time', 'Response Time')</th>                        
+                        <th>@sortablelink('created_at', 'Created')</th>
                     </tr>
                 </thead>
                 <tbody>

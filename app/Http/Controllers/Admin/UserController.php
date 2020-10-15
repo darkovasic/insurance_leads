@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->paginate(15);
+        $users = User::with('roles')->sortable()->paginate(15);
         // $users = json_decode($data);
         // dd($users);
 

@@ -16,12 +16,12 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Email</th>
-                        <th>Created</th>
-                        <th>Updated</th>
+                        <th>@sortablelink('id', 'ID')</th>
+                        <th>@sortablelink('name', 'Name')</th>
+                        <th>@sortablelink('roles', 'Role')</th>
+                        <th>@sortablelink('email', 'Email')</th>
+                        <th>@sortablelink('created_at', 'Created')</th>
+                        <th>@sortablelink('updated_at', 'Updated')</th>
                     </tr>
                 </thead>
                 <tbody>

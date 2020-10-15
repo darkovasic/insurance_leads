@@ -13,14 +13,14 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Lead</th>
-                        <th>Email ID</th>
-                        <th>Email Type</th>                        
-                        <th>Email Status</th> 
+                        <th>@sortablelink('id', 'ID')</th>
+                        <th>@sortablelink('user.name', 'User')</th>
+                        <th>@sortablelink('lead.legal_name', 'Lead')</th>
+                        <th>@sortablelink('message_id', 'Message ID')</th>
+                        <th>@sortablelink('type', 'Email Type')</th>                        
+                        <th>@sortablelink('status', 'Email Status')</th> 
                         {{-- <th>Created</th> --}}
-                        <th>Updated</th>
+                        <th>@sortablelink('updated_at', 'Updated')</th>
                     </tr>
                 </thead>
                 <tbody>

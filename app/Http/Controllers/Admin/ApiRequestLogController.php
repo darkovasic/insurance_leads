@@ -15,7 +15,7 @@ class ApiRequestLogController extends Controller
 
     public function index()
     {
-        $apiLog = ApiRequestLog::paginate(15);
+        $apiLog = ApiRequestLog::sortable()->paginate(15);
 
         return view('admin.recent-activities', compact('apiLog'));
     }
