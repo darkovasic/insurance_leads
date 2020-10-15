@@ -36,7 +36,7 @@
                     </div>
 
                     <span class="logout-spn">
-                        <a href="/logout" style="color:#fff;">Logout</a>
+                        <a href="{{ url('/logout') }}" style="color:#fff;">Logout</a>
                     </span>
                 </div>
             </div>

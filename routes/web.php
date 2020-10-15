@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/lead', 'LeadController@index')->name('lead')->middleware('can:edit_lead');
 
 Route::prefix('admin')->group(function () {

@@ -22,6 +22,7 @@
                         <th>@sortablelink('email', 'Email')</th>
                         <th>@sortablelink('created_at', 'Created')</th>
                         <th>@sortablelink('updated_at', 'Updated')</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
