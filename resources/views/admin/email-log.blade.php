@@ -38,6 +38,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $emailLog->links() }}
         </div>
     </div>
 </div>

@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{ $user->id ?? '' }}</td>
                         <td>{{ $user->name ?? '' }}</td>
-                        <td>{{ $user && $user->roles ? $user->roles[0]->name : 'n/a' }}</td>
+                        <td>{{ $user->roles ? $user->roles->pluck('name')->implode(', ') : 'n/a' }}</td>
                         <td>{{ $user->email ?? '' }}</td>
                         <td>{{ $user->created_at ?? '' }}</td>
                         <td>{{ $user->updated_at ?? '' }}</td>
@@ -45,6 +45,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $users->links() }}
         </div>
     </div>
 </div>

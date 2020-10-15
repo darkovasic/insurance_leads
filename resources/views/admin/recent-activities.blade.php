@@ -30,18 +30,11 @@
                         <td>{{ $log->response ?? 'n/a' }}</td>
                         <td>{{ round($log->response_time, 2).' seconds' ?? 'n/a' }}</td>
                         <td>{{ $log->created_at ?? 'n/a' }}</td>
-                        {{-- <td>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $apiLog->links() }}
         </div>
     </div>
 </div>

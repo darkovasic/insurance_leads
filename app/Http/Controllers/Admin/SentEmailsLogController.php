@@ -15,7 +15,7 @@ class SentEmailsLogController extends Controller
 
     public function index()
     {
-        $emailLog = SentEmailsLog::all();
+        $emailLog = SentEmailsLog::paginate(15);
 
         return view('admin.email-log', compact('emailLog'));
     }

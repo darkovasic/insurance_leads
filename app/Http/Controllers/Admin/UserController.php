@@ -21,8 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::with('roles')->get();
-        $users = json_decode($data);
+        $users = User::with('roles')->paginate(15);
+        // $users = json_decode($data);
+        // dd($users);
 
         return view('admin.users.index', compact('users'));
     }
