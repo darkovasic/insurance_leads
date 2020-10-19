@@ -4,9 +4,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Coverage Center Admin Area</title>
-        <link href="/css/admin/bootstrap.css" rel="stylesheet" />
-        <link href="/css/admin/font-awesome.css" rel="stylesheet" />
-        <link href="/css/admin/custom.css" rel="stylesheet" />
+        <link href="{!! url('/css/admin/bootstrap.css') !!}" rel="stylesheet" />
+        <link href="{!! url('/css/admin/font-awesome.css') !!}" rel="stylesheet" />
+        <link href="{!! url('/css/admin/custom.css') !!}" rel="stylesheet" />
         <link
             href="http://fonts.googleapis.com/css?family=Open+Sans"
             rel="stylesheet"
@@ -35,9 +35,9 @@
                         </a>
                     </div>
 
-                    <span class="logout-spn">
+                    <div class="logout-spn">
                         <a href="{{ url('/logout') }}" style="color:#fff;">Logout</a>
-                    </span>
+                    </div>
                 </div>
             </div>
 
@@ -87,9 +87,11 @@
             </div>
         </div>
 
-        <script src="/js/admin/jquery-1.10.2.js"></script>
-        <script src="/js/admin/bootstrap.min.js"></script>
-        <script src="/js/admin/custom.js"></script>
+        {{-- <script src="{!! url('/js/admin/jquery-1.10.2.js') !!}"></script> --}}
+        <script src="{!! url('/js/admin/jquery-3.5.1.min.js') !!}"></script>
+        <script src="{!! url('/js/admin/bootstrap.min.js') !!}"></script>
+        <script src="{!! url('/js/admin/custom.js') !!}"></script>
+        @yield('page-js-script')
         @include('notify::messages')
         @notifyJs
     </body>

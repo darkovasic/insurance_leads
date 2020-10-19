@@ -13,10 +13,18 @@ class ApiRequestLogController extends Controller
         $this->middleware('can:register_user');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $apiLog = ApiRequestLog::sortable()->paginate(15);
+        $filter = $request->query('filter');
 
-        return view('admin.recent-activities', compact('apiLog'));
+        if (!empty($filter)) {
+            $apiLog = ApiRequestLog::sortable()
+                ->where('user.name', 'like', '%'.$filter.'%')
+                ->paginate(15);
+        } else {
+            $apiLog = ApiRequestLog::sortable()->paginate(15);
+        }
+
+        return view('admin.recent-activities', compact('apiLog', 'filter'));
     }
 }
