@@ -15,16 +15,13 @@ class ApiRequestLogController extends Controller
 
     public function index(Request $request)
     {
-        $filter = $request->query('filter');
+        $search = $request->query('search');
 
-        if (!empty($filter)) {
-            $apiLog = ApiRequestLog::sortable()
-                ->where('user.name', 'like', '%'.$filter.'%')
-                ->paginate(15);
-        } else {
-            $apiLog = ApiRequestLog::sortable()->paginate(15);
-        }
+        $apiLog = ApiRequestLog::sortable()
+            ->filter($request->all())
+            ->paginate(15);
 
-        return view('admin.recent-activities', compact('apiLog', 'filter'));
+
+        return view('admin.recent-activities', compact('apiLog', 'search'));
     }
 }

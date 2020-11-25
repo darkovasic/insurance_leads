@@ -19,11 +19,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('roles')->sortable()->paginate(15);
-        // $users = json_decode($data);
-        // dd($users);
+        $users = User::with('roles')->sortable()
+            ->filter($request->all())
+            ->paginate(15);
 
         return view('admin.users.index', compact('users'));
     }

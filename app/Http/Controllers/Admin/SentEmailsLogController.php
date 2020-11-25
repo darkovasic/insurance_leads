@@ -13,9 +13,11 @@ class SentEmailsLogController extends Controller
         $this->middleware('can:register_user');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $emailLog = SentEmailsLog::sortable()->paginate(15);
+        $emailLog = SentEmailsLog::sortable()
+            ->filter($request->all())
+            ->paginate(15);
 
         return view('admin.email-log', compact('emailLog'));
     }

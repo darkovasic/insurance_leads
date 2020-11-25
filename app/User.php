@@ -2,6 +2,7 @@
 
 namespace App;
 
+use EloquentFilter\Filterable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,6 +10,7 @@ use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
+    use Filterable;
     use Notifiable;
     use Sortable;
 
@@ -69,5 +71,10 @@ class User extends Authenticatable
     public function emails()
     {
         return $this->hasMany(SentEmailsLog::class);
+    }
+
+    public function apiRequestLogs()
+    {
+        return $this->hasMany(ApiRequestLog::class);
     }
 }

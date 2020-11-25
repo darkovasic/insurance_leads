@@ -39,12 +39,12 @@
                     <ul class="navbar-nav mr-auto">
                         @can ('edit_lead')
                             <li class="nav-item">
-                                <a class="nav-link" href="/lead">Find Lead <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ route('lead') }}">Find Lead <span class="sr-only">(current)</span></a>
                             </li>
                         @endcan
                         @can ('register_user')
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/users/create">Register User</a>
+                                <a class="nav-link" href="{{ route('admin.dashboard') }}">Admin Panel</a>
                             </li>
                         @endcan
                     </ul>

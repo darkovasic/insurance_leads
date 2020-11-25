@@ -10,6 +10,14 @@
     <hr />
     <div class="row">
         <div class="col-lg-12">
+            <div class="form-container">
+                <form class="form-inline" method="GET">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="User name" value="{{$search ?? ''}}">
+                    </div>
+                    <button type="submit" class="btn btn-default">Filter</button>
+                </form>
+            </div>
             <div class="form-group">
                 <a href="{{ route('users.create') }}" class="btn btn-primary btn-lg">Create User</a>
             </div>

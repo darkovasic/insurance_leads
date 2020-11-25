@@ -10,15 +10,15 @@
     <hr />
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            {{-- <div class="form-container">
+            <div class="form-container">
                 <form class="form-inline" method="GET">
                     <div class="form-group">
-                        <label for="filter" class="col-sm-2 col-form-label">Filter</label>
-                        <input type="text" class="form-control" id="filter" name="filter" placeholder="User name..." value="{{$filter ?? ''}}">
+                        {{-- <label for="filter" class="col-sm-2 col-form-label">Filter</label> --}}
+                        <input type="text" class="form-control" id="search" name="search" placeholder="User name" value="{{$search ?? ''}}">
                     </div>
-                    <button type="submit" class="btn btn-default mb-2">Filter</button>
+                    <button type="submit" class="btn btn-default">Filter</button>
                 </form>
-            </div> --}}
+            </div>
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
@@ -73,7 +73,7 @@
                 </button> --}}
             </div>
             <div class="modal-body">
-                <samp></samp>
+                <pre><code></code></pre>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -87,12 +87,12 @@
 <script type="text/javascript">
     $('#bp_request').on('show.bs.modal', function(e) {
 
-        var request  = e.relatedTarget.dataset.request,
+        var request  = $.parseJSON(e.relatedTarget.dataset.request),
             name  = e.relatedTarget.dataset.name,
             date  = e.relatedTarget.dataset.date,
             modal    = $(this);
-
-        modal.find("samp").html(request);
+console.log('request', request);
+        modal.find("code").html(request);
         modal.find(".modal-title").html(name+' on '+date);
     });
 </script>

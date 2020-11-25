@@ -2,11 +2,13 @@
 
 namespace App;
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
 class SentEmailsLog extends Model
 {
+    use Filterable;
     use Sortable;
 
     /**

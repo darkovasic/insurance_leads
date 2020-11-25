@@ -2,12 +2,14 @@
 
 namespace App;
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
 class ApiRequestLog extends Model
 {
     use Sortable;
+    use Filterable;
 
     public $timestamps = true;
 

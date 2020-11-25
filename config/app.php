@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        EloquentFilter\ServiceProvider::class,
 
         /*
          * Application Service Providers...

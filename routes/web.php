@@ -29,7 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     });
-    Route::view('/dashboard', 'admin.dashboard');
+    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
     Route::resource('/users','Admin\UserController');
     Route::get('/recent-activities', 'Admin\ApiRequestLogController@index');
     Route::get('/email-log', 'Admin\SentEmailsLogController@index');

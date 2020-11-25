@@ -10,6 +10,14 @@
     <hr />
     <div class="row">
         <div class="col-lg-12 col-md-12">
+            <div class="form-container">
+                <form class="form-inline" method="GET">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="User name" value="{{$search ?? ''}}">
+                    </div>
+                    <button type="submit" class="btn btn-default">Filter</button>
+                </form>
+            </div>
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
