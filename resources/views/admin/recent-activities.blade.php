@@ -73,7 +73,7 @@
                 </button> --}}
             </div>
             <div class="modal-body">
-                <pre><code></code></pre>
+                <dl id="request_dump" class="row"></dl>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -87,13 +87,24 @@
 <script type="text/javascript">
     $('#bp_request').on('show.bs.modal', function(e) {
 
-        var request  = $.parseJSON(e.relatedTarget.dataset.request),
-            name  = e.relatedTarget.dataset.name,
-            date  = e.relatedTarget.dataset.date,
-            modal    = $(this);
-console.log('request', request);
-        modal.find("code").html(request);
-        modal.find(".modal-title").html(name+' on '+date);
+        var request     = $.parseJSON(e.relatedTarget.dataset.request),
+            data        = request.application_form.answer_values,
+            name        = e.relatedTarget.dataset.name,
+            date        = e.relatedTarget.dataset.date,
+            modal       = $(this),
+            arrayLength = data.length;
+
+        modal.find(".modal-title").html(name + ' on ' + date);
+        modal.find("#request_dump").html('');
+        
+        for (i = 0; i < arrayLength; i++) {          
+            modal.find("#request_dump").append(
+                '<dt class="col-sm-4">' + data[i].code + '</dt>' + 
+                '<dd class="col-sm-8">' + data[i].answer + '</dd>'
+            );
+        }
     });
 </script>
 @endsection
+
+
