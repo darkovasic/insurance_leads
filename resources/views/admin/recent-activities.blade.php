@@ -92,15 +92,15 @@
             name        = e.relatedTarget.dataset.name,
             date        = e.relatedTarget.dataset.date,
             modal       = $(this),
-            arrayLength = data.length;
+            dataLength  = data.length;
 
-        modal.find(".modal-title").html(name + ' on ' + date);
+        modal.find(".modal-title").html(name + ' <strong>on</strong> ' + date);
         modal.find("#request_dump").html('');
-        
-        for (i = 0; i < arrayLength; i++) {          
+
+        for (i = 0; i < dataLength; i++) {          
             modal.find("#request_dump").append(
-                '<dt class="col-sm-4">' + data[i].code + '</dt>' + 
-                '<dd class="col-sm-8">' + data[i].answer + '</dd>'
+                '<dt class="col-sm-6">' + data[i].code + '</dt>' + 
+                '<dd class="col-sm-6">' + data[i].answer + '</dd>'
             );
         }
     });
