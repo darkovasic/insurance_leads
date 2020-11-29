@@ -58,6 +58,7 @@ class LeadController extends Controller
             'phy_state' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'numeric', 'digits:10'],
+            'currently_insured' => ['required', 'string'],
         ]);
 
         $lead = Lead::create($request->all());
@@ -113,6 +114,7 @@ class LeadController extends Controller
             'phy_state' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'numeric', 'digits:10'],
+            'currently_insured' => ['required', 'string'],
         ]);
 
         try {
