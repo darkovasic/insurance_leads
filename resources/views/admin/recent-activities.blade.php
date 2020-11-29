@@ -14,7 +14,7 @@
                 <form class="form-inline" method="GET">
                     <div class="form-group">
                         {{-- <label for="filter" class="col-sm-2 col-form-label">Filter</label> --}}
-                        <input type="text" class="form-control" id="search" name="search" placeholder="User name" value="{{$search ?? ''}}">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="User Name" value="{{$search ?? ''}}">
                     </div>
                     <button type="submit" class="btn btn-default">Filter</button>
                 </form>

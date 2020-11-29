@@ -4,7 +4,7 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-lg-12">
-            <h2>USERS</h2>
+            <h2>LEADS</h2>
         </div>
     </div>
     <hr />
@@ -13,40 +13,44 @@
             <div class="form-container" style="float: left">
                 <form class="form-inline" method="GET">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="search" name="search" placeholder="User Name" value="{{$search ?? ''}}">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Legal Name" value="{{$search ?? ''}}">
                     </div>
                     <button type="submit" class="btn btn-default" ali>Filter</button>
                 </form>
             </div>
             <div class="form-group" style="float: right">
-                <a href="{{ route('users.create') }}" class="btn btn-primary">Create User</a>
+                <a href="{{ route('leads.create') }}" class="btn btn-primary">Create Lead</a>
             </div>
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>@sortablelink('id', 'ID')</th>
-                        <th>@sortablelink('name', 'Name')</th>
-                        <th>@sortablelink('roles', 'Role')</th>
-                        <th>@sortablelink('email', 'Email')</th>
+                        <th>@sortablelink('dot_number', 'DOT Number')</th>
+                        <th>@sortablelink('legal_name', 'Legal Name')</th>
+                        <th>@sortablelink('email_address', 'Email')</th>
+                        <th>@sortablelink('phone', 'Phone Number')</th>
+                        <th>@sortablelink('state', 'State')</th>
                         <th>@sortablelink('created_at', 'Created')</th>
                         <th>@sortablelink('updated_at', 'Updated')</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
+                    @foreach($leads as $lead)
                     <tr>
-                        <td>{{ $user->id ?? 'n/a' }}</td>
-                        <td>{{ $user->name ?? 'n/a' }}</td>
-                        <td>{{ $user->roles ? $user->roles->pluck('name')->implode(', ') : 'n/a' }}</td>
-                        <td>{{ $user->email ?? 'n/a' }}</td>
-                        <td>{{ $user->created_at ?? 'n/a' }}</td>
-                        <td>{{ $user->updated_at ?? 'n/a' }}</td>
+                        <td>{{ $lead->id ?? 'n/a' }}</td>
+                        <td>{{ $lead->dot_number ?? 'n/a' }}</td>
+                        <td>{{ $lead->legal_name ?? 'n/a' }}</td>
+                        <td>{{ $lead->email_address ?? 'n/a' }}</td>
+                        <td>{{ $lead->phone ?? 'n/a' }}</td>
+                        <td>{{ $lead->phy_state ?? 'n/a' }}</td>
+                        <td>{{ $lead->created_at ?? 'n/a' }}</td>
+                        <td>{{ $lead->updated_at ?? 'n/a' }}</td>
                         <td>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                            <form action="{{ route('leads.destroy', $lead->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
+                                <a class="btn btn-primary" href="{{ route('leads.edit', $lead->id) }}">Edit</a>
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
@@ -54,7 +58,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! $users->appends(Request::except('page'))->render() !!}
+            {!! $leads->appends(Request::except('page'))->render() !!}
         </div>
     </div>
 </div>

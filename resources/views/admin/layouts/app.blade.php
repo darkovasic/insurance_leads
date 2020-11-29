@@ -46,18 +46,23 @@
                     <ul class="nav" id="main-menu">
                         <li class="active-link">
                             <a href="/admin/dashboard"
-                                ><i class="fa fa-desktop "></i>Dashboard</a
+                                ><i class="fa fa-desktop"></i>Dashboard</a
                             >
                         </li>
 
                         {{-- <li>
                             <a href="/admin/ui"
-                                ><i class="fa fa-table "></i>UI Elements</a
+                                ><i class="fa fa-table"></i>UI Elements</a
                             >
                         </li> --}}
                         <li>
                             <a href="/admin/users"
-                                ><i class="fa fa-users "></i>Users</a
+                                ><i class="fa fa-users"></i>Users</a
+                            >
+                        </li>
+                        <li>
+                            <a href="/admin/leads"
+                                ><i class="fa fa-thumbs-up"></i>Leads</a
                             >
                         </li>
                         <li>

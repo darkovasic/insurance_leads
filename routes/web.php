@@ -31,10 +31,10 @@ Route::prefix('admin')->group(function () {
     });
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
     Route::resource('/users','Admin\UserController');
+    Route::resource('/leads','Admin\LeadController');
     Route::get('/recent-activities', 'Admin\ApiRequestLogController@index');
     Route::get('/email-log', 'Admin\SentEmailsLogController@index');
-
-    Route::view('/ui', 'admin.ui');
+    // Route::view('/ui', 'admin.ui');
 });
 
 Route::get('/clear-cache', 'ClearCacheController@index');
