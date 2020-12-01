@@ -76,9 +76,9 @@
                         <div class="form-group col-md-4">
                             <label for="currently_insured">Currently Insured <span>*</span></label>
                             <select id="currently_insured" name="currently_insured" class="form-control">
-                                <option selected></option>
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
+                                <option {{old('currently_insured') == '' ? 'selected' : ''}}></option>
+                                <option value="YES" {{old('currently_insured') == 'YES' ? 'selected' : ''}}>YES</option>
+                                <option value="NO" {{old('currently_insured') == 'NO' ? 'selected' : ''}}>NO</option>
                             </select>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                             <label for="phy_state">State <span>*</span></label>
                             <select id="phy_state" name="phy_state"  class="form-control">
                                 @foreach($states as $key => $value)
-                                <option value="{{$key}}">{{ $value }}</option>
+                                <option value="{{$key}}" {{old('phy_state') == $key ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>
                             @error('phy_state')
@@ -134,7 +134,7 @@
                             <label for="legal_entity">Legal Entity</label>
                             <select id="legal_entity" name="legal_entity" class="form-control">
                                 @foreach($legal_entities as $key => $value)
-                                <option value="{{$key}}">{{ $value }}</option>
+                                <option value="{{$key}}" {{old('legal_entity') == $key ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -153,7 +153,7 @@
                             <label for="coverage_type">Coverage Type</label>
                             <select id="coverage_type" name="coverage_type"  class="form-control">
                                 @foreach($coverage_types as $key => $value)
-                                <option value="{{$key}}">{{ $value }}</option>
+                                <option value="{{$key}}" {{old('coverage_type') == $key ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>
                         </div>

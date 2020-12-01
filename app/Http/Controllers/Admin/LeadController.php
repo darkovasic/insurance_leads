@@ -119,15 +119,6 @@ class LeadController extends Controller
 
         try {
             $lead->update($request->all());
-            // $lead->update([
-            //     'legal_name' => $request['legal_name'],
-            //     'email_address' => $request['email_address'],
-            //     'phy_city' => $request['phy_city'],
-            //     'phy_zip' => $request['phy_zip'],
-            //     'phy_state' => $request['phy_state'],
-            //     'first_name' => $request['first_name'],
-            //     'phone' => $request['phone'],           
-            // ]);
             notify()->success('Lead updated!');
         } catch (\Exception $error) {
             dd($error);
