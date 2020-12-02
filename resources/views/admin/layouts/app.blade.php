@@ -62,7 +62,7 @@
                         </li>
                         <li>
                             <a href="/admin/leads"
-                                ><i class="fa fa-thumbs-up"></i>Leads</a
+                                ><i class="fa fa-truck"></i>Leads</a
                             >
                         </li>
                         <li>

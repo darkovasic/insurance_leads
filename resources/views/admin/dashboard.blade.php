@@ -8,14 +8,14 @@
         </div>
     </div>
     <hr />
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-lg-12 ">
             <div class="alert alert-info">
-                <strong>Welcome John Doe ! </strong> You Have No
-                pending Task For Today.
+            Welcome <strong>{{auth()->user()->name}}</strong>!
+            {{$leadsSentCount}} leads were sent to the brokers yesterday.
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="row text-center pad-top">
         {{-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
