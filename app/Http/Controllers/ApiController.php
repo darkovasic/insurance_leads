@@ -125,43 +125,8 @@ class ApiController extends Controller
             return json_encode($result);
 
         } catch (\Exception $error) {
-            dd("sendLead exception");
             dd($error);
         }
-
-        // $headers = [
-        //     'Content-Type' => 'application/json',
-        //     'Authorization' => 'Bearer ' . $access_token,
-        // ];
-
-        // $client = new Client([
-        //     'headers' => $headers
-        // ]);
-
-        // $request = $client->request('POST', $urlCreate, [
-        //     'data' => [
-        //         "application_form" => [
-        //             "answer_values" => [
-        //                 // (object) [
-        //                 // "code" => "mqs_first_name",
-        //                 // "answer" => $lead->legal_name
-        //                 // ],
-        //                 // (object) [
-        //                 // "code" => "mqs_email",
-        //                 // "answer" => $lead->email_address
-        //                 // ],
-        //                 // (object) [
-        //                 // "code" => "mqs_business_name",
-        //                 // "answer" => $lead->dba_name
-        //                 // ],
-        //                 (object) [
-        //                 "code" => "mqs_phone",
-        //                 "answer" => $lead->phone
-        //                 ]
-        //             ]
-        //         ]
-        //     ]
-        // ]);
     }
 
     public function saveResponse($id, $request, $response, $total_time) {

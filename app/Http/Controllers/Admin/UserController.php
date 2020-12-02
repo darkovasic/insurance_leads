@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 use App\Http\Controllers\Controller;
 use App\User;
 
@@ -61,6 +63,14 @@ class UserController extends Controller
 
         $user->assignRole($request['role']);
 
+        $email = $request->get('email');
+        $data = ([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'role' => $request->get('role'),
+        ]);
+        Mail::to($email)->send(new WelcomeMail($data));      
+
         notify()->success('User created!');
 
         return redirect()->route('users.index');
@@ -117,7 +127,7 @@ class UserController extends Controller
 
         notify()->success('User updated!');
 
-        return redirect()->route('users.index');
+        return back();
     }
 
     /**

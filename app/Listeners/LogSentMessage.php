@@ -29,11 +29,11 @@ class LogSentMessage
     {
         $message = $event->message;
 
-        $messageId = $message->getId();
-        $type = $message->type;
-        $status = 'sent';
+        if (isset($message->type) && $message->type === 'er') {
 
-        if ($type === 'er') {
+            $messageId = $message->getId();
+            $type = $message->type;
+            $status = 'sent';
 
             $log = SentEmailsLog::firstWhere('message_id', $messageId);
             if (!empty($log))

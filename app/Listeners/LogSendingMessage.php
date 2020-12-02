@@ -29,13 +29,13 @@ class LogSendingMessage
     {
         $message = $event->message;
 
-        $messageId = $message->getId();
-        $senderId = $message->senderId;
-        $leadId = $message->leadId;
-        $type = $message->type;
-        $status = 'waiting';
+        if (isset($message->type) && $message->type === 'er') {
 
-        if ($type === 'er') {
+            $messageId = $message->getId();
+            $senderId = $message->senderId;
+            $leadId = $message->leadId;
+            $type = $message->type;
+            $status = 'waiting';
 
             try {
                 $log = new SentEmailsLog;
@@ -49,7 +49,6 @@ class LogSendingMessage
             } catch (\Illuminate\Database\QueryException $error) {
                 return $error->getMessage();
             }
-
         }
     }
 }
