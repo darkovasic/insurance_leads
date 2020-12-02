@@ -13,6 +13,8 @@ class CreateSentEmailsLogsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('sent_emails_log')) { return; }
+
         Schema::create('sent_emails_log', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('message_id')->length(80);

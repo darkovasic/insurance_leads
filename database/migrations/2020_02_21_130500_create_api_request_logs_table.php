@@ -13,6 +13,8 @@ class CreateApiRequestLogsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('api_request_logs')) { return; }
+
         Schema::create('api_request_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
