@@ -11,8 +11,8 @@
     <div class="row">
         <div class="col-lg-12 ">
             <div class="alert alert-info">
-            Welcome <strong>{{auth()->user()->name}}</strong>!
-            {{$leadsSentCount}} leads were sent to the brokers yesterday.
+                Welcome <strong>{{auth()->user()->name}}</strong>!
+                {{$leadsSentCount}} leads were sent to the brokers yesterday.
             </div>
         </div>
     </div>

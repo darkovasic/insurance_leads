@@ -51,7 +51,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <a class="btn btn-primary" href="{{ route('leads.edit', $lead->id) }}">Edit</a>
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this lead?')">Delete</button>
                             </form>
                         </td>
                     </tr>
