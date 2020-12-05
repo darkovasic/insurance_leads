@@ -46,18 +46,18 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="contact_first_name">Contact - First Name <span>*</span></label>
-                            <input type="text" class="form-control" id="contact_first_name" name="contact_first_name" value="{{ old('contact_first_name') }}" required>
+                        <div class="form-group col-md-2">
+                            <label for="contact_first_name">Contact Person <span>*</span></label>
+                            <input type="text" class="form-control" id="contact_first_name" name="contact_first_name" value="{{ old('contact_first_name') }}" placeholder="First Name" required>
                             @error('contact_first_name')
                             <small class="invalid-feedback">
                                 <strong>{{ $message }}</strong>
                             </small>
                         @enderror
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="contact_last_name">Contact - Last Name <span>*</span></label>
-                            <input type="text" class="form-control" id="contact_last_name" name="contact_last_name" value="{{ old('contact_last_name') }}" required>
+                        <div class="form-group col-md-2">
+                            <label for="contact_last_name">&nbsp;</label>
+                            <input type="text" class="form-control" id="contact_last_name" name="contact_last_name" value="{{ old('contact_last_name') }}" placeholder="Last Name" required>
                             @error('contact_last_name')
                                 <small class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -73,9 +73,6 @@
                                 </small>
                             @enderror
                         </div>
-                    </div>
-
-                    <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="email">Email <span>*</span></label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
