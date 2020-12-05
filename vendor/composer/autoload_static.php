@@ -463,6 +463,7 @@ class ComposerStaticInitbe09d421b9936f7aea81de083597133c
     public static $classMap = array (
         'App\\Ability' => __DIR__ . '/../..' . '/app/Ability.php',
         'App\\ApiRequestLog' => __DIR__ . '/../..' . '/app/ApiRequestLog.php',
+        'App\\Broker' => __DIR__ . '/../..' . '/app/Broker.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Helpers\\StateHelper' => __DIR__ . '/../..' . '/app/Helpers/StateHelper.php',

@@ -28,6 +28,9 @@
                         <th>@sortablelink('name', 'Name')</th>
                         <th>@sortablelink('roles', 'Role')</th>
                         <th>@sortablelink('email', 'Email')</th>
+                        <th>@sortablelink('phone', 'Phone')</th>
+                        <th>@sortablelink('city', 'City')</th>
+                        <th>@sortablelink('state', 'State')</th>
                         <th>@sortablelink('created_at', 'Created')</th>
                         <th>@sortablelink('updated_at', 'Updated')</th>
                         <th>Action</th>
@@ -40,6 +43,9 @@
                         <td>{{ $user->name ?? 'n/a' }}</td>
                         <td>{{ $user->roles ? $user->roles->pluck('name')->implode(', ') : 'n/a' }}</td>
                         <td>{{ $user->email ?? 'n/a' }}</td>
+                        <td>{{ $user->phone ?? 'n/a' }}</td>
+                        <td>{{ $user->city ?? 'n/a' }}</td>
+                        <td>{{ $user->state ?? 'n/a' }}</td>
                         <td>{{ $user->created_at ?? 'n/a' }}</td>
                         <td>{{ $user->updated_at ?? 'n/a' }}</td>
                         <td>

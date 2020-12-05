@@ -32,6 +32,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::resource('/users','Admin\UserController');
     Route::resource('/leads','Admin\LeadController');
+    Route::resource('/brokers','Admin\BrokerController');
     Route::get('/recent-activities', 'Admin\ApiRequestLogController@index');
     Route::get('/email-log', 'Admin\SentEmailsLogController@index');
     // Route::view('/ui', 'admin.ui');

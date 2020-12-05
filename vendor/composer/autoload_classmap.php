@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Ability' => $baseDir . '/app/Ability.php',
     'App\\ApiRequestLog' => $baseDir . '/app/ApiRequestLog.php',
+    'App\\Broker' => $baseDir . '/app/Broker.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Helpers\\StateHelper' => $baseDir . '/app/Helpers/StateHelper.php',

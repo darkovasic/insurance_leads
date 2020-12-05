@@ -13,7 +13,5 @@ class Lead extends Model
     use Notifiable;
     use Sortable;
     
-    protected $guarded = [
-        'dot_number'
-    ];
+    protected $guarded = [];
 }

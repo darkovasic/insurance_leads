@@ -66,6 +66,11 @@
                             >
                         </li>
                         <li>
+                            <a href="/admin/brokers"
+                                ><i class="fa fa-briefcase"></i>Brokers</a
+                            >
+                        </li>
+                        <li>
                             <a href="/admin/recent-activities"
                                 ><i class="fa fa-bar-chart-o"></i>Recent Activities</a
                             >
