@@ -18,7 +18,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="legal_name">Legal Name <span>*</span></label>
-                            <input type="text" class="form-control" id="legal_name" name="legal_name" value="{{ $lead->legal_name }}">
+                            <input type="text" class="form-control" id="legal_name" name="legal_name" value="{{ $lead->legal_name }}" required autofocus>
                             @error('legal_name')
                                 <small class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="first_name">First Name <span>*</span></label>
-                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ $lead->first_name }}">
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ $lead->first_name }}" required>
                             @error('first_name')
                                 <small class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="phone">Phone Number <span>*</span></label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ $lead->phone }}">
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ $lead->phone }}" required>
                             @error('phone')
                                 <small class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -74,8 +74,8 @@
                             <input type="text" class="form-control" id="dba_name" name="dba_name" value="{{ $lead->dba_name ?? '' }}">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="currently_insured">Currently Insured</label>
-                            <select id="currently_insured" name="currently_insured"  class="form-control">
+                            <label for="currently_insured">Currently Insured <span>*</span></label>
+                            <select id="currently_insured" name="currently_insured"  class="form-control" required>
                                 <option selected></option>
                                 <option value="YES" {{$lead && $lead->currently_insured == 'YES' ? 'selected' : ''}}>YES</option>
                                 <option value="NO" {{$lead && $lead->currently_insured == 'NO' ? 'selected' : ''}}>NO</option>
@@ -86,7 +86,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="phy_zip">ZIP Code <span>*</span></label>
-                            <input type="text" class="form-control" id="phy_zip" name="phy_zip" value="{{ $lead->phy_zip }}">
+                            <input type="text" class="form-control" id="phy_zip" name="phy_zip" value="{{ $lead->phy_zip }}" required>
                             @error('phy_zip')
                                 <small class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="phy_city">City <span>*</span></label>
-                            <input type="text" class="form-control" id="phy_city" name="phy_city" value="{{ $lead->phy_city }}">
+                            <input type="text" class="form-control" id="phy_city" name="phy_city" value="{{ $lead->phy_city }}" required>
                             @error('phy_city')
                                 <small class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -119,7 +119,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="phy_state">State <span>*</span></label>
-                            <select id="phy_state" name="phy_state" class="form-control">
+                            <select id="phy_state" name="phy_state" class="form-control" required>
                                 @foreach($states as $key => $value)
                                 <option value="{{$key}}" {{$lead && $lead->phy_state == $key ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach

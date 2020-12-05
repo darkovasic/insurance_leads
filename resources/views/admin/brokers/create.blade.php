@@ -18,7 +18,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="broker_name">Broker Name <span>*</span></label>
-                            <input type="text" class="form-control" id="broker_name" name="broker_name" value="{{ old('broker_name') }}" required>
+                            <input type="text" class="form-control" id="broker_name" name="broker_name" value="{{ old('broker_name') }}" required autofocus>
                             @error('broker_name')
                             <small class="invalid-feedback">
                                 <strong>{{ $message }}</strong>
@@ -85,12 +85,58 @@
                     </div>
 
                     <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="min_number_of_trucks">Number of Trucks</label>
+                            <input type="number" min="0" class="form-control" id="min_number_of_trucks" name="min_number_of_trucks" value="{{ old('min_number_of_trucks') }}" placeholder="Min" required>
+                            @error('min_number_of_trucks')
+                            <small class="invalid-feedback">
+                                <strong>{{ $message }}</strong>
+                            </small>
+                        @enderror
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="max_number_of_trucks">&nbsp;</label>
+                            <input type="number" min="0" class="form-control" id="max_number_of_trucks" name="max_number_of_trucks" value="{{ old('max_number_of_trucks') }}" placeholder="Max" required>
+                            @error('max_number_of_trucks')
+                                <small class="invalid-feedback">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="daily_max_number_of_leads" data-toggle="tooltip" data-placement="right" title="Maximum number of leads that broker can take in one day">Daily Limit</label>
+                            <input type="number" min="0" class="form-control" id="daily_max_number_of_leads" name="daily_max_number_of_leads" value="{{ old('daily_max_number_of_leads') }}" required>
+                            @error('daily_max_number_of_leads')
+                                <small class="invalid-feedback">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="min_years_of_experience" data-toggle="tooltip" data-placement="right" title="Minimum required years in business for a lead">Years of Experience</label>
+                            <input type="number" min="0" class="form-control" id="min_years_of_experience" name="min_years_of_experience" value="{{ old('min_years_of_experience') }}" required>
+                            @error('min_years_of_experience')
+                                <small class="invalid-feedback">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-row">
                         <div class="form-group col-md-4">
                             <label><strong>States Covered:</strong></label><br/>
-                            <select class="form-control" name="states_covered[]" multiple="">
+                            <select class="form-control" name="states_covered[]" multiple size="12">
                                 @foreach($states as $key => $value)
                                 <option value="{{$key}}" {{old("states_covered[]") == $key ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label><strong>Language(s):</strong></label><br/>
+                            <select class="form-control" name="accepted_languages[]" multiple size="2">
+                                <option value="en" selected>English</option>
+                                <option value="es">Spanish</option>
                             </select>
                         </div>
                     </div>
@@ -106,4 +152,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('page-js-script')
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>
 @endsection

@@ -59,16 +59,8 @@ class BrokerController extends Controller
             'contact_last_name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:20'],
         ]);
-// dd($request);
-        $broker = Broker::create($request->all());
 
-        // $email = $request->get('email');
-        // $data = ([
-        //     'name' => $request->get('name'),
-        //     'email' => $request->get('email'),
-        //     'role' => $request->get('role'),
-        // ]);
-        // Mail::to($email)->send(new WelcomeMail($data));      
+        $broker = Broker::create($request->all());   
 
         notify()->success('Broker created!');
 
