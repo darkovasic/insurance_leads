@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="search" name="search" placeholder="Broker Name" value="{{$search ?? ''}}">
                     </div>
-                    <button type="submit" class="btn btn-default" ali>Filter</button>
+                    <button type="submit" class="btn btn-default">Filter</button>
                 </form>
             </div>
             <div class="form-group" style="float: right">

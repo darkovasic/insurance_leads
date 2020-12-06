@@ -15,11 +15,12 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="search" name="search" placeholder="Legal Name" value="{{$search ?? ''}}">
                     </div>
-                    <button type="submit" class="btn btn-default" ali>Filter</button>
+                    <button type="submit" class="btn btn-default">Filter</button>
                 </form>
             </div>
             <div class="form-group" style="float: right">
                 <a href="{{ route('leads.create') }}" class="btn btn-primary">Create Lead</a>
+                <a href="{{ route('leads.import') }}" class="btn btn-success">Import from Excel</a>
             </div>
             <table class="table table-striped table-bordered table-hover">
                 <thead>

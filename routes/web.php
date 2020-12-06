@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
     });
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::resource('/users','Admin\UserController');
+    Route::get('/leads/import', 'Admin\ImportLeadsController@index')->name('leads.import');
     Route::resource('/leads','Admin\LeadController');
     Route::resource('/brokers','Admin\BrokerController');
     Route::get('/recent-activities', 'Admin\ApiRequestLogController@index');

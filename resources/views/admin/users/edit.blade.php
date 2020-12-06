@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="phone" class="col-md-3 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+                        <label for="phone" class="col-md-3 col-form-label text-md-right">{{ __('Phone Number') }} <span>*</span></label>
 
                         <div class="col-md-6">
                             <input id="phone" type="text" value="{{ $user->phone }}" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" autocomplete="phone">
