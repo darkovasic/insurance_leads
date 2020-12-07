@@ -13,4 +13,9 @@ class BrokerFilter extends ModelFilter
     * @var array
     */
     public $relations = [];
+
+    public function search($term)
+    {      
+        return $this->where('broker_name', 'LIKE', "%$term%");
+    }
 }
