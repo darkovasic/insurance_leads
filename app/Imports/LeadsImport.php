@@ -14,21 +14,25 @@ use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\OnEachRow;
+use Maatwebsite\Excel\Row;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class LeadsImport implements ToModel, WithHeadingRow, WithValidation
+class LeadsImport implements OnEachRow, WithHeadingRow, WithValidation
 {
-    use Importable, SkipsErrors;
+    use Importable;
 
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
-    {   
-        return new Lead([
+    public function onRow(Row $row)
+    {
+        $rowIndex = $row->getIndex();
+        $row      = $row->toArray();
+      
+        $lead = Lead::updateOrCreate(
+            [
+                'dot_number' => $row['dot_number']
+            ],
+            [
             'dot_number' => $row['dot_number'],
             'legal_name' => $row['legal_name'],
             'first_name' => $row['first_name'], 
@@ -78,8 +82,8 @@ class LeadsImport implements ToModel, WithHeadingRow, WithValidation
 
     public function rules(): array {
         return [
-            '*.legal_name' => ['string', 'max:255'],
-            '*.dot_number' => ['required', 'numeric', 'unique:leads,dot_number'],
+            '*.legal_name' => ['required', 'string', 'max:255'],
+            '*.dot_number' => ['required', 'numeric'],
             '*.first_name' => ['string', 'max:50', 'nullable'],
             '*.last_name' => ['string', 'max:50', 'nullable'],
             '*.email_address' => ['email', 'nullable'],
@@ -94,12 +98,12 @@ class LeadsImport implements ToModel, WithHeadingRow, WithValidation
             // '*.last_insurance_date' => ['date'],
             '*.full_time_employees' => ['numeric', 'nullable'],
             '*.part_time_employees' => ['numeric', 'nullable'],
-            '*.currently_insured' => ['in:YES,NO'],
+            '*.currently_insured' => ['required', 'in:YES,NO'],
             '*.years_of_experience' => ['numeric', 'nullable'],
             '*.legal_entity' => ['nullable', 'in:Sole Proprietorship,Partnership,LLC,S Corporation,C Corporation,Joint Venture,Trust,Association,Municipality,Other'],
             '*.coverage_type' => ['nullable', 'in:Bond,Liability,Professional Liability (E&O),Commercial Property,Workers Compensation,Commercial Auto,BOP,Other/Not Sure'],
             // '*.insurance_cancellation_date' => ['date'],
-            '*.pv_apcant_id' => ['numeric'],
+            '*.pv_apcant_id' => ['required', 'numeric'],
             '*.person_name' => ['string', 'max:255', 'nullable'],
             '*.title' => ['nullable', 'in:Mr.,Mrs.,Miss'],
             '*.carrier_operation' => ['in:A,B,C', 'nullable'],
@@ -108,14 +112,14 @@ class LeadsImport implements ToModel, WithHeadingRow, WithValidation
             '*.mailing_street' => ['string', 'max:255', 'nullable'],
             '*.mailing_city' => ['string', 'max:255', 'nullable'],
             '*.mailing_state' => ['string', 'max:2', 'nullable'],
-            '*.mailing_zip' => ['string', 'max:15', 'nullable'],
+            '*.mailing_zip' => ['alpha_dash', 'max:15', 'nullable'],
             '*.mailing_country' => ['string', 'max:2', 'nullable'],
             '*.telephone' => ['string', 'max:20', 'nullable'],
             '*.fax' => ['string', 'max:20', 'nullable'],
-            '*.mcs150_date' => ['string', 'max:9', 'nullable'],
+            '*.mcs150_date' => ['alpha_dash', 'max:9', 'nullable'],
             '*.mcs150_mileage' => ['numeric', 'nullable'],
             '*.mcs150_mileage_year' => ['numeric', 'nullable'],
-            '*.add_date' => ['string', 'max:9', 'nullable'],
+            '*.add_date' => ['alpha_dash', 'max:9', 'nullable'],
             // '*.add_date_date' => ['date'],
             '*.oic_state' => ['string', 'max:2', 'nullable'],
             '*.description' => ['string', 'max:255', 'nullable'],

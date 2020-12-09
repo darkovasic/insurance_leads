@@ -31,7 +31,7 @@
                         @csrf
                         <div class="form-group">
                             <input type="file" name="file" />
-                            <button type="submit" class="btn btn-success">Import Lead Data</button>
+                            <button type="submit" class="btn btn-success">Import Leads</button>
                         </div>
                     </form>
                 </div>

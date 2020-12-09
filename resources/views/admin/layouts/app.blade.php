@@ -36,6 +36,7 @@
                     </div>
 
                     <div class="logout-spn">
+                        <a href="{{ url('/lead') }}" style="color:#fff; padding-right:10px" target="_blank">Visit Site</a>
                         <a href="{{ url('/logout') }}" style="color:#fff;">Logout</a>
                     </div>
                 </div>
