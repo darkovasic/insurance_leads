@@ -37,7 +37,7 @@
 
                     <div class="logout-spn">
                         <a href="{{ url('/lead') }}" style="color:#fff; padding-right:10px" target="_blank">Visit Site</a>
-                        <a href="{{ url('/logout') }}" style="color:#fff;">Logout</a>
+                        <a href="{{ url('/logout') }}" style="color:#fff;" onclick="return confirm('Are you sure you want to log out?')">Logout</a>
                     </div>
                 </div>
             </div>
@@ -56,17 +56,17 @@
                                 ><i class="fa fa-table"></i>UI Elements</a
                             >
                         </li> --}}
-                        <li class="{{ (request()->is('admin/users')) ? 'active-link' : '' }}">  
+                        <li class="{{ (request()->is('admin/users*')) ? 'active-link' : '' }}">  
                             <a href="/admin/users"
                                 ><i class="fa fa-users"></i>Users</a
                             >
                         </li>
-                        <li class="{{ (request()->is('admin/leads')) ? 'active-link' : '' }}">
+                        <li class="{{ (request()->is('admin/leads*')) ? 'active-link' : '' }}">
                             <a href="/admin/leads"
                                 ><i class="fa fa-truck"></i>Leads</a
                             >
                         </li>
-                        <li class="{{ (request()->is('admin/brokers')) ? 'active-link' : '' }}">
+                        <li class="{{ (request()->is('admin/brokers*')) ? 'active-link' : '' }}">
                             <a href="/admin/brokers"
                                 ><i class="fa fa-briefcase"></i>Brokers</a
                             >
