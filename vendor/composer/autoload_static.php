@@ -591,6 +591,7 @@ class ComposerStaticInitbe09d421b9936f7aea81de083597133c
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Imports\\LeadsImport' => __DIR__ . '/../..' . '/app/Imports/LeadsImport.php',
         'App\\Lead' => __DIR__ . '/../..' . '/app/Lead.php',
         'App\\Listeners\\LogSendingMessage' => __DIR__ . '/../..' . '/app/Listeners/LogSendingMessage.php',
         'App\\Listeners\\LogSentMessage' => __DIR__ . '/../..' . '/app/Listeners/LogSentMessage.php',

@@ -166,11 +166,11 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="last_insurance_date">Last Insurance Date</label>
-                            <input type="text" class="form-control" id="last_insurance_date" name="last_insurance_date" value="{{ old('last_insurance_date') }}">
+                            <input type="date" class="form-control" id="last_insurance_date" name="last_insurance_date" value="{{ old('last_insurance_date') }}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="insurance_cancellation_date">Insurance Cancelation Date</label>
-                            <input type="text" class="form-control" id="insurance_cancellation_date" name="insurance_cancellation_date" value="{{ old('insurance_cancellation_date') }}">
+                            <input type="date" class="form-control" id="insurance_cancellation_date" name="insurance_cancellation_date" value="{{ old('insurance_cancellation_date') }}">
                         </div>
                     </div>
 

@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="state" class="col-md-3 col-form-label text-md-right">{{ __('State') }}</label>
+                        <label for="state" class="col-md-3 col-form-label text-md-right">{{ __('Country') }}</label>
 
                         <div class="col-md-6">
                             <input id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" autocomplete="state">

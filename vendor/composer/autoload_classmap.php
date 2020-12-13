@@ -39,6 +39,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Imports\\LeadsImport' => $baseDir . '/app/Imports/LeadsImport.php',
     'App\\Lead' => $baseDir . '/app/Lead.php',
     'App\\Listeners\\LogSendingMessage' => $baseDir . '/app/Listeners/LogSendingMessage.php',
     'App\\Listeners\\LogSentMessage' => $baseDir . '/app/Listeners/LogSentMessage.php',
