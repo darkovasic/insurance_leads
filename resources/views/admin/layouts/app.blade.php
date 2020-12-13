@@ -45,7 +45,7 @@
             <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
                     <ul class="nav" id="main-menu">
-                        <li class="active-link">
+                        <li class="{{ (request()->is('admin/dashboard')) ? 'active-link' : '' }}">  
                             <a href="/admin/dashboard"
                                 ><i class="fa fa-desktop"></i>Dashboard</a
                             >
@@ -56,27 +56,27 @@
                                 ><i class="fa fa-table"></i>UI Elements</a
                             >
                         </li> --}}
-                        <li>
+                        <li class="{{ (request()->is('admin/users')) ? 'active-link' : '' }}">  
                             <a href="/admin/users"
                                 ><i class="fa fa-users"></i>Users</a
                             >
                         </li>
-                        <li>
+                        <li class="{{ (request()->is('admin/leads')) ? 'active-link' : '' }}">
                             <a href="/admin/leads"
                                 ><i class="fa fa-truck"></i>Leads</a
                             >
                         </li>
-                        <li>
+                        <li class="{{ (request()->is('admin/brokers')) ? 'active-link' : '' }}">
                             <a href="/admin/brokers"
                                 ><i class="fa fa-briefcase"></i>Brokers</a
                             >
                         </li>
-                        <li>
+                        <li class="{{ (request()->is('admin/recent-activities')) ? 'active-link' : '' }}">
                             <a href="/admin/recent-activities"
                                 ><i class="fa fa-bar-chart-o"></i>Recent Activities</a
                             >
                         </li>
-                        <li>
+                        <li class="{{ (request()->is('admin/email-log')) ? 'active-link' : '' }}">
                             <a href="/admin/email-log"
                                 ><i class="fa fa-bar-chart-o"></i>Email Log</a
                             >
