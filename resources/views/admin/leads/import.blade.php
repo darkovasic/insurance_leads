@@ -4,7 +4,7 @@
 <div id="page-inner">
     <div class="row">
         <div class="col-lg-12">
-            <h2>IMPORT FROM EXCEL</h2>
+            <h2>IMPORT LEADS FROM FILE</h2>
         </div>
     </div>
     <hr />

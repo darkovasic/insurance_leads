@@ -26,7 +26,8 @@ class ImportLeadsController extends Controller
         $import = new LeadsImport;
         $import->import($file);
 
-        // dd($import->errors());
+if(!empty($import->failures()->items)) dd($import->failures());
+// dd($import->failures());
            
         return back()->withStatus('Leads imported successfully');
     }

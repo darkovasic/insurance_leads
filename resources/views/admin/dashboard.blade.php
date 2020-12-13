@@ -27,9 +27,9 @@
         </div> --}}
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
-                <a href="{{ route('users.index') }}">
+                <a href="{{ route('leads.index') }}">
                     <i class="fa fa-users fa-5x"></i>
-                    <h4>See Users</h4>
+                    <h4>See Leads</h4>
                 </a>
             </div>
         </div>
@@ -43,17 +43,17 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
-                <a href="{{ route('leads.index') }}">
-                    <i class="fa fa-users fa-5x"></i>
-                    <h4>Check Leads</h4>
+                <a href="{{ route('leads.create') }}">
+                    <i class="fa fa-user fa-5x"></i>
+                    <h4>Register Lead</h4>
                 </a>
             </div>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
-                <a href="{{ route('leads.create') }}">
+                <a href="{{ route('brokers.create') }}">
                     <i class="fa fa-user fa-5x"></i>
-                    <h4>Register Lead</h4>
+                    <h4>Register Broker</h4>
                 </a>
             </div>
         </div>
