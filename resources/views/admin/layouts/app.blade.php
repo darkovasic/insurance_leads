@@ -81,6 +81,11 @@
                                 ><i class="fa fa-bar-chart-o"></i>Email Log</a
                             >
                         </li>
+                        <li class="{{ (request()->is('admin/import-error-log')) ? 'active-link' : '' }}">
+                            <a href="/admin/import-error-log"
+                                ><i class="fa fa-bar-chart-o"></i>Import Error Log</a
+                            >
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -93,7 +98,7 @@
         <div class="footer">
             <div class="row">
                 <div class="col-lg-12">
-                    &copy; 2020 coveragecentre.net
+                    &copy; <?php echo date("Y"); ?> coveragecentre.net
                 </div>
             </div>
         </div>
