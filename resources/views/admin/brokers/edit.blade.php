@@ -125,15 +125,15 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label><strong>States Covered:</strong></label><br/>
-                            <select class="form-control" name="states_covered[]" multiple size="12">
+                            <label><strong>State(s) Covered</strong></label><br/>
+                            <select class="form-control" name="states_covered[]" multiple size="10">
                                 @foreach($states as $key => $value)
                                 <option value="{{$key}}" {{in_array($key, $broker->states_covered) ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <label><strong>Language(s):</strong></label><br/>
+                            <label><strong>Language(s)</strong></label><br/>
                             <select class="form-control" name="accepted_languages[]" multiple size="2">
                                 <option value="en" {{in_array("en", $broker->accepted_languages) ? 'selected' : ''}}>English</option>
                                 <option value="es" {{in_array("es", $broker->accepted_languages) ? 'selected' : ''}}>Spanish</option>

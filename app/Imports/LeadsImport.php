@@ -3,59 +3,50 @@
 namespace App\Imports;
 
 use App\Lead;
+use App\User;
 use App\ImportErrorLog;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-// use Illuminate\Validation\Rule;
-// use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Illuminate\Support\Facades\Validator;
-use Maatwebsite\Excel\Validators\Failure;
 use Maatwebsite\Excel\Concerns\Importable;
-// use Maatwebsite\Excel\Concerns\SkipsOnFailure;
-// use Maatwebsite\Excel\Concerns\WithValidation;
-// use Maatwebsite\Excel\Concerns\SkipsFailures;
-// use Maatwebsite\Excel\Concerns\SkipsErrors;
-// use Maatwebsite\Excel\Concerns\OnEachRow;
-// use Maatwebsite\Excel\Row;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\RemembersChunkOffset;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Maatwebsite\Excel\Events\AfterImport;
-// use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ImportFinished;
+
+use Illuminate\Support\Facades\Log;
 
 class LeadsImport implements 
     ToCollection, 
-    WithHeadingRow, 
-    // WithValidation, 
-    // SkipsOnError,
+    WithHeadingRow,
     WithChunkReading,
     WithEvents,
     ShouldQueue
-    // SkipsOnFailure
 
 {
     use Importable;
-    // use SkipsErrors;
-    // use SkipsFailures;
     use RegistersEventListeners;
     use RemembersChunkOffset;
 
-    protected $jobId = '';
+    public $jobId;
+    public $importedBy;
 
-    public function __construct() {
+    public function __construct(User $user) {
+
+        $this->importedBy = $user;
         $this->jobId = Str::random(10);
     }
 
     public function collection(Collection $rows)
     {
         $chunkOffset = $this->getChunkOffset();
-        error_log($chunkOffset);
 
         // $validator = Validator::make($rows->toArray(), [
         //     '*.legal_name' => ['required', 'string', 'max:255'],
@@ -111,7 +102,7 @@ class LeadsImport implements
         //     }
         // }
     
-        foreach ($rows as $index=>$row) {
+        foreach ($rows as $index => $row) {
 
             try {
                 $lead = Lead::firstOrNew(['dot_number' => $row['dot_number']]);
@@ -176,10 +167,6 @@ class LeadsImport implements
                 } catch(\Exception $e) {
                     error_log($e->getMessage());
                 }
-
-                // error_log($this->jobId);
-                // error_log($rowNumber);
-                // error_log($e->getMessage());
             }
         }
     }
@@ -191,14 +178,21 @@ class LeadsImport implements
 
     public static function afterImport(AfterImport $event)
     {
-        error_log('Import finished!');
+        $importedBy = $event->getConcernable()->importedBy;
+
+        try {
+            $email = new ImportFinished();
+            Mail::to($importedBy)->send($email);
+        } catch(\Exception $e) {
+            error_log($e->getMessage());
+        }
     }
 
     // public function prepareForValidation($data, $index)
     // {
-    //     $data['last_insurance_date'] = Date::excelToDateTimeObject($data['last_insurance_date']);
-    //     $data['insurance_cancellation_date'] = Date::excelToDateTimeObject($data['insurance_cancellation_date']);
-    //     $data['add_date_date'] = Date::excelToDateTimeObject($data['add_date_date']);
+    //     $data['last_insurance_date'] = Carbon::parse($data['last_insurance_date'])->toDateTimeString();
+    //     $data['insurance_cancellation_date'] = Carbon::parse($data['insurance_cancellation_date'])->toDateTimeString();
+    //     $data['add_date_date'] = Carbon::parse($data['add_date_date'])->toDateTimeString();
         
     //     return $data;
     // }

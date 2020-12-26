@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Imports\LeadsImport;
-// use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Lead;
@@ -23,15 +22,11 @@ class ImportLeadsController extends Controller
     public function import(Request $request) 
     {
         $file = $request->file('file')->store('import');
-        $import = new LeadsImport;
-        $import->import($file);
 
-        // if ($import->failures()->isNotEmpty()) {
-        //     return back()->withFailures($import->failures());
-        // }
-
-        // if(!empty($import->failures()->items)) dd($import->failures());
+        $user = auth()->user();
+        $import = new LeadsImport($user);
+        $import->queue($file);
            
-        return back()->withStatus('Import in queue, you will receive notification when import is finished.');
+        return back()->withStatus('Import in queue, email will be sent to ' . $user->email . ' when import is finished.');
     }
 }
