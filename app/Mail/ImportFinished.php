@@ -11,14 +11,20 @@ class ImportFinished extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data;
+    public $errorCount;
+    public $errorLink;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data, $errorCount)
     {
-        //          
+        $this->data = $data;
+        $this->errorCount = $errorCount;
+        $this->errorLink = route('import-log');
     }
 
     /**

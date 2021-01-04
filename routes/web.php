@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/brokers','Admin\BrokerController');
     Route::get('/recent-activities', 'Admin\ApiRequestLogController@index');
     Route::get('/email-log', 'Admin\SentEmailsLogController@index');
-    Route::get('/import-error-log', 'Admin\ImportErrorLogController@index');
+    Route::get('/import-error-log', 'Admin\ImportErrorLogController@index')->name('import-log');
     // Route::view('/ui', 'admin.ui');
 });
 

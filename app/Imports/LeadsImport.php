@@ -20,8 +20,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ImportFinished;
-
-use Illuminate\Support\Facades\Log;
+// use Illuminate\Support\Facades\Log;
 
 class LeadsImport implements 
     ToCollection, 
@@ -178,11 +177,12 @@ class LeadsImport implements
 
     public static function afterImport(AfterImport $event)
     {
-        $importedBy = $event->getConcernable()->importedBy;
+        $payload = $event->getConcernable();
+        $errorCount = ImportErrorLog::where('job_id', $payload->jobId)->count();
 
         try {
-            $email = new ImportFinished();
-            Mail::to($importedBy)->send($email);
+            $email = new ImportFinished($payload, $errorCount);
+            Mail::to($payload->importedBy)->send($email);
         } catch(\Exception $e) {
             error_log($e->getMessage());
         }
