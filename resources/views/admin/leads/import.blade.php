@@ -26,7 +26,7 @@
                     </div>
                 @endif
 
-                @if (session()->has('failures'))
+                {{-- @if (session()->has('failures'))
                     <table class="table table-danger">
                         <tr>
                             <th>Row</th>
@@ -49,7 +49,7 @@
                             </tr>
                         @endforeach
                     </table>
-                @endif
+                @endif --}}
 
                 <div class="card-header">
                     Update leads from file:
@@ -59,8 +59,8 @@
                         @csrf
                         <div class="form-group">
                             <input type="file" name="file" />
-                            <button type="submit" class="btn btn-success">Import Leads</button>
                         </div>
+                        <button type="submit" class="btn btn-success">Import Leads</button>
                     </form>
                 </div>
             </div>
