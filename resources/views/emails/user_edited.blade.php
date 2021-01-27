@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-    <p>Hi {{$user['name']}}, we’re glad you’re here! Following are your account details: <br></p>
+    <p>Hi {{$user['name']}}, your Coverage Center account details have been edited. Following are your new account details: <br></p>
     <h5>Name:</h5>
     <p>{{$user['name']}}</p>
     <h5>Email:</h5>

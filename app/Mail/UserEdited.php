@@ -7,11 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeMail extends Mailable
+class UserEdited extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $sender;
     public $user;
 
     /**
@@ -20,8 +19,7 @@ class WelcomeMail extends Mailable
      * @return void
      */
     public function __construct($user)
-    {      
-        $this->sender = auth()->user();
+    {
         $this->user = $user;
     }
 
@@ -32,13 +30,12 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        $subject = 'Welcome to ' . env('APP_NAME');
+        $subject = 'Your account has been edited!';
 
-        return $this->from($this->sender->email, $this->sender->name)
-            ->replyTo($this->sender->email, $this->sender->name)
+        return $this
+            ->from(env('MAIL_FROM_ADDRESS', 'dukic.n@gmail.com'), env('MAIL_FROM_NAME', 'Coverage Center'))
             ->to($this->user->email, $this->user->name)
             ->subject($subject)
-            ->view('emails.welcome');
-            // ->with([ 'message' => $this->data['message'] ]);
+            ->view('emails.user_edited');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMail;
+use App\Mail\UserEdited;
 use App\Http\Controllers\Controller;
 use App\User;
 
@@ -66,13 +67,7 @@ class UserController extends Controller
 
         $user->assignRole($request['role']);
 
-        $email = $request->get('email');
-        $data = ([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'role' => $request->get('role'),
-        ]);
-        Mail::to($email)->send(new WelcomeMail($data));      
+        Mail::send(new WelcomeMail($user));      
 
         notify()->success('User created!');
 
@@ -127,6 +122,8 @@ class UserController extends Controller
         }
 
         $user->assignRole($request['role']);
+
+        Mail::send(new UserEdited($user)); 
 
         notify()->success('User updated!');
 
